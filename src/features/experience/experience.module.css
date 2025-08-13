@@ -1,11 +1,15 @@
 .experienceSection{
+    min-height: 100vh;
     position: relative;
     flex-direction: column;
     display: flex;
     align-items: center;
+    justify-content: center;
     background-color: var(--bg-primary);
     color: var(--text-primary);
-    padding: var(--spacing-2xl) var(--spacing-lg);
+    padding: var(--spacing-4xl) var(--spacing-lg);
+    overflow-x: hidden;
+    width: 100%;
 }
 
 .circle{
@@ -18,36 +22,28 @@
     align-items: center;
     opacity: 0;
     transform: scale(0);
-    animation: circleAppear 0.5s ease-out forwards;
     position: relative;
     background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
     box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    transition: all 0.5s ease-out;
 }
 
-.circle::after {
-    content: '';
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--border-primary);
-    opacity: 0.7;
+.animateItem .circle {
+    opacity: 1;
+    transform: scale(1);
 }
+
 .VerticalLine {
     width: 2px;
     height: 0;
     background-color: var(--border-primary);
     align-self: center;
     margin-left: 39px;
-    animation: lineGrow 0.6s ease-out forwards;
-    animation-delay: 0.3s;
+    transition: height 0.6s ease-out;
 }
-.Item {
-    display: flex;
-    line-height: 0;
-    color: var(--text-primary);
-    font-size: var(--font-size-base);
-    font-weight: var(--font-weight-normal);
+
+.animateItem .VerticalLine {
+    height: var(--spacing-3xl);
 }
 
 .Details {
@@ -60,10 +56,84 @@
     height: 80px; /* Match circle height for perfect alignment */
     opacity: 0;
     transform: translateX(-20px);
-    animation: textSlideIn 0.5s ease-out forwards;
+    transition: all 0.5s ease-out;
 }
 
-/* Control spacing of paragraph elements inside experienceDetails */
+.animateItem .Details {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.miniCircle{
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid var(--border-primary);
+    margin-right: var(--spacing-md);
+    opacity: 0;
+    transform: scale(0);
+    flex-shrink: 0;
+    background: rgba(255,255,255,0.02);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    transition: all 0.5s ease-out;
+}
+
+.animateItem .miniCircle {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.certificateData {
+    opacity: 0;
+    transform: translateX(-20px);
+    color: var(--text-primary);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-normal);
+    line-height: var(--line-height-normal);
+    transition: all 0.5s ease-out;
+}
+
+.animateItem .certificateData {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.Item {
+    display: flex;
+    line-height: 0;
+    color: var(--text-primary);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-normal);
+}
+
+.certificateItem {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: var(--spacing-md);
+}
+
+.experienceEducationContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    width: 100%;
+    justify-content: space-between;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.experienceEducationContainer > div {
+    flex: 0 1 auto;
+    max-width: 100%;
+    width: 100%;
+}
+
+.experienceEducationContainer > div:first-child {
+    margin-bottom: var(--spacing-4xl);
+}
+
+/* Control spacing of paragraph elements inside Details */
 .Details p {
     margin: var(--spacing-xs) 0;
     padding: 0;
@@ -89,180 +159,113 @@
     font-weight: var(--font-weight-normal);
 }
 
-.experienceEducationContainer {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    width: 100%;
-    
-    justify-content: space-between; /* Center the container horizontally */
-    max-width: 1000px; /* Add max-width for better layout control */
-    margin: 0 auto; /* Center the container when it's smaller than viewport */
-}
-
-.experienceEducationContainer > div {
-    flex: 0 1 auto; /* Don't grow, can shrink, auto width based on content */
-    max-width: none; /* Remove width constraint */
-    width: max-content; /* Width based on content */
-}
-
-.experienceEducationContainer > div:first-child {
-    margin-bottom: var(--spacing-4xl); /* Add space after experience section */
-}
-
-.miniCircle{
-    width: 12px;
-    height: 12px;
+.circle::after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
-    border: 2px solid var(--border-primary);
-    margin-right: var(--spacing-md);
-    opacity: 0;
-    transform: scale(0);
-    animation: circleAppear 0.5s ease-out forwards;
-    flex-shrink: 0;
-    background: rgba(255,255,255,0.02);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    background: var(--border-primary);
+    opacity: 0.7;
 }
-.certificateItem {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-bottom: var(--spacing-md);
+
+/* Staggered animation delays for scroll-triggered animations */
+.animateItem[data-index="0"] .circle,
+.animateItem[data-index="0"] .Details,
+.animateItem[data-index="0"] .miniCircle,
+.animateItem[data-index="0"] .certificateData {
+    transition-delay: 0s;
 }
-.certificateData {
-    opacity: 0;
-    transform: translateX(-20px);
-    animation: textSlideIn 0.5s ease-out forwards;
-    color: var(--text-primary);
-    font-size: var(--font-size-base);
-    font-weight: var(--font-weight-normal);
-    line-height: var(--line-height-normal);
+
+.animateItem[data-index="1"] .circle,
+.animateItem[data-index="1"] .Details,
+.animateItem[data-index="1"] .miniCircle,
+.animateItem[data-index="1"] .certificateData {
+    transition-delay: 0.1s;
+}
+
+.animateItem[data-index="2"] .circle,
+.animateItem[data-index="2"] .Details,
+.animateItem[data-index="2"] .miniCircle,
+.animateItem[data-index="2"] .certificateData {
+    transition-delay: 0.2s;
+}
+
+.animateItem[data-index="3"] .circle,
+.animateItem[data-index="3"] .Details,
+.animateItem[data-index="3"] .miniCircle,
+.animateItem[data-index="3"] .certificateData {
+    transition-delay: 0.3s;
+}
+
+.animateItem[data-index="4"] .circle,
+.animateItem[data-index="4"] .Details,
+.animateItem[data-index="4"] .miniCircle,
+.animateItem[data-index="4"] .certificateData {
+    transition-delay: 0.4s;
+}
+
+.animateItem[data-index="5"] .circle,
+.animateItem[data-index="5"] .Details,
+.animateItem[data-index="5"] .miniCircle,
+.animateItem[data-index="5"] .certificateData {
+    transition-delay: 0.5s;
+}
+
+.animateItem[data-index="0"] .VerticalLine {
+    transition-delay: 0.3s;
+}
+
+.animateItem[data-index="1"] .VerticalLine {
+    transition-delay: 0.4s;
+}
+
+.animateItem[data-index="2"] .VerticalLine {
+    transition-delay: 0.5s;
+}
+
+.animateItem[data-index="3"] .VerticalLine {
+    transition-delay: 0.6s;
+}
+
+.animateItem[data-index="4"] .VerticalLine {
+    transition-delay: 0.7s;
+}
+
+.animateItem[data-index="5"] .VerticalLine {
+    transition-delay: 0.8s;
 }
 
 .sectionTitle {
-    opacity: 1;
+    opacity: 0;
     color: var(--text-primary);
     font-size: var(--font-size-3xl);
     font-weight: var(--font-weight-semibold);
     margin-bottom: var(--spacing-xl);
     margin-top: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease-out;
+}
+
+.sectionTitle.animate {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .certificateTitle {
     opacity: 0;
     transform: translateY(-10px);
-    animation: titleAppear 0.5s ease-out forwards;
-    animation-delay: 1.8s;
     color: var(--text-primary);
     font-size: var(--font-size-3xl);
     font-weight: var(--font-weight-semibold);
     margin-bottom: var(--spacing-lg);
     margin-top: var(--spacing-2xl);
+    transition: all 0.6s ease-out;
 }
 
-.certificateItem:nth-child(1) .miniCircle,
-.certificateItem:nth-child(1) .certificateData {
-    animation-delay: 1.8s; /* First certificate starts after education items */
+.certificateTitle.animate {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-.certificateItem:nth-child(2) .miniCircle,
-.certificateItem:nth-child(2) .certificateData {
-    animation-delay: 2.3s; /* Second certificate */
-}
-
-.certificateItem:nth-child(3) .miniCircle,
-.certificateItem:nth-child(3) .certificateData {
-    animation-delay: 2.8s; /* Third certificate */
-}
-.certificateItem:nth-child(4) .miniCircle,
-.certificateItem:nth-child(4) .certificateData {
-    animation-delay: 3.3s; /* Fourth certificate */
-}
-.certificateItem:nth-child(5) .miniCircle,
-.certificateItem:nth-child(5) .certificateData {
-    animation-delay: 3.8s; /* Fifth certificate */
-}
-
-.certificateItem:nth-child(6) .miniCircle,
-.certificateItem:nth-child(6) .certificateData {
-    animation-delay: 4.3s; /* Sixth certificate */
-}
-
-/* Cascading delays for each item */
-.Item:nth-child(1) .circle,
-.Item:nth-child(1) .Details {
-    animation-delay: 0s;
-}
-
-.Item:nth-child(2) .circle,
-.Item:nth-child(2) .Details {
-    animation-delay: 0.9s; /* Previous item duration + line animation */
-}
-
-.Item:nth-child(2) .VerticalLine {
-    animation-delay: 1.2s;
-}
-
-.Item:nth-child(3) .circle,
-.Item:nth-child(3) .Details {
-    animation-delay: 1.8s;
-}
-
-.Item:nth-child(3) .VerticalLine {
-    animation-delay: 2.1s;
-}
-
-.Item:nth-child(4) .circle,
-.Item:nth-child(4) .Details {
-    animation-delay: 2.7s;
-}
-
-.Item:nth-child(4) .VerticalLine {
-    animation-delay: 3.0s;
-}
-
-.Item:nth-child(5) .circle,
-.Item:nth-child(5) .Details {
-    animation-delay: 3.6s;
-}
-
-.Item:nth-child(5) .VerticalLine {
-    animation-delay: 3.9s;
-}
-
-.Item:nth-child(6) .circle,
-.Item:nth-child(6) .Details {
-    animation-delay: 4.5s;
-}
-
-.Item:nth-child(6) .VerticalLine {
-    animation-delay: 4.8s;
-}
-
-/* Keyframe animations */
-@keyframes circleAppear {
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-@keyframes textSlideIn {
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes lineGrow {
-    to {
-        height: var(--spacing-3xl);
-    }
-}
-
-@keyframes titleAppear {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+/* Responsive and other utility styles can be added here if needed */

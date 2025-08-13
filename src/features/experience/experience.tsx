@@ -4,9 +4,14 @@ import styles from "./experience.module.css";
 
 const Experience: React.FC = () => {
   const { ref: sectionRef } = useScrollAnimation({ threshold: 0.1 });
-  const { ref: experienceRef, isInView: experienceInView } = useScrollAnimation({ threshold: 0.2 });
-  const { ref: educationRef, isInView: educationInView } = useScrollAnimation({ threshold: 0.2 });
-  const { ref: certificatesRef, isInView: certificatesInView } = useScrollAnimation({ threshold: 0.2 });
+  const { ref: experienceRef, isInView: experienceInView } = useScrollAnimation(
+    { threshold: 0.2 }
+  );
+  const { ref: educationRef, isInView: educationInView } = useScrollAnimation({
+    threshold: 0.2,
+  });
+  const { ref: certificatesRef, isInView: certificatesInView } =
+    useScrollAnimation({ threshold: 0.2 });
 
   const experienceData = [
     {
@@ -75,8 +80,16 @@ const Experience: React.FC = () => {
     },
   ];
 
-  const buildCertificateItem = (item: { title: string }, isInView: boolean, index: number) => (
-    <div className={`${styles.certificateItem} ${isInView ? styles.animateItem : ''}`} data-index={index}>
+  const buildCertificateItem = (
+    item: { title: string },
+    isInView: boolean,
+    index: number
+  ) => (
+    <div
+      className={`${styles.certificateItem} ${
+        isInView ? styles.animateItem : ""
+      }`}
+      data-index={index}>
       <div className={styles.miniCircle}> </div>
       <div className={styles.certificateData}> {item.title} </div>
     </div>
@@ -93,7 +106,9 @@ const Experience: React.FC = () => {
     isInView: boolean,
     index: number
   ) => (
-    <div className={`${styles.Item} ${isInView ? styles.animateItem : ''}`} data-index={index}>
+    <div
+      className={`${styles.Item} ${isInView ? styles.animateItem : ""}`}
+      data-index={index}>
       <div>
         <div className={styles.circle}></div>
         {!isLast && <div className={styles.VerticalLine}></div>}
@@ -118,7 +133,9 @@ const Experience: React.FC = () => {
     isInView: boolean,
     index: number
   ) => (
-    <div className={`${styles.Item} ${isInView ? styles.animateItem : ''}`} data-index={index}>
+    <div
+      className={`${styles.Item} ${isInView ? styles.animateItem : ""}`}
+      data-index={index}>
       <div>
         <div className={styles.circle}></div>
         {!isLast && <div className={styles.VerticalLine}></div>}
@@ -131,29 +148,57 @@ const Experience: React.FC = () => {
     </div>
   );
   return (
-    <section id="experience" className={styles.experienceSection} ref={sectionRef}>
+    <section
+      id="experience"
+      className={styles.experienceSection}
+      ref={sectionRef}>
       <div className={styles.experienceEducationContainer}>
         <div ref={experienceRef}>
-          <h2 className={`${styles.sectionTitle} ${experienceInView ? styles.animate : ''}`}>Experience</h2>
+          <h2
+            className={`${styles.sectionTitle} ${
+              experienceInView ? styles.animate : ""
+            }`}>
+            Experience
+          </h2>
           <div className={styles.experienceList}>
             {experienceData.map((item, index) => (
               <React.Fragment key={index}>
-                {buildExperienceItem(item, index === experienceData.length - 1, experienceInView, index)}
+                {buildExperienceItem(
+                  item,
+                  index === experienceData.length - 1,
+                  experienceInView,
+                  index
+                )}
               </React.Fragment>
             ))}
           </div>
         </div>
         <div ref={educationRef}>
-          <h2 className={`${styles.sectionTitle} ${educationInView ? styles.animate : ''}`}>Education</h2>
+          <h2
+            className={`${styles.sectionTitle} ${
+              educationInView ? styles.animate : ""
+            }`}>
+            Education
+          </h2>
           <div className={styles.educationList}>
             {educationData.map((item, index) => (
               <React.Fragment key={index}>
-                {buildEducationItem(item, index === educationData.length - 1, educationInView, index)}
+                {buildEducationItem(
+                  item,
+                  index === educationData.length - 1,
+                  educationInView,
+                  index
+                )}
               </React.Fragment>
             ))}
           </div>
           <div ref={certificatesRef}>
-            <h2 className={`${styles.certificateTitle} ${certificatesInView ? styles.animate : ''}`}>Certificates</h2>
+            <h2
+              className={`${styles.certificateTitle} ${
+                certificatesInView ? styles.animate : ""
+              }`}>
+              Certificates
+            </h2>
             <div className={styles.certificateList}>
               {certificateData.map((item, index) => (
                 <React.Fragment key={index}>

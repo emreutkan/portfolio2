@@ -3,10 +3,15 @@ import { useScrollVisibility } from "../../hooks/useScrollVisibility";
 import styles from "./header.module.css";
 
 const Header: React.FC = () => {
-  const isVisible = useScrollVisibility(typeof window !== 'undefined' ? window.innerHeight * 0.8 : 600);
+  const isVisible = useScrollVisibility(
+    typeof window !== "undefined" ? window.innerHeight * 0.8 : 600
+  );
 
   return (
-    <header className={`${styles.headerContainer} ${isVisible ? styles.visible : styles.hidden}`}>
+    <header
+      className={`${styles.headerContainer} ${
+        isVisible ? styles.visible : styles.hidden
+      }`}>
       <h1 className={styles.headerName}>Irfan Emre Utkan</h1>
       <nav role="navigation" aria-label="Main navigation">
         <ul>

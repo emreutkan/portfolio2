@@ -1,87 +1,217 @@
-import React from "react";
+import React, { useState } from "react";
 import { useScrollAnimation } from "../../hooks/useScrollAnimation";
+import { getFeaturedProjects, getHighlightedProjects, type Project } from "../../data/projects";
 import styles from "./projects.module.css";
 
 const Projects: React.FC = () => {
-  const { ref: titleRef, isInView: titleInView } = useScrollAnimation({ threshold: 0.3 });
-  const { ref: gridRef, isInView: gridInView } = useScrollAnimation({ threshold: 0.1 });
-  const projects = [
-    {
-      id: 1,
-      title: "E-Commerce Platform",
-      description: "A full-stack e-commerce solution built with React, Node.js, and MongoDB. Features include user authentication, payment processing, and admin dashboard.",
-      technologies: ["React", "Node.js", "MongoDB", "Stripe"],
-      image: "/api/placeholder/400/250",
-      liveUrl: "#",
-      githubUrl: "#"
-    },
-    {
-      id: 2,
-      title: "Task Management App",
-      description: "A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.",
-      technologies: ["React", "TypeScript", "Socket.io", "PostgreSQL"],
-      image: "/api/placeholder/400/250",
-      liveUrl: "#",
-      githubUrl: "#"
-    },
-    {
-      id: 3,
-      title: "Weather Dashboard",
-      description: "A responsive weather application with geolocation, forecasts, and beautiful data visualizations using modern web APIs.",
-      technologies: ["Vue.js", "Chart.js", "OpenWeather API", "CSS3"],
-      image: "/api/placeholder/400/250",
-      liveUrl: "#",
-      githubUrl: "#"
-    }
-  ];
+  const { ref: featuredTitleRef, isInView: featuredTitleInView } = useScrollAnimation({
+    threshold: 0.3,
+  });
+  const { ref: carouselRef, isInView: carouselInView } = useScrollAnimation({
+    threshold: 0.1,
+  });
+  const { ref: bigProjectsTitleRef, isInView: bigProjectsTitleInView } = useScrollAnimation({
+    threshold: 0.3,
+  });
+  const { ref: bigProjectsRef, isInView: bigProjectsInView } = useScrollAnimation({
+    threshold: 0.1,
+  });
+
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  // Get projects from data file
+  const featuredProjects = getFeaturedProjects();
+  const highlightedProjects = getHighlightedProjects();
+
+  const projectsPerSlide = 3;
+  const totalSlides = Math.ceil(featuredProjects.length / projectsPerSlide);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % totalSlides);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
+  };
 
   return (
     <section className={styles.projectsSection} id="projects">
-      <div className={styles.container}>
-        <div ref={titleRef}>
-          <h2 className={`${styles.sectionTitle} ${titleInView ? styles.animate : ''}`}>Featured Projects</h2>
-          <p className={`${styles.sectionDescription} ${titleInView ? styles.animate : ''}`}>
-            Here are some of my recent projects that showcase my skills and passion for development.
-          </p>
-        </div>
-        
-        <div className={styles.projectsGrid} ref={gridRef}>
-          {projects.map((project, index) => (
-            <div 
-              key={project.id} 
-              className={`${styles.projectCard} ${gridInView ? styles.animateCard : ''}`}
-              data-index={index}
+      {/* Featured Projects Carousel */}
+      <div className={styles.featuredSection}>
+        <div className={styles.container}>
+          <div ref={featuredTitleRef}>
+            <h2
+              className={`${styles.sectionTitle} ${
+                featuredTitleInView ? styles.animate : ""
+              }`}>
+              Featured Projects
+            </h2>
+            <p
+              className={`${styles.sectionDescription} ${
+                featuredTitleInView ? styles.animate : ""
+              }`}>
+              A showcase of my recent work spanning various technologies and domains.
+            </p>
+          </div>
+
+          <div className={styles.carouselContainer} ref={carouselRef}>
+            <button 
+              className={styles.carouselButton} 
+              onClick={prevSlide}
+              aria-label="Previous projects"
             >
-              <div className={styles.projectImage}>
-                <div className={styles.imagePlaceholder}>
-                  <span>{project.title}</span>
+              ‹
+            </button>
+            
+            <div className={styles.carousel}>
+              <div 
+                className={styles.carouselTrack}
+                data-slide={currentSlide}
+              >
+                {Array.from({ length: totalSlides }).map((_, slideIndex) => (
+                  <div key={slideIndex} className={styles.carouselSlide}>
+                    {featuredProjects.slice(slideIndex * projectsPerSlide, (slideIndex + 1) * projectsPerSlide).map((project, index) => (
+                      <div
+                        key={project.id}
+                        className={`${styles.projectCard} ${
+                          carouselInView ? styles.animateCard : ""
+                        }`}
+                        data-index={index}>
+                        <div className={styles.projectImage}>
+                          <div className={styles.imagePlaceholder}>
+                            <span>{project.title}</span>
+                          </div>
+                          <div className={styles.projectOverlay}>
+                            <div className={styles.projectLinks}>
+                              <a href={project.liveUrl} className={styles.projectLink}>
+                                <span>🔗</span> Live Demo
+                              </a>
+                              <a href={project.githubUrl} className={styles.projectLink}>
+                                <span>📁</span> Source Code
+                              </a>
+                            </div>
+                          </div>
+                          <div className={styles.categoryBadge}>
+                            {project.category}
+                          </div>
+                        </div>
+
+                        <div className={styles.projectContent}>
+                          <h3 className={styles.projectTitle}>{project.title}</h3>
+                          <p className={styles.projectDescription}>
+                            {project.description}
+                          </p>
+
+                          <div className={styles.projectTechnologies}>
+                            {project.technologies.map((tech) => (
+                              <span key={tech} className={styles.techTag}>
+                                {tech}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <button 
+              className={styles.carouselButton} 
+              onClick={nextSlide}
+              aria-label="Next projects"
+            >
+              ›
+            </button>
+          </div>
+
+          <div className={styles.carouselDots}>
+            {Array.from({ length: totalSlides }).map((_, index) => (
+              <button
+                key={index}
+                className={`${styles.dot} ${index === currentSlide ? styles.activeDot : ""}`}
+                onClick={() => setCurrentSlide(index)}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Big Projects Section */}
+      <div className={styles.bigProjectsSection}>
+        <div className={styles.container}>
+          <div ref={bigProjectsTitleRef}>
+            <h2
+              className={`${styles.sectionTitle} ${
+                bigProjectsTitleInView ? styles.animate : ""
+              }`}>
+              Major Projects
+            </h2>
+            <p
+              className={`${styles.sectionDescription} ${
+                bigProjectsTitleInView ? styles.animate : ""
+              }`}>
+              Large-scale applications and enterprise solutions that demonstrate comprehensive technical expertise.
+            </p>
+          </div>
+
+                    <div className={styles.bigProjectsGrid} ref={bigProjectsRef}>
+            {highlightedProjects.map((project, index) => (
+              <div
+                key={project.id}
+                className={`${styles.bigProjectCard} ${
+                  bigProjectsInView ? styles.animateCard : ""
+                }`}
+                data-index={index}>
+                <div className={styles.bigProjectImage}>
+                  <div className={styles.bigImagePlaceholder}>
+                    <span>{project.title}</span>
+                  </div>
+                  <div className={styles.projectOverlay}>
+                    <div className={styles.projectLinks}>
+                      <a href={project.liveUrl} className={styles.projectLink}>
+                        <span>🔗</span> Live Demo
+                      </a>
+                      <a href={project.githubUrl} className={styles.projectLink}>
+                        <span>📁</span> Source Code
+                      </a>
+                    </div>
+                  </div>
+                  <div className={styles.categoryBadge}>
+                    {project.category}
+                  </div>
                 </div>
-                <div className={styles.projectOverlay}>
-                  <div className={styles.projectLinks}>
-                    <a href={project.liveUrl} className={styles.projectLink}>
-                      <span>🔗</span> Live Demo
-                    </a>
-                    <a href={project.githubUrl} className={styles.projectLink}>
-                      <span>📁</span> Source Code
-                    </a>
+
+                <div className={styles.bigProjectContent}>
+                  <h3 className={styles.bigProjectTitle}>{project.title}</h3>
+                  <p className={styles.bigProjectDescription}>
+                    {project.description}
+                  </p>
+
+                  {project.stats && (
+                    <div className={styles.projectStats}>
+                      {Object.entries(project.stats).map(([key, value]) => (
+                        <div key={key} className={styles.statItem}>
+                          <span className={styles.statValue}>{value}</span>
+                          <span className={styles.statLabel}>{key}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  <div className={styles.projectTechnologies}>
+                    {project.technologies.map((tech) => (
+                      <span key={tech} className={styles.techTag}>
+                        {tech}
+                      </span>
+                    ))}
                   </div>
                 </div>
               </div>
-              
-              <div className={styles.projectContent}>
-                <h3 className={styles.projectTitle}>{project.title}</h3>
-                <p className={styles.projectDescription}>{project.description}</p>
-                
-                <div className={styles.projectTechnologies}>
-                  {project.technologies.map((tech) => (
-                    <span key={tech} className={styles.techTag}>
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

@@ -1,0 +1,241 @@
+.experienceSection{
+    position: relative;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    padding: var(--spacing-2xl) var(--spacing-lg);
+}
+
+.circle{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    border: 2px solid var(--border-primary);
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transform: scale(0);
+    animation: circleAppear 0.5s ease-out forwards;
+}
+.VerticalLine {
+    width: 2px;
+    height: 0;
+    background-color: var(--border-primary);
+    align-self: center;
+    margin-left: 39px;
+    animation: lineGrow 0.6s ease-out forwards;
+    animation-delay: 0.3s;
+}
+.Item {
+    display: flex;
+    line-height: 0;
+    color: var(--text-primary);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-normal);
+}
+
+.Details {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    margin-left: var(--spacing-lg);
+    justify-content: center;
+    height: 80px; /* Match circle height for perfect alignment */
+    opacity: 0;
+    transform: translateX(-20px);
+    animation: textSlideIn 0.5s ease-out forwards;
+}
+
+/* Control spacing of paragraph elements inside experienceDetails */
+.Details p {
+    margin: var(--spacing-xs) 0;
+    padding: 0;
+    line-height: var(--line-height-tight);
+}
+
+.Details p:first-child {
+    color: var(--text-muted);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-light);
+}
+
+.Details p:nth-child(2) {
+    color: var(--text-primary);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-medium);
+    margin: var(--spacing-xs) 0;
+}
+
+.Details p:last-child {
+    color: var(--text-secondary);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-normal);
+}
+
+.experienceEducationContainer {
+    display: flex;
+    flex-direction: row;
+    gap: var(--spacing-4xl); /* Increase space between experience and education sections */
+    align-items: flex-start;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.miniCircle{
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid var(--border-primary);
+    margin-right: var(--spacing-md);
+    opacity: 0;
+    transform: scale(0);
+    animation: circleAppear 0.5s ease-out forwards;
+    flex-shrink: 0;
+}
+.certificateItem {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: var(--spacing-md);
+}
+.certificateData {
+    opacity: 0;
+    transform: translateX(-20px);
+    animation: textSlideIn 0.5s ease-out forwards;
+    color: var(--text-primary);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-normal);
+    line-height: var(--line-height-normal);
+}
+
+.sectionTitle {
+    opacity: 1;
+    color: var(--text-primary);
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--spacing-xl);
+    margin-top: 0;
+}
+
+.certificateTitle {
+    opacity: 0;
+    transform: translateY(-10px);
+    animation: titleAppear 0.5s ease-out forwards;
+    animation-delay: 1.8s;
+    color: var(--text-primary);
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--spacing-lg);
+    margin-top: var(--spacing-2xl);
+}
+
+.certificateItem:nth-child(1) .miniCircle,
+.certificateItem:nth-child(1) .certificateData {
+    animation-delay: 1.8s; /* First certificate starts after education items */
+}
+
+.certificateItem:nth-child(2) .miniCircle,
+.certificateItem:nth-child(2) .certificateData {
+    animation-delay: 2.3s; /* Second certificate */
+}
+
+.certificateItem:nth-child(3) .miniCircle,
+.certificateItem:nth-child(3) .certificateData {
+    animation-delay: 2.8s; /* Third certificate */
+}
+.certificateItem:nth-child(4) .miniCircle,
+.certificateItem:nth-child(4) .certificateData {
+    animation-delay: 3.3s; /* Fourth certificate */
+}
+.certificateItem:nth-child(5) .miniCircle,
+.certificateItem:nth-child(5) .certificateData {
+    animation-delay: 3.8s; /* Fifth certificate */
+}
+
+.certificateItem:nth-child(6) .miniCircle,
+.certificateItem:nth-child(6) .certificateData {
+    animation-delay: 4.3s; /* Sixth certificate */
+}
+
+/* Cascading delays for each item */
+.Item:nth-child(1) .circle,
+.Item:nth-child(1) .Details {
+    animation-delay: 0s;
+}
+
+.Item:nth-child(2) .circle,
+.Item:nth-child(2) .Details {
+    animation-delay: 0.9s; /* Previous item duration + line animation */
+}
+
+.Item:nth-child(2) .VerticalLine {
+    animation-delay: 1.2s;
+}
+
+.Item:nth-child(3) .circle,
+.Item:nth-child(3) .Details {
+    animation-delay: 1.8s;
+}
+
+.Item:nth-child(3) .VerticalLine {
+    animation-delay: 2.1s;
+}
+
+.Item:nth-child(4) .circle,
+.Item:nth-child(4) .Details {
+    animation-delay: 2.7s;
+}
+
+.Item:nth-child(4) .VerticalLine {
+    animation-delay: 3.0s;
+}
+
+.Item:nth-child(5) .circle,
+.Item:nth-child(5) .Details {
+    animation-delay: 3.6s;
+}
+
+.Item:nth-child(5) .VerticalLine {
+    animation-delay: 3.9s;
+}
+
+.Item:nth-child(6) .circle,
+.Item:nth-child(6) .Details {
+    animation-delay: 4.5s;
+}
+
+.Item:nth-child(6) .VerticalLine {
+    animation-delay: 4.8s;
+}
+
+/* Keyframe animations */
+@keyframes circleAppear {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes textSlideIn {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes lineGrow {
+    to {
+        height: var(--spacing-3xl);
+    }
+}
+
+@keyframes titleAppear {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

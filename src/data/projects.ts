@@ -4,49 +4,42 @@ export interface Project {
   description: string;
   technologies: string[];
   image: string;
-  liveUrl: string;
+  liveUrl?: string; // Optional - not all projects have live demos
   githubUrl: string;
   category: string;
-  highlighted: boolean;
-  stats?: {
-    [key: string]: string;
-  };
+
   featured?: boolean;
   duration?: string;
-  team?: string;
-  impact?: string;
 }
 
 export const projects: Project[] = [
   {
     id: 1,
-    title: "Enterprise ERP System",
+    title: "Freshdeal",
     description:
-      "Complete enterprise resource planning system for large organizations with modules for HR, Finance, Inventory, and CRM. Built with microservices architecture and scalable design patterns for handling millions of transactions.",
+      "FreshDeal is a mobile and web platform that connects local businesses with surplus food to budget-conscious consumers. By enabling restaurants to sell unsold but edible food at reduced prices, it helps reduce waste, increase access to affordable meals, and promote sustainability aligning with UN SDGs 12, 13, and 17. The platform is built on a modern, scalable tech stack. The mobile app is developed using React Native with Expo, and is available as an APK for Android and via TestFlight for iOS.",
     technologies: [
       "React",
-      "Node.js",
-      "PostgreSQL",
-      "Docker",
-      "Kubernetes",
-      "AWS",
-      "Redis",
+      "React Native",
+      "Redux",
+      "Python",
+      "Flask",
+      "Google Maps API",
+      "Microsoft SQL Server",
+      "MySQL",
+      "Azure",
+      "Azure web services",
+      "Azure communication services",
+      "Firebase",
+      "TypeScript",
+      "JavaScript",
       "GraphQL",
     ],
     image: "/api/placeholder/600/400",
-    liveUrl: "https://erp-demo.example.com",
     githubUrl: "https://github.com/username/enterprise-erp",
     category: "Enterprise",
-    highlighted: true,
-    stats: {
-      users: "10K+",
-      companies: "50+",
-      uptime: "99.9%",
-      transactions: "1M+/day",
-    },
-    duration: "18 months",
-    team: "8 developers",
-    impact: "Reduced operational costs by 40% for client companies",
+    featured: true,
+    duration: "11 months",
   },
   {
     id: 2,
@@ -64,20 +57,10 @@ export const projects: Project[] = [
       "Machine Learning",
     ],
     image: "/api/placeholder/600/400",
-    liveUrl: "https://smartcity-demo.example.com",
     githubUrl: "https://github.com/username/smart-city",
     category: "Smart City",
-    highlighted: true,
-    stats: {
-      cities: "5",
-      sensors: "10K+",
-      efficiency: "+30%",
-      citizens: "500K+",
-    },
+    featured: true,
     duration: "24 months",
-    team: "12 developers",
-    impact:
-      "Improved city efficiency by 30% and reduced energy consumption by 25%",
   },
   {
     id: 3,
@@ -99,6 +82,8 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/username/healthcare-system",
     category: "Healthcare",
     highlighted: true,
+    hasLiveDemo: true,
+    featured: true,
     stats: {
       patients: "25K+",
       doctors: "500+",
@@ -116,11 +101,12 @@ export const projects: Project[] = [
     description:
       "A full-stack e-commerce solution with modern UI/UX, payment processing, inventory management, and comprehensive admin dashboard with real-time analytics.",
     technologies: ["React", "Node.js", "MongoDB", "Stripe", "Redis", "AWS"],
-    image: "/api/placeholder/400/250",
-    liveUrl: "https://ecommerce-demo.example.com",
+    image: "/api/placeholder/600/400",
     githubUrl: "https://github.com/username/ecommerce-platform",
     category: "E-Commerce",
     highlighted: false,
+    hasLiveDemo: false,
+    featured: true,
     duration: "8 months",
     team: "4 developers",
   },
@@ -130,11 +116,13 @@ export const projects: Project[] = [
     description:
       "Collaborative task management with real-time updates, drag-and-drop functionality, team collaboration features, and advanced project analytics.",
     technologies: ["React", "TypeScript", "Socket.io", "PostgreSQL", "Redis"],
-    image: "/api/placeholder/400/250",
+    image: "/api/placeholder/600/400",
     liveUrl: "https://taskmanager-demo.example.com",
     githubUrl: "https://github.com/username/task-manager",
     category: "Productivity",
     highlighted: false,
+    hasLiveDemo: true,
+    featured: true,
     duration: "6 months",
     team: "3 developers",
   },
@@ -144,11 +132,13 @@ export const projects: Project[] = [
     description:
       "Responsive weather application with geolocation, forecasts, beautiful data visualizations, and weather alerts using modern web APIs.",
     technologies: ["Vue.js", "Chart.js", "OpenWeather API", "CSS3", "PWA"],
-    image: "/api/placeholder/400/250",
+    image: "/api/placeholder/600/400",
     liveUrl: "https://weather-demo.example.com",
     githubUrl: "https://github.com/username/weather-dashboard",
     category: "Dashboard",
     highlighted: false,
+    hasLiveDemo: true,
+    featured: true,
     duration: "3 months",
     team: "Solo project",
   },

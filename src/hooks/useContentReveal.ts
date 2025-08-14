@@ -1,5 +1,9 @@
 import { useEffect, useRef } from "react";
 
+
+const start_animation_at_viewport_height = 0.9;
+const end_animation_at_viewport_height = 0.1;
+
 // ----- Math helpers -----
 const clamp01 = (value: number): number => Math.max(0, Math.min(1, value));
 const computeProgress = (current: number, start: number, end: number): number =>
@@ -14,40 +18,25 @@ export const useContentReveal = (
   useEffect(() => {
     const handleScroll = () => {
       if (!contentWrapperRef.current) return;
+      contentWrapperRef.current.style.opacity = "0";
 
+      const contentWrapperRect = contentWrapperRef.current.getBoundingClientRect();
+      const contentWrapperTop = contentWrapperRect.top;
+      
+      const FINAL_OPACITY = 1;
+      // Begin animation when the element starts entering the viewport
       const viewportHeight = window.innerHeight;
-      let titleProgress = 0;
+      const start = viewportHeight * start_animation_at_viewport_height; // top just at the bottom edge of the viewport
+      const end = Math.max(0, viewportHeight * end_animation_at_viewport_height); // animate until it's well in view
 
-      // If a title element is provided, use it for progress calculation
-      if (titleElementRef?.current) {
-        const titleRect = titleElementRef.current.getBoundingClientRect();
-        const titleStart = viewportHeight * 0.7; // 60% of viewport
-        const titleEnd = viewportHeight * 0.4; // 30% of viewport
-        titleProgress = computeProgress(titleRect.top, titleStart, titleEnd);
-      }
-
-      const revealStartProgress = 0.6; // when content reveal begins
-      const contentSlidePx = 24; // content slides up this much
-
-      const revealProgress = clamp01(
-        (titleProgress - revealStartProgress) / (1 - revealStartProgress)
+      const contentWrapperProgress = computeProgress(
+        contentWrapperTop,
+        start,
+        end
       );
 
-      const contentOpacity = revealProgress; // 0 -> 1
-      const contentTranslateY = (1 - revealProgress) * contentSlidePx;
 
-      if (revealProgress > 0) {
-        contentWrapperRef.current.style.display = "flex";
-        contentWrapperRef.current.style.opacity = String(contentOpacity);
-        contentWrapperRef.current.style.transform = `translateY(${contentTranslateY}px)`;
-        contentWrapperRef.current.style.pointerEvents =
-          revealProgress >= 0.8 ? "auto" : "none";
-      } else {
-        contentWrapperRef.current.style.display = "none";
-        contentWrapperRef.current.style.opacity = "0";
-        contentWrapperRef.current.style.transform = `translateY(${contentSlidePx}px)`;
-        contentWrapperRef.current.style.pointerEvents = "none";
-      }
+      contentWrapperRef.current.style.opacity = FINAL_OPACITY.toString();
     };
 
     let ticking = false;

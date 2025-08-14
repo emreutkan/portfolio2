@@ -1,7 +1,6 @@
 .freshdealSection {
-
-  position: relative;
-  min-height: 150vh;
+  display: flex;
+  flex-direction: row;
   background: linear-gradient(
     135deg,
     #d7f0ad 0%,
@@ -12,14 +11,11 @@
   );
   border-top-right-radius: 100px;
   border-top-left-radius: 100px;
+  overflow: hidden; /* clip children so off-screen slide-in doesn't cause x-scroll */
 }
 
 .initialContainer{
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  
   margin: auto;
 }
 
@@ -34,6 +30,7 @@
 
 /* Initial state styles */
 .initialTitle {
+  display: none; /* hidden by default, turn on when loaded then scroll out of view */ 
   position: relative;
   z-index: 2;
   text-align: center;
@@ -53,28 +50,19 @@
 }
 
 .initialPhone {
-  position: relative;
-  z-index: 3;
-  transform-origin: center center;
-  opacity: 1;
-  overflow: visible;
-  pointer-events: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Scrolled state styles */
-
-.contentWrapper {
-  display: hidden; /* hidden by default */
-  padding: var(--spacing-3xl);
-  align-self: flex-end;
+  scale: 1.2; /* set scale as 1 then slowly grow into 1.2 and move it up */
   
+  padding: var(--spacing-4xl);
+  z-index: 3;
+
 }
+
+
 
 .contentSide {
   display: flex;
+  padding: var(--spacing-3xl);
+
   flex-direction: column;
   gap: var(--spacing-2xl);
 }

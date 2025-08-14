@@ -17,8 +17,8 @@ export const usePhoneTransform = () => {
       const phoneRect = phoneRef.current.getBoundingClientRect();
 
       const phoneStart = viewportHeight * 0.4; // 30% of viewport
-      const phoneEnd = viewportHeight * 0.1; // 10% of viewport
-      const titleStart = viewportHeight * 0.8; // 60% of viewport
+      const phoneEnd = viewportHeight * 0.2; // 10% of viewport
+      const titleStart = viewportHeight * 0.9; // 60% of viewport
       const titleEnd = viewportHeight * 0.4; // 30% of viewport
 
       const phoneProgress = computeProgress(

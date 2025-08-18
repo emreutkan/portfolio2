@@ -32,9 +32,10 @@ const Freshdeal: React.FC = () => {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: sectionRef.current,
-        start: "top 60%",
-        end: "top 10%",
-        scrub: 1,
+        start: "top 80%",
+        end: "top 20%",
+        scrub: 0.5,
+        markers: false,
       }
     });
 
@@ -57,8 +58,6 @@ const Freshdeal: React.FC = () => {
       scale: 1,
     });
 
-
-
     gsap.set(contentContainerRef.current, {
       alignItems: "flex-end",
       justifyContent: "flex-end",
@@ -66,35 +65,30 @@ const Freshdeal: React.FC = () => {
       justifySelf: "flex-end",
       alignContent: "flex-end",
       justifyItems: "flex-end",
-      
     });
 
+    // Smooth scroll-triggered animations
     tl.to(titleRef.current, {
       y: 200,
       scale: 0,
       opacity: 0,
-      duration: 1,
-      ease: "power2.out"
+      ease: "power2.inOut"
     }, 0)
     .to(phoneRef.current, {
       y: -80,
       scale: 1.1,
-      duration: 0.5,
-      ease: "power2.out"
+      ease: "power2.inOut"
     }, 0) 
     .to(phoneRef.current, {
       x: -500,
-      duration: 2,
-      ease: "power2.out"
-    }, 0.5)
-  
+      ease: "power2.inOut"
+    }, 0.3)
     .to(contentWrapperRef.current, {
       opacity: 1,
       y: 0,
       visibility: "visible",
-      duration: 2,
-      ease: "power2.out"
-    }, 0.5); // Start content animation at the same time as phone
+      ease: "power2.inOut"
+    }, 0.3);
 
   }, { scope: sectionRef });
 

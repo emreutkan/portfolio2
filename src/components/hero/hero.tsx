@@ -1,7 +1,10 @@
 import React from "react";
 import styles from "./hero.module.css";
+import { useVantaDots } from "../../hooks/useVantaDots";
 
 const Hero: React.FC = () => {
+  const vantaRef = useVantaDots();
+  
   const technologies = [
     {
       name: "React",
@@ -87,12 +90,14 @@ const Hero: React.FC = () => {
 
   return (
     <section className={styles.heroSection} id="home">
+      {/* Vanta dots background */}
+      <div ref={vantaRef} className={styles.vantaBackground} />
+      
       <div className={styles.heroContainer}>
         <div className={styles.heroContent}>
           <div className={styles.titleContainer}>
-            <h1 className={styles.greeting}>Hello, I'm</h1>
             <h2 className={styles.name}>Irfan Emre Utkan</h2>
-            <h3 className={styles.title}>Full Stack Developer</h3>
+            <h3 className={styles.title}>Software Engineer</h3>
           </div>
 
           <p className={styles.description}>
@@ -110,31 +115,6 @@ const Hero: React.FC = () => {
             </a>
           </div>
         </div>
-
-        <div className={styles.heroVisual}>
-          <div className={styles.profileContainer}>
-            <div className={styles.profileImage}>
-              <div className={styles.profilePlaceholder}>
-                {/* You can replace this with an actual image */}
-                <span className={styles.profileInitials}>EU</span>
-              </div>
-            </div>
-            <div className={styles.floatingElements}>
-              <div className={styles.floatingElement} data-type="react">
-                ⚛️
-              </div>
-              <div className={styles.floatingElement} data-type="typescript">
-                📘
-              </div>
-              <div className={styles.floatingElement} data-type="nodejs">
-                🟢
-              </div>
-              <div className={styles.floatingElement} data-type="database">
-                🗄️
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
 
       <div className={styles.techCarousel}>
@@ -147,6 +127,7 @@ const Hero: React.FC = () => {
                 className={styles.techLogo}
                 loading="lazy"
               />
+              <span className={styles.techName}>{tech.name}</span>
             </div>
           ))}
           {/* Duplicate for seamless loop */}
@@ -160,6 +141,7 @@ const Hero: React.FC = () => {
                 className={styles.techLogo}
                 loading="lazy"
               />
+              <span className={styles.techName}>{tech.name}</span>
             </div>
           ))}
         </div>

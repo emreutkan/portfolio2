@@ -1,6 +1,4 @@
 .freshdealSection {
-  display: flex;
-  flex-direction: row;
   background: linear-gradient(
     135deg,
     #d7f0ad 0%,
@@ -11,48 +9,45 @@
   );
   border-top-right-radius: 100px;
   border-top-left-radius: 100px;
-  overflow: hidden; /* clip children so off-screen slide-in doesn't cause x-scroll */
+  padding: var(--spacing-4xl);
+  height: 100vh;
 }
 
-.initialContainer{
-  
-  margin: auto;
-}
+.contentContainer {
+  position: relative;
 
-
-.container {
-  padding: 0 var(--spacing-2xl);
-  z-index: 1;
-  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
 }
+
+
+
+
 
 /* Initial state styles */
 .initialTitle {
-  display: none; /* hidden by default, turn on when loaded then scroll out of view */ 
+  display: none;
   position: relative;
   z-index: 2;
   text-align: center;
   transform: none;
   pointer-events: auto;
-  margin: 0 auto var(--spacing-2xl);
-  transition: transform 0.3s ease-out;
-  transform: scale(1);
-}
 
-.initialTitle h1 {
   font-size: clamp(3rem, 8vw, 8rem);
   font-weight: var(--font-weight-bold);
   color: #2d3436;
   text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  letter-spacing: 2px;
 }
 
+
+
 .initialPhone {
-  scale: 1.2; /* set scale as 1 then slowly grow into 1.2 and move it up */
-  
-  padding: var(--spacing-4xl);
+  align-self: center;
+  scale: 1.1;
   z-index: 3;
 
 }
@@ -60,11 +55,14 @@
 
 
 .contentSide {
+  position: relative;
   display: flex;
-  padding: var(--spacing-3xl);
-
   flex-direction: column;
-  gap: var(--spacing-2xl);
+  gap: var(--spacing-xl);
+}
+
+.contentSideAnimation {
+  opacity: 0;
 }
 
 .header {
@@ -185,16 +183,16 @@
 }
 
 .actions {
-  display: flex;
-  gap: var(--spacing-lg);
-  align-items: center;
+  position: absolute;
+  align-self: flex-end;
+  padding: var(--spacing-2xl);
 }
 
 .githubButton {
+  bottom: 0;
+  right: 0;
   display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
-  padding: var(--spacing-lg) var(--spacing-xl);
+  padding:  var(--spacing-xl);
   border-radius: 12px;
   font-weight: var(--font-weight-medium);
   text-decoration: none;

@@ -49,6 +49,30 @@
   box-sizing: border-box;
 }
 
+/* Debug outlines - uncomment to see all element boundaries */
+/*
+* {
+  outline: 1px solid rgba(255, 0, 0, 0.3) !important;
+}
+
+/* Different colors for different element types */
+div {
+  outline: 1px solid rgba(255, 8, 0, 0.3) !important;
+}
+
+section {
+  outline: 2px solid rgba(0, 0, 255, 0.5) !important;
+}
+
+button, a {
+  outline: 1px solid rgba(255, 255, 0, 0.5) !important;
+}
+
+img {
+  outline: 1px solid rgb(235, 58, 235) !important;
+}
+*/
+
 /* Prevent horizontal overflow globally */
 *, *::before, *::after {
   max-width: 100%;

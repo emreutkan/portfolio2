@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import styles from "./freshdeal.module.css";
 // Import SVG assets
 import accountsSvg from "../../../assets/freshdeal_accounts.svg";
@@ -8,16 +8,95 @@ import freshdealsSvg from "../../../assets/freshdeal_freshdeals.svg";
 import restaurantsSvg from "../../../assets/freshdeal_restaurants.svg";
 import restaurantsMapSvg from "../../../assets/freshdeal_restaurants_on_map.svg";
 import IPhoneMockup from "../../../components/iphone-mockup";
-import { useContentReveal } from "../../../hooks/useContentReveal";
-import { usePhoneTransform } from "../../../hooks/usePhoneTransform";
 import { useSectionRounding } from "../../../hooks/useSectionRounding";
-import { useTitleTransform } from "../../../hooks/useTitleTransform";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
 const Freshdeal: React.FC = () => {
   // Use the custom hooks for animations and transformations
-  const { titleRef } = useTitleTransform();
   const { sectionRef } = useSectionRounding();
-  const { phoneRef } = usePhoneTransform();
-  const { contentWrapperRef } = useContentReveal(titleRef);
+  const USE_ANIMATION = true;
+  // Create refs for GSAP animations
+  const titleRef = useRef<HTMLDivElement>(null);
+  const phoneRef = useRef<HTMLDivElement>(null);
+  const contentWrapperRef = useRef<HTMLDivElement>(null);
+  const contentContainerRef = useRef<HTMLDivElement>(null);
+  // GSAP animations
+  useGSAP(() => {
+    if (!USE_ANIMATION) return;
+    
+    // Create a timeline for better animation control
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top 60%",
+        end: "top 10%",
+        scrub: 1,
+      }
+    });
+
+    // Set initial positions
+    gsap.set(titleRef.current, {
+      display: "flex",
+      position: "absolute",
+      top: "-60px",
+      left: "50%",
+      xPercent: -50,
+      padding: 0,
+      margin: 0,
+    });
+
+    gsap.set(phoneRef.current, {
+      position: "absolute",
+      top: "120px",
+      left: "50%",
+      xPercent: -50,
+      scale: 1,
+    });
+
+
+
+    gsap.set(contentContainerRef.current, {
+      alignItems: "flex-end",
+      justifyContent: "flex-end",
+      alignSelf: "flex-end",
+      justifySelf: "flex-end",
+      alignContent: "flex-end",
+      justifyItems: "flex-end",
+      
+    });
+
+    tl.to(titleRef.current, {
+      y: 200,
+      scale: 0,
+      opacity: 0,
+      duration: 1,
+      ease: "power2.out"
+    }, 0)
+    .to(phoneRef.current, {
+      y: -80,
+      scale: 1.1,
+      duration: 0.5,
+      ease: "power2.out"
+    }, 0) 
+    .to(phoneRef.current, {
+      x: -500,
+      duration: 2,
+      ease: "power2.out"
+    }, 0.5)
+  
+    .to(contentWrapperRef.current, {
+      opacity: 1,
+      y: 0,
+      visibility: "visible",
+      duration: 2,
+      ease: "power2.out"
+    }, 0.5); // Start content animation at the same time as phone
+
+  }, { scope: sectionRef });
 
   const appImages = [
     {
@@ -46,22 +125,20 @@ const Freshdeal: React.FC = () => {
     },
   ];
 
-  return (
+    return (
     <section
       ref={sectionRef}
       className={styles.freshdealSection}
       id="freshdeal">
-      <div className={styles.initialContainer}>
-        <div ref={titleRef} className={styles.initialTitle}>
-          <h1>FRESHDEAL</h1>
-        </div>
+      <div ref={contentContainerRef} className={styles.contentContainer}>
+        <h1 ref={titleRef} className={styles.initialTitle}>
+          FRESHDEAL
+        </h1>
 
         <div ref={phoneRef} className={styles.initialPhone}>
           <IPhoneMockup images={appImages} />
         </div>
-      </div>
-      <div className={styles.container}>
-        <div ref={contentWrapperRef} className={styles.contentSide}>
+        <div ref={contentWrapperRef} className={USE_ANIMATION ? styles.contentSideAnimation + " " + styles.contentSide : styles.contentSide}>
           <div className={styles.header}>
             <span className={styles.projectLabel}>Mobile App</span>
             <h1 className={styles.title}>Freshdeal</h1>

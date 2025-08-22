@@ -1,25 +1,154 @@
 .projectsSection {
-  min-height: 100vh;
-  background: var(--bg-primary);
-  color: var(--text-primary);
-  padding: var(--spacing-4xl) var(--spacing-lg);
   display: flex;
+  width: 100%;
+  border: 1px solid #282828;
   align-items: center;
   justify-content: center;
+  min-height: 100vh;
+  padding: 8rem;
+}
+
+.container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  /* make implicit rows have a sensible minimum so row-span works predictably */
+  grid-auto-rows: minmax(240px, auto);
+  gap: 1rem;
+
+
+}
+
+.container > div {
+  background: #282828;
+  border-radius: 20px;
+  /* fit content: ;; */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  flex-direction: column;
+
+}
+
+
+.container img {
+  width: 100%;
+  object-fit: contain;
+  border-radius: 20px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+
+}
+
+.projectTechnologies{
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+}
+
+.projectTechnologies  p {
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  padding: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  max-height: 3rem;
+  white-space: nowrap;   /* dont allow word  wrap make the contianer wider  instead */
 }
 
 
 
-.sectionTitle {
-  font-size: var(--font-size-3xl);
-  font-weight: var(--font-weight-bold);
-  color: var(--text-primary);
-  margin-bottom: var(--spacing-lg);
+.projectLink{
+  /* align vertically to the bottom: ; */
+  /* set outer div to display: flex; flex-direction: column; */
+
+  margin-top: auto;
+
+
+}
+
+.container div {
+  position: relative;
+
+}
+
+.jukeboxContainer {
+  grid-column: span 4;
+  grid-row: span 2;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.citrusContainer {
+  grid-column: span 4 ;
+  /* span two rows vertically */
+  grid-row: span 2;
+
+}
+
+.projectContent{
+  padding: 1rem;
+}
+.jukeboxContainer .projectContent, .citrusContainer .projectContent {
+  padding: 0%;
+  justify-content: flex-end;
+  margin-top: auto;
+  background-color: #242424f9;
+}
+
+.jukeboxContainer .projectTechnologies, .citrusContainer .projectTechnologies {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+
+}
+
+.jukeboxContainer .projectTechnologies a, .citrusContainer .projectTechnologies a {
+  white-space: nowrap;
+  margin-bottom: 0;
   margin-top: 0;
+  margin-right: 2rem;
+  margin-left: auto;
+
 }
 
-.sectionDescription {
-  font-size: var(--font-size-lg);
-  color: var(--text-secondary);
-  line-height: var(--line-height-relaxed);
+.projectTechnologies .tech-spacer {
+  flex: 1 1 auto; /* consumes remaining space */
+  min-width: 2rem; /* ensures at least 2rem gap between left items and right block */
+}
+
+/* spacer used in TSX: <span className={styles.spacer} /> */
+.spacer {
+  flex: 1 1 auto;
+  min-width: 2rem; /* guarantee at least 2rem between left items and the right-most link */
+}
+
+.freshdealMobileContainer{
+  grid-column: span 2;
+  /* span two rows vertically */
+  grid-row: span 2;
+}
+
+.freshdealWebContainer{
+  grid-column: span 2;
+  /* span two rows vertically */
+  grid-row: span 2;
+
+}
+
+.freshdealBackendContainer{
+  grid-column: span 2;
+  /* span two rows vertically */
+  grid-row: span 2;
+}
+
+.freshdealBusinessContainer{
+  grid-column: span 2;
+  /* span two rows vertically */
+  grid-row: span 2;
 }

@@ -56,7 +56,7 @@
 }
 
 /* Different colors for different element types */
-div {
+/* div {
   outline: 1px solid rgba(255, 8, 0, 0.3) !important;
 }
 
@@ -70,8 +70,8 @@ button, a {
 
 img {
   outline: 1px solid rgb(235, 58, 235) !important;
-}
-*/
+} */
+
 
 /* Prevent horizontal overflow globally */
 *, *::before, *::after {

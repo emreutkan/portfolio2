@@ -1,12 +1,12 @@
 .freshdealSection {
-  background: linear-gradient(
+  /* background: linear-gradient(
     135deg,
     #d7f0ad 0%,
     #b8e994 25%,
     #78e08f 50%,
     #38ada9 75%,
     #079992 100%
-  );
+  ); */
   border-top-right-radius: 100px;
   border-top-left-radius: 100px;
   padding: var(--spacing-4xl);
@@ -24,10 +24,6 @@
   width: 100%;
 }
 
-
-
-
-
 /* Initial state styles */
 .initialTitle {
   display: none;
@@ -43,16 +39,11 @@
   text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
-
-
 .initialPhone {
   align-self: center;
   scale: 1.1;
   z-index: 3;
-
 }
-
-
 
 .contentSide {
   position: relative;
@@ -121,8 +112,6 @@
   transform: none;
 }
 
-
-
 .feature h3 {
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-semibold);
@@ -189,7 +178,7 @@
   bottom: 0;
   right: 0;
   display: flex;
-  padding:  var(--spacing-xl);
+  padding: var(--spacing-xl);
   border-radius: 12px;
   font-weight: var(--font-weight-medium);
   text-decoration: none;

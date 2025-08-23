@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef } from "react";
 
 interface VantaConfig {
   el: HTMLElement;
@@ -14,6 +14,7 @@ interface VantaConfig {
   size: number;
   spacing: number;
   backgroundColor: number;
+  showLines: boolean;
 }
 
 interface VantaInstance {
@@ -41,13 +42,15 @@ export const useVantaDots = () => {
       }
 
       // Load Three.js
-      const threeScript = document.createElement('script');
-      threeScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js';
+      const threeScript = document.createElement("script");
+      threeScript.src =
+        "https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js";
       threeScript.async = true;
 
       // Load Vanta.js
-      const vantaScript = document.createElement('script');
-      vantaScript.src = 'https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.dots.min.js';
+      const vantaScript = document.createElement("script");
+      vantaScript.src =
+        "https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.dots.min.js";
       vantaScript.async = true;
 
       // Wait for both scripts to load
@@ -68,18 +71,19 @@ export const useVantaDots = () => {
       if (elementRef.current && window.VANTA) {
         vantaRef.current = window.VANTA.DOTS({
           el: elementRef.current,
-          mouseControls: true,
+          mouseControls: false,
           touchControls: true,
           gyroControls: false,
-          minHeight: 200.00,
-          minWidth: 200.00,
-          scale: 1.00,
-          scaleMobile: 1.00,
+          minHeight: 200.0,
+          minWidth: 100.0,
+          scale: 1.0,
+          scaleMobile: 1.0,
           color: 0x666666,
           color2: 0x333333,
-          size: 2.00,
-          spacing: 25.00,
-          backgroundColor: 0x0
+          size: 2.0,
+          spacing: 25.0,
+          backgroundColor: 0x0,
+          showLines: false,
         });
       }
     };

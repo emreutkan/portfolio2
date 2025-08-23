@@ -1,10 +1,10 @@
 import React from "react";
-import styles from "./hero.module.css";
 import { useVantaDots } from "../../hooks/useVantaDots";
+import styles from "./hero.module.css";
 
 const Hero: React.FC = () => {
   const vantaRef = useVantaDots();
-  
+
   const technologies = [
     {
       name: "React",
@@ -90,30 +90,27 @@ const Hero: React.FC = () => {
 
   return (
     <section className={styles.heroSection} id="home">
-      {/* Vanta dots background */}
       <div ref={vantaRef} className={styles.vantaBackground} />
-      
-      <div className={styles.heroContainer}>
-        <div className={styles.heroContent}>
-          <div className={styles.titleContainer}>
-            <h2 className={styles.name}>Irfan Emre Utkan</h2>
-            <h3 className={styles.title}>Software Engineer</h3>
-          </div>
 
-          <p className={styles.description}>
-            I create beautiful, responsive web applications with modern
-            technologies. Passionate about clean code, user experience, and
-            bringing ideas to life through innovative solutions.
-          </p>
+      <div className={styles.heroContent}>
+        <div>
+          <h1 className={styles.name}>Irfan Emre Utkan</h1>
+          <h5 className={styles.title}>Software Engineer</h5>
+        </div>
 
-          <div className={styles.ctaButtons}>
-            <a href="#projects" className={styles.primaryBtn}>
-              View My Work
-            </a>
-            <a href="#contact" className={styles.secondaryBtn}>
-              Get In Touch
-            </a>
-          </div>
+        <p className={styles.description}>
+          I create beautiful, responsive web applications with modern
+          technologies. Passionate about clean code, user experience, and
+          bringing ideas to life through innovative solutions.
+        </p>
+
+        <div className={styles.ctaButtons}>
+          <a href="#projects" className={styles.primaryBtn}>
+            View My Work
+          </a>
+          <a href="#contact" className={styles.secondaryBtn}>
+            Get In Touch
+          </a>
         </div>
       </div>
 

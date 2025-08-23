@@ -74,7 +74,7 @@ const Projects: React.FC = () => {
     {
       title: "Evade",
       description:
-        " a self‑decrypting encrypted payload generator demonstrating techniques used to evade basic antivirus detection. It encrypts a supplied payload and embeds runtime decryption logic so the original code is only revealed in memory at execution.",
+        " a self‑decrypting encrypted payload generator used to evade antivirus detection. It encrypts a  payload and embeds runtime decryption logic so the original code is only revealed in memory at execution.",
       image: evadeImage,
       technologies: ["Python", "Windows", "Payload Encryption"],
       OpenSource: true,
@@ -171,9 +171,7 @@ const Projects: React.FC = () => {
           <img src={projects[1].image} alt={projects[1].title} />
           <div className={styles.projectContent}>
             <h2>{projects[1].title}</h2>
-            <div className={styles.projectDescription}>
-              <p>{projects[1].description}</p>
-            </div>
+            <p>{projects[1].description}</p>
             <div className={styles.projectTechnologies}>
               {projects[1].technologies.map((tech, index) => (
                 <p key={index}>{tech}</p>
@@ -181,7 +179,6 @@ const Projects: React.FC = () => {
               <span className={styles.spacer} aria-hidden="true"></span>
               <a
                 href={projects[1].link}
-                className={styles.projectLink}
                 target="_blank"
                 rel="noopener noreferrer">
                 View Project
@@ -213,6 +210,7 @@ const Projects: React.FC = () => {
         </div>
         <div className={styles.evadeContainer}>
           <img src={projects[6].image} alt={projects[6].title} />
+          <div className={styles.blur}></div>
           <div className={styles.projectContent}>
             <h2>{projects[6].title}</h2>
             <div className={styles.projectDescription}>

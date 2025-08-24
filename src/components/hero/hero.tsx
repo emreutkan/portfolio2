@@ -27,6 +27,7 @@ const Hero: React.FC = () => {
       display: "none",
     });
     gsap.set(headerRef.current, {
+      position: "absolute",
       width: "auto",
       right: "0",
       bottom: "5.5vh",
@@ -38,29 +39,64 @@ const Hero: React.FC = () => {
         // Set up ScrollTrigger animations after the initial animation completes
         gsap.to(headerRef.current, {
           width: "100vw",
+          scrollTrigger: {
+            trigger: pageRef.current,
+            start: "20%",
+            end: "70%",
+            scrub: true,
+          },
+        });
+        gsap.to(headerRef.current, {
+          position: "fixed",
           top: "0",
           scrollTrigger: {
             trigger: pageRef.current,
-            start: "0%",
-            end: "100%",
+            start: "90%",
+            end: "90%",
             scrub: true,
           },
         });
         gsap.to(nameRef.current, {
-          opacity: 0.5,
+          // add animation power3.out
+          y: "57.3vh",
+          scale: 0.3,
+          transformOrigin: "left ", // keeps it stuck to left, scales downwards
+
           scrollTrigger: {
             trigger: pageRef.current,
-            start: "0%",
-            end: "100%",
+            start: "22%",
+            end: "80%",
             scrub: true,
           },
+        });
+        gsap.to(nameRef.current, {
+          position: "fixed",
+          top: "-5vh",
+          y: 0,
+          scrollTrigger: {
+            trigger: pageRef.current,
+            start: "80%",
+            end: "80%",
+            scrub: true,
+          },
+        });
+        gsap.to(nameRef.current, {
+          // add animation power3.out
+          // position: "absolute",
+          // bottom: "5.5vh",
+          // scrollTrigger: {
+          //   trigger: pageRef.current,
+          //   start: "40%",
+          //   end: "90%",
+          //   scrub: true,
+          // },
         });
         gsap.to(titleRef.current, {
           opacity: 0,
           scrollTrigger: {
             trigger: pageRef.current,
-            start: "0%",
-            end: "100%",
+            start: "30%",
+            end: "35%",
             scrub: true,
           },
         });
@@ -68,8 +104,8 @@ const Hero: React.FC = () => {
           opacity: 0,
           scrollTrigger: {
             trigger: pageRef.current,
-            start: "0%",
-            end: "70%",
+            start: "30%",
+            end: "35%",
             scrub: true,
           },
         });
@@ -77,8 +113,8 @@ const Hero: React.FC = () => {
           opacity: 0,
           scrollTrigger: {
             trigger: pageRef.current,
-            start: "0%",
-            end: "100%",
+            start: "30%",
+            end: "35%",
             scrub: true,
           },
         });

@@ -64,29 +64,28 @@
 
 /* ===== Content ===== */
 .heroContent {
-  position: relative;
-  z-index: 2;
-  display: grid;
-  gap: var(--spacing-xl);
-  /* shift the whole content down by 25% of the viewport (acts like row 2 of 4)
-     using transform so other layout isn't affected */
-  transform: translateY(25vh);
-  will-change: transform;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  height: 100vh;
+  padding-top: 18vh;
+  margin-left: var(--spacing-4xl);
+  padding-left: var(--spacing-xl);
 }
 
+.nameContainer {
+  width: max-content; /* optional, so it only wraps text */
+}
 /* Big, fluid, confident */
 .name {
-  margin: 0;
   font-weight: var(--font-weight-bold);
   font-size: clamp(2.6rem, 8vw, 6rem); /* fluid on top of your scale */
-  transform: translateY(10px);
-
+  z-index: 1000;
 }
 
 .title {
   margin: 0;
   color: var(--text-muted);
-
 }
 
 .description {
@@ -94,7 +93,6 @@
   margin: 0;
   color: var(--text-light);
   font-size: clamp(var(--font-size-base), 2.1vw, var(--font-size-lg));
-
 }
 
 @keyframes riseIn {
@@ -111,7 +109,6 @@
   flex-wrap: wrap;
   align-items: center;
   transform: translateY(8px);
-
 }
 
 /* Magnetic hover (no JS) — slight translate toward cursor via :has + transform-origin */
@@ -121,7 +118,6 @@
 }
 
 .primaryBtn {
-  position: relative;
   display: inline-flex;
   align-items: center;
   gap: var(--spacing-sm);
@@ -249,8 +245,6 @@
     width: 100%;
   }
 }
-
-
 
 .floatingHeaderContainer {
   position: fixed;

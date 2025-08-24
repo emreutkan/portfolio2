@@ -80,16 +80,13 @@
   font-weight: var(--font-weight-bold);
   font-size: clamp(2.6rem, 8vw, 6rem); /* fluid on top of your scale */
   transform: translateY(10px);
-  opacity: 0;
-  animation: riseIn 0.7s ease-out 0.1s forwards;
+
 }
 
 .title {
   margin: 0;
   color: var(--text-muted);
-  transform: translateY(8px);
-  opacity: 0;
-  animation: riseIn 0.7s ease-out 0.18s forwards;
+
 }
 
 .description {
@@ -97,9 +94,7 @@
   margin: 0;
   color: var(--text-light);
   font-size: clamp(var(--font-size-base), 2.1vw, var(--font-size-lg));
-  transform: translateY(8px);
-  opacity: 0;
-  animation: riseIn 0.7s ease-out 0.26s forwards;
+
 }
 
 @keyframes riseIn {
@@ -116,8 +111,7 @@
   flex-wrap: wrap;
   align-items: center;
   transform: translateY(8px);
-  opacity: 0;
-  animation: riseIn 0.7s ease-out 0.34s forwards;
+
 }
 
 /* Magnetic hover (no JS) — slight translate toward cursor via :has + transform-origin */
@@ -256,20 +250,42 @@
   }
 }
 
-/* ===== Accessibility: respect reduced motion ===== */
-@media (prefers-reduced-motion: reduce) {
-  .radialGlow,
-  .grain,
-  .shimmer,
-  .scrollDot {
-    animation: none !important;
-  }
-  .name,
-  .title,
-  .description,
-  .ctaRow,
-  .scrollIndicator {
-    animation-duration: 0.01ms;
-    animation-iteration-count: 1;
-  }
+
+
+.floatingHeaderContainer {
+  position: fixed;
+  width: 100vw;
+  z-index: 1000;
+  margin-right: auto;
+  margin-top: 1vh;
+}
+
+.floatingHeader {
+  display: flex;
+  margin-inline: var(--spacing-4xl);
+
+  border-radius: 100px;
+  background: rgba(26, 26, 26, 0.12);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+  align-items: center;
+  padding-inline: var(--spacing-xl);
+}
+
+.floatingNav {
+  padding: 0;
+  list-style: none;
+  display: flex;
+  margin-left: auto;
+  gap: var(--spacing-sm);
+}
+.floatingNav li a {
+  text-decoration: none;
+  color: var(--text-primary);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }

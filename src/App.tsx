@@ -1,6 +1,5 @@
 import { lazy } from "react";
 import Contact from "./components/contact/contact";
-import Header from "./components/header/header";
 import Hero from "./components/hero/hero";
 import Freshdeal from "./features/projects/freshdeal/freshdeal";
 import useLenis from "./hooks/useSmoothMomentumScroll";
@@ -11,7 +10,6 @@ function App() {
   useLenis();
   return (
     <div>
-      <Header />
       <Hero />
       <Experience />
       <Projects />

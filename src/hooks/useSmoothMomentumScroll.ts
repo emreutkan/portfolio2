@@ -13,6 +13,9 @@ export const useLenis = () => {
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      wheelMultiplier: 0.5, // Reduce scroll amount per wheel event (lower = less scroll)
+      touchMultiplier: 1.5, // Keep touch scrolling responsive
+      smoothWheel: true,
     });
 
     // Set the global instance for programmatic control

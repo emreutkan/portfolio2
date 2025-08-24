@@ -1,6 +1,9 @@
 import React, { useRef } from "react";
 import styles from "./freshdeal.module.css";
 // Import SVG assets
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import accountsSvg from "../../../assets/freshdeal_accounts.svg";
 import achievementsSvg from "../../../assets/freshdeal_achievements.svg";
 import addressSelectionSvg from "../../../assets/freshdeal_address_selection.svg";
@@ -9,9 +12,6 @@ import restaurantsSvg from "../../../assets/freshdeal_restaurants.svg";
 import restaurantsMapSvg from "../../../assets/freshdeal_restaurants_on_map.svg";
 import IPhoneMockup from "../../../components/iphone-mockup";
 import { useSectionRounding } from "../../../hooks/useSectionRounding";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -25,72 +25,90 @@ const Freshdeal: React.FC = () => {
   const contentWrapperRef = useRef<HTMLDivElement>(null);
   const contentContainerRef = useRef<HTMLDivElement>(null);
   // GSAP animations
-  useGSAP(() => {
-    if (!USE_ANIMATION) return;
-    
-    // Create a timeline for better animation control
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top 80%",
-        end: "top 20%",
-        scrub: 0.5,
-        markers: false,
-      }
-    });
+  useGSAP(
+    () => {
+      if (!USE_ANIMATION) return;
 
-    // Set initial positions
-    gsap.set(titleRef.current, {
-      display: "flex",
-      position: "absolute",
-      top: "-60px",
-      left: "50%",
-      xPercent: -50,
-      padding: 0,
-      margin: 0,
-    });
+      // Create a timeline for better animation control
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+          end: "top 20%",
+          scrub: 0.5,
+          markers: false,
+        },
+      });
 
-    gsap.set(phoneRef.current, {
-      position: "absolute",
-      top: "120px",
-      left: "50%",
-      xPercent: -50,
-      scale: 1,
-    });
+      // Set initial positions
+      gsap.set(titleRef.current, {
+        display: "flex",
+        position: "absolute",
+        top: "-60px",
+        left: "50%",
+        xPercent: -50,
+        padding: 0,
+        margin: 0,
+      });
 
-    gsap.set(contentContainerRef.current, {
-      alignItems: "flex-end",
-      justifyContent: "flex-end",
-      alignSelf: "flex-end",
-      justifySelf: "flex-end",
-      alignContent: "flex-end",
-      justifyItems: "flex-end",
-    });
+      gsap.set(phoneRef.current, {
+        position: "absolute",
+        top: "120px",
+        left: "50%",
+        xPercent: -50,
+        scale: 1,
+      });
 
-    // Smooth scroll-triggered animations
-    tl.to(titleRef.current, {
-      y: 200,
-      scale: 0,
-      opacity: 0,
-      ease: "power2.inOut"
-    }, 0)
-    .to(phoneRef.current, {
-      y: -80,
-      scale: 1.1,
-      ease: "power2.inOut"
-    }, 0) 
-    .to(phoneRef.current, {
-      x: -500,
-      ease: "power2.inOut"
-    }, 0.3)
-    .to(contentWrapperRef.current, {
-      opacity: 1,
-      y: 0,
-      visibility: "visible",
-      ease: "power2.inOut"
-    }, 0.3);
+      gsap.set(contentContainerRef.current, {
+        alignItems: "flex-end",
+        justifyContent: "flex-end",
+        alignSelf: "flex-end",
+        justifySelf: "flex-end",
+        alignContent: "flex-end",
+        justifyItems: "flex-end",
+      });
 
-  }, { scope: sectionRef });
+      // Smooth scroll-triggered animations
+      tl.to(
+        titleRef.current,
+        {
+          y: 200,
+          scale: 0,
+          opacity: 0,
+          ease: "power2.inOut",
+        },
+        0
+      )
+        .to(
+          phoneRef.current,
+          {
+            y: -80,
+            scale: 1.1,
+            ease: "power2.inOut",
+          },
+          0
+        )
+        .to(
+          phoneRef.current,
+          {
+            x: -500,
+            ease: "power2.inOut",
+          },
+          0.3
+        )
+        .to(
+          contentWrapperRef.current,
+          {
+            opacity: 1,
+            y: 0,
+            visibility: "visible",
+            ease: "power2.inOut",
+          },
+          0.3
+        );
+    },
+    { scope: sectionRef }
+  );
 
   const appImages = [
     {
@@ -119,7 +137,7 @@ const Freshdeal: React.FC = () => {
     },
   ];
 
-    return (
+  return (
     <section
       ref={sectionRef}
       className={styles.freshdealSection}
@@ -132,7 +150,13 @@ const Freshdeal: React.FC = () => {
         <div ref={phoneRef} className={styles.initialPhone}>
           <IPhoneMockup images={appImages} />
         </div>
-        <div ref={contentWrapperRef} className={USE_ANIMATION ? styles.contentSideAnimation + " " + styles.contentSide : styles.contentSide}>
+        <div
+          ref={contentWrapperRef}
+          className={
+            USE_ANIMATION
+              ? styles.contentSideAnimation + " " + styles.contentSide
+              : styles.contentSide
+          }>
           <div className={styles.header}>
             <span className={styles.projectLabel}>Mobile App</span>
             <h1 className={styles.title}>Freshdeal</h1>

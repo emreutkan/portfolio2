@@ -1,154 +1,45 @@
 import React from "react";
-import { useVantaDots } from "../../hooks/useVantaDots";
 import styles from "./hero.module.css";
 
 const Hero: React.FC = () => {
-  const vantaRef = useVantaDots();
-
-  const technologies = [
-    {
-      name: "React",
-      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
-    },
-    {
-      name: "React Native",
-      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
-    },
-    {
-      name: "Expo",
-      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/expo/expo-original.svg",
-    },
-    {
-      name: "TypeScript",
-      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
-    },
-    {
-      name: "JavaScript",
-      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
-    },
-    {
-      name: "Node.js",
-      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
-    },
-    {
-      name: "Linux",
-      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg",
-    },
-    {
-      name: "Bash",
-      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg",
-    },
-    {
-      name: "Azure",
-      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg",
-    },
-    {
-      name: "Google Cloud",
-      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg",
-    },
-    {
-      name: "Git",
-      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
-    },
-    {
-      name: "MongoDB",
-      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
-    },
-    {
-      name: "PostgreSQL",
-      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
-    },
-    {
-      name: "Docker",
-      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
-    },
-    {
-      name: "Next.js",
-      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
-    },
-    {
-      name: "Vite",
-      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vitejs/vitejs-original.svg",
-    },
-    {
-      name: "CSS3",
-      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
-    },
-    {
-      name: "HTML5",
-      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
-    },
-    {
-      name: "Python",
-      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
-    },
-    {
-      name: "Express",
-      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
-    },
-  ];
+  const scrollToProjects = () => {
+    document
+      .querySelector("#projects")
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   return (
     <section className={styles.heroSection} id="home">
-      <div ref={vantaRef} className={styles.vantaBackground} />
-
+      <div className={styles.aurora} />
+      <div className={styles.noise} />
       <div className={styles.heroContent}>
-        <div>
-          <h1 className={styles.name}>Irfan Emre Utkan</h1>
-          <h5 className={styles.title}>Software Engineer</h5>
-        </div>
+        <h1 className={styles.name}>Irfan&nbsp;Emre&nbsp;Utkan</h1>
+        <h3 className={styles.title}>Software Engineer</h3>
 
         <p className={styles.description}>
-          I create beautiful, responsive web applications with modern
-          technologies. Passionate about clean code, user experience, and
-          bringing ideas to life through innovative solutions.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
         </p>
 
-        <div className={styles.ctaButtons}>
-          <a href="#projects" className={styles.primaryBtn}>
-            View My Work
+        <div className={styles.ctaRow}>
+          <a href="#projects" className={styles.primaryBtn} data-magnetic>
+            <span>View My Work</span>
+            <i className={styles.shimmer} aria-hidden />
           </a>
-          <a href="#contact" className={styles.secondaryBtn}>
+          <a href="#contact" className={styles.secondaryBtn} data-magnetic>
             Get In Touch
           </a>
         </div>
       </div>
 
-      <div className={styles.techCarousel}>
-        <div className={styles.carouselTrack}>
-          {technologies.map((tech, index) => (
-            <div key={`${tech.name}-${index}`} className={styles.techItem}>
-              <img
-                src={tech.logo}
-                alt={tech.name}
-                className={styles.techLogo}
-                loading="lazy"
-              />
-              <span className={styles.techName}>{tech.name}</span>
-            </div>
-          ))}
-          {/* Duplicate for seamless loop */}
-          {technologies.map((tech, index) => (
-            <div
-              key={`${tech.name}-duplicate-${index}`}
-              className={styles.techItem}>
-              <img
-                src={tech.logo}
-                alt={tech.name}
-                className={styles.techLogo}
-                loading="lazy"
-              />
-              <span className={styles.techName}>{tech.name}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className={styles.scrollIndicator}>
-        <div className={styles.scrollArrow}>
-          <span>↓</span>
-        </div>
-      </div>
+      <button
+        className={styles.scrollIndicator}
+        onClick={scrollToProjects}
+        aria-label="Scroll to projects">
+        <span className={styles.scrollDot} />
+        <span className={styles.scrollLabel}>Scroll</span>
+      </button>
     </section>
   );
 };

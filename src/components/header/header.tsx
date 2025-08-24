@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useScrollVisibility } from "../../hooks/useScrollVisibility";
+import { scrollToSection } from "../../utils/scrollControls";
 import styles from "./header.module.css";
 
 const Header: React.FC = () => {
@@ -38,7 +39,10 @@ const Header: React.FC = () => {
           if (mutationObserver) mutationObserver.disconnect();
         }
       });
-      mutationObserver.observe(document.body, { childList: true, subtree: true });
+      mutationObserver.observe(document.body, {
+        childList: true,
+        subtree: true,
+      });
     }
 
     return () => {
@@ -46,6 +50,14 @@ const Header: React.FC = () => {
       if (mutationObserver) mutationObserver.disconnect();
     };
   }, []);
+
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    target: string
+  ) => {
+    e.preventDefault();
+    scrollToSection(target, -80); // -80px offset for header height
+  };
 
   const shouldShowHeader = isVisible && !isFreshdealInView;
 
@@ -58,17 +70,26 @@ const Header: React.FC = () => {
       <nav role="navigation" aria-label="Main navigation">
         <ul>
           <li className={styles.navItem}>
-            <a href="#home" aria-label="Navigate to About me section">
+            <a
+              href="#home"
+              aria-label="Navigate to About me section"
+              onClick={(e) => handleNavClick(e, "#home")}>
               About me
             </a>
           </li>
           <li className={styles.navItem}>
-            <a href="#projects" aria-label="Navigate to Projects section">
+            <a
+              href="#projects"
+              aria-label="Navigate to Projects section"
+              onClick={(e) => handleNavClick(e, "#projects")}>
               Projects
             </a>
           </li>
           <li className={styles.navItem}>
-            <a href="#contact" aria-label="Navigate to Contact section">
+            <a
+              href="#contact"
+              aria-label="Navigate to Contact section"
+              onClick={(e) => handleNavClick(e, "#contact")}>
               Contact
             </a>
           </li>

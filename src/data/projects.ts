@@ -10,6 +10,13 @@ export interface Project {
 
   featured?: boolean;
   duration?: string;
+
+  // optional metadata used across the project list
+  highlighted?: boolean;
+  hasLiveDemo?: boolean;
+  stats?: Record<string, string>;
+  team?: string;
+  impact?: string;
 }
 
 export const projects: Project[] = [

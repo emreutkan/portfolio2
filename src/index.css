@@ -121,19 +121,32 @@ h1 {
 }
 
 body {
-  margin: 0;
-  padding: 0;
+  position: relative;
+  margin: 10px;
+
+  background-color: var(--bg-primary);
   font-family: "Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--bg-primary);
   color: var(--text-primary);
+}
+
+/* Lenis smooth scroll setup */
+html {
   overflow-x: hidden;
 }
 
-/* Smooth scrolling for better navigation */
-html {
-  scroll-behavior: smooth;
-  overflow-x: hidden;
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
 }

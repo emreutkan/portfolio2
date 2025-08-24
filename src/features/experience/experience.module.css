@@ -1,173 +1,164 @@
-.experienceSection{
-    min-height: 100vh;
-    position: relative;
-    flex-direction: column;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: transparent; /* Make background transparent to allow dots to show through */
-    color: var(--text-primary);
-    padding: var(--spacing-4xl) var(--spacing-lg);
-    overflow-x: hidden;
-    width: 100%;
-    z-index: 1; /* Ensure content stays above the dots */
+.experienceSection {
+  min-height: 100vh;
+  position: relative;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent; /* Make background transparent to allow dots to show through */
+  overflow-x: hidden;
+  z-index: 0; /* Ensure content stays above the dots */
 }
 
-.circle{
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    display: flex;
-    border: 2px solid var(--border-primary);
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    transform: scale(0);
-    position: relative;
-    background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-    transition: all 0.5s ease-out;
+.circle {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  display: flex;
+  border: 2px solid var(--border-primary);
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transform: scale(0);
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.03),
+    rgba(255, 255, 255, 0.01)
+  );
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: all 0.5s ease-out;
 }
 
 .animateItem .circle {
-    opacity: 1;
-    transform: scale(1);
+  opacity: 1;
+  transform: scale(1);
 }
 
 .VerticalLine {
-    width: 2px;
-    height: 0;
-    background-color: var(--border-primary);
-    align-self: center;
-    margin-left: 39px;
-    transition: height 0.6s ease-out;
+  width: 2px;
+  height: 0;
+  background-color: var(--border-primary);
+  align-self: center;
+  margin-left: 2.5rem;
+  transition: height 0.6s ease-out;
 }
 
 .animateItem .VerticalLine {
-    height: var(--spacing-3xl);
+  height: var(--spacing-3xl);
 }
 
 .Details {
-    display: flex;
-    flex-direction: column;
-    padding: 0;
-    margin: 0;
-    margin-left: var(--spacing-lg);
-    justify-content: center;
-    height: 80px; /* Match circle height for perfect alignment */
-    opacity: 0;
-    transform: translateX(-20px);
-    transition: all 0.5s ease-out;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  margin-left: var(--spacing-lg);
+  justify-content: center;
+  height: 5rem; /* Match circle height for perfect alignment */
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: all 0.5s ease-out;
 }
 
 .animateItem .Details {
-    opacity: 1;
-    transform: translateX(0);
+  opacity: 1;
+  transform: translateX(0);
 }
 
-.miniCircle{
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    border: 2px solid var(--border-primary);
-    margin-right: var(--spacing-md);
-    opacity: 0;
-    transform: scale(0);
-    flex-shrink: 0;
-    background: rgba(255,255,255,0.02);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-    transition: all 0.5s ease-out;
+.miniCircle {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  border: 2px solid var(--border-primary);
+  margin-right: var(--spacing-md);
+  opacity: 0;
+  transform: scale(0);
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.02);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: all 0.5s ease-out;
 }
 
 .animateItem .miniCircle {
-    opacity: 1;
-    transform: scale(1);
+  opacity: 1;
+  transform: scale(1);
 }
 
 .certificateData {
-    opacity: 0;
-    transform: translateX(-20px);
-    color: var(--text-primary);
-    font-size: var(--font-size-base);
-    font-weight: var(--font-weight-normal);
-    line-height: var(--line-height-normal);
-    transition: all 0.5s ease-out;
+  opacity: 0;
+  transform: translateX(-20px);
+  color: var(--text-primary);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+  transition: all 0.5s ease-out;
 }
 
 .animateItem .certificateData {
-    opacity: 1;
-    transform: translateX(0);
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .Item {
-    display: flex;
-    line-height: 0;
-    color: var(--text-primary);
-    font-size: var(--font-size-base);
-    font-weight: var(--font-weight-normal);
+  display: flex;
 }
 
 .certificateItem {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-bottom: var(--spacing-md);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: var(--spacing-md);
 }
 
 .experienceEducationContainer {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    width: 100%;
-    justify-content: space-between;
-    max-width: 1000px;
-    margin: 0 auto;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .experienceEducationContainer > div {
-    flex: 0 1 auto;
-    max-width: 100%;
-    width: 100%;
+  width: 100%;
 }
 
 .experienceEducationContainer > div:first-child {
-    margin-bottom: var(--spacing-4xl);
+  margin-bottom: var(--spacing-4xl);
 }
 
 /* Control spacing of paragraph elements inside Details */
 .Details p {
-    margin: var(--spacing-xs) 0;
-    padding: 0;
-    line-height: var(--line-height-tight);
+  margin: var(--spacing-xs) 0;
+  padding: 0;
+  line-height: var(--line-height-tight);
 }
 
 .Details p:first-child {
-    color: var(--text-muted);
-    font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-light);
+  color: var(--text-muted);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-light);
 }
 
 .Details p:nth-child(2) {
-    color: var(--text-primary);
-    font-size: var(--font-size-lg);
-    font-weight: var(--font-weight-medium);
-    margin: var(--spacing-xs) 0;
+  color: var(--text-primary);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+  margin: var(--spacing-xs) 0;
 }
 
 .Details p:last-child {
-    color: var(--text-secondary);
-    font-size: var(--font-size-base);
-    font-weight: var(--font-weight-normal);
+  color: var(--text-secondary);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-normal);
 }
 
 .circle::after {
-    content: '';
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--border-primary);
-    opacity: 0.7;
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--border-primary);
+  opacity: 0.7;
 }
 
 /* Staggered animation delays for scroll-triggered animations */
@@ -175,98 +166,98 @@
 .animateItem[data-index="0"] .Details,
 .animateItem[data-index="0"] .miniCircle,
 .animateItem[data-index="0"] .certificateData {
-    transition-delay: 0s;
+  transition-delay: 0s;
 }
 
 .animateItem[data-index="1"] .circle,
 .animateItem[data-index="1"] .Details,
 .animateItem[data-index="1"] .miniCircle,
 .animateItem[data-index="1"] .certificateData {
-    transition-delay: 0.1s;
+  transition-delay: 0.1s;
 }
 
 .animateItem[data-index="2"] .circle,
 .animateItem[data-index="2"] .Details,
 .animateItem[data-index="2"] .miniCircle,
 .animateItem[data-index="2"] .certificateData {
-    transition-delay: 0.2s;
+  transition-delay: 0.2s;
 }
 
 .animateItem[data-index="3"] .circle,
 .animateItem[data-index="3"] .Details,
 .animateItem[data-index="3"] .miniCircle,
 .animateItem[data-index="3"] .certificateData {
-    transition-delay: 0.3s;
+  transition-delay: 0.3s;
 }
 
 .animateItem[data-index="4"] .circle,
 .animateItem[data-index="4"] .Details,
 .animateItem[data-index="4"] .miniCircle,
 .animateItem[data-index="4"] .certificateData {
-    transition-delay: 0.4s;
+  transition-delay: 0.4s;
 }
 
 .animateItem[data-index="5"] .circle,
 .animateItem[data-index="5"] .Details,
 .animateItem[data-index="5"] .miniCircle,
 .animateItem[data-index="5"] .certificateData {
-    transition-delay: 0.5s;
+  transition-delay: 0.5s;
 }
 
 .animateItem[data-index="0"] .VerticalLine {
-    transition-delay: 0.3s;
+  transition-delay: 0.3s;
 }
 
 .animateItem[data-index="1"] .VerticalLine {
-    transition-delay: 0.4s;
+  transition-delay: 0.4s;
 }
 
 .animateItem[data-index="2"] .VerticalLine {
-    transition-delay: 0.5s;
+  transition-delay: 0.5s;
 }
 
 .animateItem[data-index="3"] .VerticalLine {
-    transition-delay: 0.6s;
+  transition-delay: 0.6s;
 }
 
 .animateItem[data-index="4"] .VerticalLine {
-    transition-delay: 0.7s;
+  transition-delay: 0.7s;
 }
 
 .animateItem[data-index="5"] .VerticalLine {
-    transition-delay: 0.8s;
+  transition-delay: 0.8s;
 }
 
 .sectionTitle {
-    opacity: 0;
-    color: var(--text-primary);
-    font-size: var(--font-size-3xl);
-    font-weight: var(--font-weight-semibold);
-    margin-bottom: var(--spacing-xl);
-    margin-top: 0;
-    transform: translateY(30px);
-    transition: all 0.6s ease-out;
+  opacity: 0;
+  color: var(--text-primary);
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--spacing-xl);
+  margin-top: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
 }
 
 .sectionTitle.animate {
-    opacity: 1;
-    transform: translateY(0);
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .certificateTitle {
-    opacity: 0;
-    transform: translateY(-10px);
-    color: var(--text-primary);
-    font-size: var(--font-size-3xl);
-    font-weight: var(--font-weight-semibold);
-    margin-bottom: var(--spacing-lg);
-    margin-top: var(--spacing-2xl);
-    transition: all 0.6s ease-out;
+  opacity: 0;
+  transform: translateY(-10px);
+  color: var(--text-primary);
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--spacing-lg);
+  margin-top: var(--spacing-2xl);
+  transition: all 0.6s ease-out;
 }
 
 .certificateTitle.animate {
-    opacity: 1;
-    transform: translateY(0);
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Responsive and other utility styles can be added here if needed */

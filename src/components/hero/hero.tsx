@@ -22,6 +22,7 @@ const Hero: React.FC = () => {
   const descriptionRef = useRef<HTMLParagraphElement | null>(null);
   const ctaRowRef = useRef<HTMLDivElement | null>(null);
 
+  // in vh
   useGSAP(() => {
     gsap.set(headerNameRef.current, {
       display: "none",
@@ -30,7 +31,7 @@ const Hero: React.FC = () => {
       position: "absolute",
       width: "auto",
       right: "0",
-      bottom: "5.5vh",
+      bottom: "var(--spacing-2xl)",
     });
 
     const tl = gsap.timeline({
@@ -48,7 +49,7 @@ const Hero: React.FC = () => {
         });
         gsap.to(headerRef.current, {
           position: "fixed",
-          top: "0",
+          top: "var(--spacing-sm)",
           scrollTrigger: {
             trigger: pageRef.current,
             start: "90%",
@@ -58,20 +59,20 @@ const Hero: React.FC = () => {
         });
         gsap.to(nameRef.current, {
           // add animation power3.out
-          y: "57.3vh",
+          y: "60vh",
           scale: 0.3,
           transformOrigin: "left ", // keeps it stuck to left, scales downwards
 
           scrollTrigger: {
             trigger: pageRef.current,
-            start: "22%",
+            start: "20%",
             end: "80%",
             scrub: true,
           },
         });
         gsap.to(nameRef.current, {
           position: "fixed",
-          top: "-5vh",
+          top: "calc(var(--spacing-lg) * -1)",
           y: 0,
           scrollTrigger: {
             trigger: pageRef.current,
@@ -80,17 +81,7 @@ const Hero: React.FC = () => {
             scrub: true,
           },
         });
-        gsap.to(nameRef.current, {
-          // add animation power3.out
-          // position: "absolute",
-          // bottom: "5.5vh",
-          // scrollTrigger: {
-          //   trigger: pageRef.current,
-          //   start: "40%",
-          //   end: "90%",
-          //   scrub: true,
-          // },
-        });
+
         gsap.to(titleRef.current, {
           opacity: 0,
           scrollTrigger: {

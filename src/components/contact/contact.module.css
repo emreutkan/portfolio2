@@ -58,20 +58,22 @@
   align-items: center;
   gap: var(--spacing-lg);
   padding: var(--spacing-lg);
-  background: linear-gradient(135deg, 
-    rgba(255, 255, 255, 0.05), 
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.05),
     rgba(255, 255, 255, 0.02)
   );
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
   transition: all 0.3s ease;
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
 }
 
 .contactMethod:hover {
-  background: linear-gradient(135deg, 
-    rgba(255, 255, 255, 0.1), 
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1),
     rgba(255, 255, 255, 0.05)
   );
   border-color: rgba(255, 255, 255, 0.2);
@@ -86,7 +88,7 @@
   align-items: center;
   justify-content: center;
   background: rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
@@ -120,12 +122,13 @@
 }
 
 .form {
-  background: linear-gradient(135deg, 
-    rgba(255, 255, 255, 0.05), 
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.05),
     rgba(255, 255, 255, 0.02)
   );
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
+  border-radius: var(--radius-lg);
   padding: var(--spacing-2xl);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
@@ -149,7 +152,7 @@
   padding: var(--spacing-md);
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   color: var(--text-primary);
   font-size: var(--font-size-base);
   font-family: inherit;
@@ -173,9 +176,13 @@
 .submitButton {
   width: 100%;
   padding: var(--spacing-md) var(--spacing-xl);
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.15),
+    rgba(255, 255, 255, 0.05)
+  );
   border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   color: var(--text-primary);
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-medium);
@@ -187,7 +194,11 @@
 }
 
 .submitButton:hover {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.1));
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.25),
+    rgba(255, 255, 255, 0.1)
+  );
   border-color: rgba(255, 255, 255, 0.3);
   transform: translateY(-2px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
@@ -199,26 +210,52 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .contactSection {
+    padding: var(--spacing-2xl) var(--spacing-md);
+  }
+
   .contactContent {
     grid-template-columns: 1fr;
     gap: var(--spacing-2xl);
   }
-  
+
   .contactInfo {
     text-align: center;
   }
-  
+
   .contactMethod {
     flex-direction: column;
     text-align: center;
     gap: var(--spacing-md);
   }
-  
+
   .contactMethod:hover {
     transform: translateY(-4px);
   }
-  
+
   .methodInfo {
     text-align: center;
+  }
+}
+
+@media (min-width: 1920px) {
+  .contactSection {
+    padding: clamp(80px, 8vw, 120px) var(--spacing-xl);
+  }
+
+  .container {
+    max-width: clamp(1200px, 85vw, 1600px);
+  }
+}
+
+@media (min-width: 2560px) {
+  .contactContent {
+    gap: clamp(60px, 6vw, 100px);
+  }
+
+  .methodIcon {
+    width: clamp(60px, 7vw, 80px);
+    height: clamp(60px, 7vw, 80px);
+    font-size: clamp(2rem, 2.8vw, 3rem);
   }
 }

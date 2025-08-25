@@ -209,6 +209,23 @@ const Experience: React.FC = () => {
           </div>
         </div>
       </div>
+      <div className={styles.skillsContainer}>
+        <h4 className={styles.SkillsTitle}>Skills</h4>
+        <div className={styles.skillsGrid}>
+          <div className={styles.frontendSkills}>
+            <h4>Frontend</h4>
+          </div>
+          <div className={styles.backendSkills}>
+            <h4>Backend</h4>
+          </div>
+          <div className={styles.OperatingSystems}>
+            <h4>Operating Systems</h4>
+          </div>
+          <div className={styles.Tools}>
+            <h4>Tools</h4>
+          </div>
+        </div>
+      </div>
     </section>
   );
 };

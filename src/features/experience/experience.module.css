@@ -1,13 +1,13 @@
 .experienceSection {
-  min-height: 100vh;
-  position: relative;
-  flex-direction: column;
+  max-width: 100vw;
+  flex-direction: row;
   display: flex;
-  align-items: center;
   justify-content: center;
-  background-color: transparent; /* Make background transparent to allow dots to show through */
+  background-color: transparent;
   overflow-x: hidden;
-  z-index: 0; /* Ensure content stays above the dots */
+  z-index: 0;
+  margin-inline: var(--spacing-5xl);
+  margin-top: var(--spacing-5xl);
 }
 
 .circle {
@@ -88,10 +88,6 @@
 .certificateData {
   opacity: 0;
   transform: translateX(-20px);
-  color: var(--text-primary);
-  font-size: var(--font-size-base);
-  font-weight: var(--font-weight-normal);
-  line-height: var(--line-height-normal);
   transition: all 0.5s ease-out;
 }
 
@@ -113,16 +109,10 @@
 
 .experienceEducationContainer {
   display: flex;
-  margin-left: auto;
   margin-right: auto;
-}
-
-.experienceEducationContainer > div {
-  width: 100%;
-}
-
-.experienceEducationContainer > div:first-child {
-  margin-bottom: var(--spacing-4xl);
+  min-width: 50%;
+  max-width: 50%;
+  border: 1px solid var(--border-primary);
 }
 
 /* Control spacing of paragraph elements inside Details */
@@ -130,25 +120,19 @@
   margin: var(--spacing-xs) 0;
   padding: 0;
   line-height: var(--line-height-tight);
+  padding-right: var(--spacing-2xl);
 }
 
 .Details p:first-child {
   color: var(--text-muted);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-light);
 }
 
 .Details p:nth-child(2) {
   color: var(--text-primary);
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-medium);
-  margin: var(--spacing-xs) 0;
 }
 
 .Details p:last-child {
   color: var(--text-secondary);
-  font-size: var(--font-size-base);
-  font-weight: var(--font-weight-normal);
 }
 
 .circle::after {
@@ -261,3 +245,44 @@
 }
 
 /* Responsive and other utility styles can be added here if needed */
+
+.SkillsTitle {
+  padding-top: 0;
+  margin-top: 0;
+}
+.skillsContainer {
+  min-width: 50%;
+  height: 100%;
+}
+
+.skillsGrid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-auto-rows: minmax(14vh, auto);
+}
+
+.skillsGrid > div {
+  background-color: var(--background-secondary);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  margin: var(--spacing-md);
+  border: 1px solid var(--border-primary);
+}
+
+.frontendSkills {
+  grid-column: span 4;
+  grid-row: span 2;
+}
+.backendSkills {
+  grid-column: span 4;
+  grid-row: span 2;
+}
+.Tools {
+  grid-column: span 4;
+  grid-row: span 2;
+}
+.OperatingSystems {
+  grid-column: span 4;
+  grid-row: span 2;
+}

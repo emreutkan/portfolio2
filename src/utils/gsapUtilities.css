@@ -1,0 +1,129 @@
+/* Responsive Border Radius Utility Classes */
+
+.radius-xs { border-radius: var(--radius-xs) !important; }
+.radius-sm { border-radius: var(--radius-sm) !important; }
+.radius-md { border-radius: var(--radius-md) !important; }
+.radius-lg { border-radius: var(--radius-lg) !important; }
+.radius-xl { border-radius: var(--radius-xl) !important; }
+.radius-2xl { border-radius: var(--radius-2xl) !important; }
+.radius-3xl { border-radius: var(--radius-3xl) !important; }
+.radius-full { border-radius: var(--radius-full) !important; }
+
+/* Responsive corner-specific border radius */
+.radius-t-xs { 
+  border-top-left-radius: var(--radius-xs) !important; 
+  border-top-right-radius: var(--radius-xs) !important; 
+}
+.radius-t-sm { 
+  border-top-left-radius: var(--radius-sm) !important; 
+  border-top-right-radius: var(--radius-sm) !important; 
+}
+.radius-t-md { 
+  border-top-left-radius: var(--radius-md) !important; 
+  border-top-right-radius: var(--radius-md) !important; 
+}
+.radius-t-lg { 
+  border-top-left-radius: var(--radius-lg) !important; 
+  border-top-right-radius: var(--radius-lg) !important; 
+}
+
+.radius-b-xs { 
+  border-bottom-left-radius: var(--radius-xs) !important; 
+  border-bottom-right-radius: var(--radius-xs) !important; 
+}
+.radius-b-sm { 
+  border-bottom-left-radius: var(--radius-sm) !important; 
+  border-bottom-right-radius: var(--radius-sm) !important; 
+}
+.radius-b-md { 
+  border-bottom-left-radius: var(--radius-md) !important; 
+  border-bottom-right-radius: var(--radius-md) !important; 
+}
+.radius-b-lg { 
+  border-bottom-left-radius: var(--radius-lg) !important; 
+  border-bottom-right-radius: var(--radius-lg) !important; 
+}
+
+/* GSAP Animation Helper Classes */
+.gsap-scale-initial { transform: scale(var(--gsap-scale-initial)) !important; }
+.gsap-scale-final { transform: scale(var(--gsap-scale-final)) !important; }
+.gsap-scale-hover { transform: scale(var(--gsap-scale-hover)) !important; }
+.gsap-scale-active { transform: scale(var(--gsap-scale-active)) !important; }
+
+/* Responsive GSAP Transform Classes */
+.gsap-translate-x-sm { transform: translateX(var(--gsap-translate-sm)) !important; }
+.gsap-translate-x-md { transform: translateX(var(--gsap-translate-md)) !important; }
+.gsap-translate-x-lg { transform: translateX(var(--gsap-translate-lg)) !important; }
+.gsap-translate-x-xl { transform: translateX(var(--gsap-translate-xl)) !important; }
+
+.gsap-translate-y-sm { transform: translateY(var(--gsap-translate-sm)) !important; }
+.gsap-translate-y-md { transform: translateY(var(--gsap-translate-md)) !important; }
+.gsap-translate-y-lg { transform: translateY(var(--gsap-translate-lg)) !important; }
+.gsap-translate-y-xl { transform: translateY(var(--gsap-translate-xl)) !important; }
+
+/* Negative transforms for animations coming from opposite direction */
+.gsap-translate-x-sm-neg { transform: translateX(calc(-1 * var(--gsap-translate-sm))) !important; }
+.gsap-translate-x-md-neg { transform: translateX(calc(-1 * var(--gsap-translate-md))) !important; }
+.gsap-translate-x-lg-neg { transform: translateX(calc(-1 * var(--gsap-translate-lg))) !important; }
+.gsap-translate-x-xl-neg { transform: translateX(calc(-1 * var(--gsap-translate-xl))) !important; }
+
+.gsap-translate-y-sm-neg { transform: translateY(calc(-1 * var(--gsap-translate-sm))) !important; }
+.gsap-translate-y-md-neg { transform: translateY(calc(-1 * var(--gsap-translate-md))) !important; }
+.gsap-translate-y-lg-neg { transform: translateY(calc(-1 * var(--gsap-translate-lg))) !important; }
+.gsap-translate-y-xl-neg { transform: translateY(calc(-1 * var(--gsap-translate-xl))) !important; }
+
+/* Responsive Scale Utilities */
+.scale-down-sm { transform: scale(var(--scale-down-sm)) !important; }
+.scale-down-md { transform: scale(var(--scale-down-md)) !important; }
+.scale-down-lg { transform: scale(var(--scale-down-lg)) !important; }
+.scale-down-xl { transform: scale(var(--scale-down-xl)) !important; }
+
+.scale-up-sm { transform: scale(var(--scale-up-sm)) !important; }
+.scale-up-md { transform: scale(var(--scale-up-md)) !important; }
+.scale-up-lg { transform: scale(var(--scale-up-lg)) !important; }
+.scale-up-xl { transform: scale(var(--scale-up-xl)) !important; }
+
+/* Hover and Active States with Responsive Scaling */
+.hover-scale-up:hover { 
+  transform: scale(var(--gsap-scale-hover)) !important; 
+  transition: transform 0.2s ease !important;
+}
+
+.active-scale-down:active { 
+  transform: scale(var(--gsap-scale-active)) !important; 
+  transition: transform 0.1s ease !important;
+}
+
+/* Combined hover and active effects */
+.interactive-scale:hover { 
+  transform: scale(var(--gsap-scale-hover)) !important; 
+  transition: transform 0.2s ease !important;
+}
+
+.interactive-scale:active { 
+  transform: scale(var(--gsap-scale-active)) !important; 
+  transition: transform 0.1s ease !important;
+}
+
+/* Responsive Animation State Classes */
+@media (max-width: 768px) {
+  .gsap-mobile-scale { 
+    transform: scale(0.9) !important; 
+  }
+  
+  .gsap-mobile-translate-reduce {
+    transform: translateX(calc(var(--gsap-translate-md) * 0.7)) !important;
+  }
+}
+
+@media (min-width: 1920px) {
+  .gsap-large-scale { 
+    transform: scale(1.05) !important; 
+  }
+}
+
+@media (min-width: 2560px) {
+  .gsap-ultra-scale { 
+    transform: scale(1.1) !important; 
+  }
+}

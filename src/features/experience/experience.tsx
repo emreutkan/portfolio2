@@ -1,8 +1,103 @@
-import React from "react";
+import React, { useState } from "react";
+import TechSlider from "../../components/tech-slider";
 import { useScrollAnimation } from "../../hooks/useScrollAnimation";
 import styles from "./experience.module.css";
 
 const Experience: React.FC = () => {
+  const [hoveredSkill, setHoveredSkill] = useState(false);
+
+  const skillData = {
+    frontend: {
+      title: "Frontend",
+      technologies: ["typescript", "javascript", "react", "redux"],
+      experienceHistory: [
+        {
+          project: "Freshdeal website",
+          date: "2024-2025",
+
+        },
+        {
+          project: "Freshdeal Business Website",
+          date: "2024-2025",
+
+        },
+        {
+          project: "Portfolio Website",
+          date: "2025",
+        },
+        {
+          project: "IMDB Clone (at University)",
+          date: "2025"
+        },
+        {
+          Project: "Fitrack",
+          date: "2025",
+        }
+      ]
+    },
+    backend: {
+      title: "Backend",
+      technologies: ["python", "mongodb", "redis"],
+      experienceHistory: [
+        {
+          project: "Freshdeal Backend",
+          date: "2024-2025",
+        },
+        {
+          project: "Short Term Stay company backend (at Universiy)",
+          date: "2024",
+        },
+        {
+          project: "IMDB Clone Backend (at University)",
+          date: "2025",
+        },
+        {
+          project: "Fitrack Backend",
+          date: "2025",
+        },
+
+      ]
+    },
+    mobile: {
+      title: "Mobile",
+      technologies: ["react-native", "expo"],
+      experienceHistory: [
+        {
+          project: "Freshdeal Mobile App",
+          date: "2024-2025",
+        },
+        {
+          project: "pharmacies nearby  (in development)",
+          date: "2025",
+        },
+        {
+          project: "Fitrack (in development)",
+          date: "2025",
+        },
+        {
+          project:  "Sleep Tracker (in development)",
+        }
+
+      ]
+    },
+    tools: {
+      title: "Tools",
+      technologies: ["git", "figma", "jira"],
+      experienceHistory: [
+        {
+          project: "Freshdeal",
+          date: "2024",
+          description: "I used jira on the Freshdeal project.",
+        },
+
+      ]
+    },
+    os: {
+      title: "Operating Systems",
+      technologies: ["bash", "linux", "azure"],
+    },
+  };
+
   const { ref: sectionRef } = useScrollAnimation({ threshold: 0.1 });
   const { ref: experienceRef, isInView: experienceInView } = useScrollAnimation(
     { threshold: 0.2 }
@@ -209,23 +304,46 @@ const Experience: React.FC = () => {
           </div>
         </div>
       </div>
-      <div className={styles.skillsContainer}>
+      {/* <div className={styles.skillsContainer}>
         <h4 className={styles.SkillsTitle}>Skills</h4>
         <div className={styles.skillsGrid}>
-          <div className={styles.frontendSkills}>
-            <h4>Frontend</h4>
-          </div>
-          <div className={styles.backendSkills}>
-            <h4>Backend</h4>
-          </div>
-          <div className={styles.OperatingSystems}>
-            <h4>Operating Systems</h4>
-          </div>
-          <div className={styles.Tools}>
-            <h4>Tools</h4>
-          </div>
+          {Object.entries(skillData).map(([key, skill]) => (
+            <div
+              key={key}
+              className={styles[`${key}Skills`]}
+              onMouseEnter={() => {
+                setHoveredSkill(true);
+              }}
+              onMouseLeave={() => {
+                setHoveredSkill(false);
+              }}>
+              <div className={styles.skillHeader}>
+                <h4>{skill.title}</h4>
+              </div>
+
+              {hoveredSkill && (
+                <div className={styles.experienceHistory}>
+                  {skill.experienceHistory?.map((item, index) => (
+                    <div key={index}>
+                      <h5>{item.project}</h5>
+                      <p>{item.date}</p>
+                      <p>{item.description}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+              <div className={styles.techSliderContainer}>
+                <TechSlider
+                  icons={skill.technologies}
+                  size="small"
+                  speed={20 + Math.random() * 20}
+                  showTooltips={true}
+                />
+              </div>
+            </div>
+          ))}
         </div>
-      </div>
+      </div> */}
     </section>
   );
 };

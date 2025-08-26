@@ -19,6 +19,11 @@
   );
 }
 
+.techSlider.fitContent {
+  -webkit-mask: none;
+  mask: none;
+}
+
 .sliderTrack {
   display: flex;
   width: fit-content;
@@ -31,6 +36,11 @@
 
 .sliderTrack:hover {
   animation-play-state: paused;
+}
+
+.fitContent .sliderTrack {
+  animation-play-state: paused;
+  transform: translateX(0) !important;
 }
 
 /* Base tech item styles */

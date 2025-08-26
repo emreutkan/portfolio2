@@ -34,6 +34,8 @@
   /* animate background positions to break static banding and add subtle motion */
   animation: drift 28s ease-in-out infinite alternate;
   will-change: background-position, background-size;
+  /* ensure it never blocks interactions with underlying content */
+  pointer-events: none;
   z-index: 1;
 }
 
@@ -230,10 +232,12 @@
   width: 100vw;
   z-index: 1000;
   margin-right: auto;
-  margin-top: 1vh;
+  /* margin-top: 1vh; */
+  pointer-events: none;
 }
 
 .floatingHeader {
+  max-height: var(--spacing-4xl);
   display: flex;
   margin-inline: var(--spacing-4xl);
   border-radius: 100px;

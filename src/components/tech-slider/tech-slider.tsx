@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./tech-slider.module.css";
 
 interface TechSliderProps {
@@ -191,6 +191,18 @@ const techIcons: Record<string, { name: string; logo: string }> = {
     name: "Cypress",
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cypressio/cypressio-original.svg",
   },
+  redux: {
+    name: "Redux",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg",
+  },
+  figma: {
+    name: "Figma",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg",
+  },
+  jira: {
+    name: "Jira",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jira/jira-original.svg",
+  },
 };
 
 const TechSlider: React.FC<TechSliderProps> = ({
@@ -200,10 +212,17 @@ const TechSlider: React.FC<TechSliderProps> = ({
   showTooltips = true,
   size = "medium",
 }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+
   // Filter technologies based on provided icons
   const technologies = icons
     .map((icon) => techIcons[icon.toLowerCase()])
     .filter(Boolean); // Remove undefined entries
+
+  // Only duplicate technologies if we need to scroll
+  const [shouldScroll, setShouldScroll] = useState(true);
+  const [displayTechnologies, setDisplayTechnologies] = useState(technologies);
 
   // If no valid technologies found, return null or a fallback
   if (technologies.length === 0) {
@@ -214,19 +233,52 @@ const TechSlider: React.FC<TechSliderProps> = ({
     return null;
   }
 
-  // Duplicate technologies for seamless loop
-  const duplicatedTech = [...technologies, ...technologies];
+  useEffect(() => {
+    const checkIfScrollNeeded = () => {
+      if (!containerRef.current || !trackRef.current) return;
+
+      const containerWidth = containerRef.current.offsetWidth;
+      const trackWidth = trackRef.current.scrollWidth;
+
+      // If track width is less than or equal to container width, no scrolling needed
+      const needsScroll = trackWidth > containerWidth;
+      setShouldScroll(needsScroll);
+
+      // Only duplicate items if scrolling is needed
+      setDisplayTechnologies(
+        needsScroll ? [...technologies, ...technologies] : technologies
+      );
+    };
+
+    checkIfScrollNeeded();
+
+    // Check on window resize
+    window.addEventListener("resize", checkIfScrollNeeded);
+
+    // Check after a short delay to ensure images are loaded
+    const timeoutId = setTimeout(checkIfScrollNeeded, 1000);
+
+    return () => {
+      window.removeEventListener("resize", checkIfScrollNeeded);
+      clearTimeout(timeoutId);
+    };
+  }, [technologies]);
 
   return (
-    <div className={`${styles.techSlider} ${styles[size]} ${className}`}>
+    <div
+      ref={containerRef}
+      className={`${styles.techSlider} ${styles[size]} ${className} ${
+        !shouldScroll ? styles.fitContent : ""
+      }`}>
       <div
+        ref={trackRef}
         className={styles.sliderTrack}
         style={
           {
             "--animation-duration": `${speed}s`,
           } as React.CSSProperties
         }>
-        {duplicatedTech.map((tech, index) => (
+        {displayTechnologies.map((tech, index) => (
           <div key={`${tech.name}-${index}`} className={styles.techItem}>
             <img
               src={tech.logo}

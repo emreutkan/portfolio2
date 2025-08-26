@@ -1,6 +1,8 @@
 import { lazy, useEffect } from "react";
+import Background from "./components/background/background";
 import Contact from "./components/contact/contact";
 import Hero from "./components/hero/hero";
+import StackScroller from "./components/stack-scroller/stack-scroller";
 import Freshdeal from "./features/projects/freshdeal/freshdeal";
 import useLenis from "./hooks/useSmoothMomentumScroll";
 
@@ -19,11 +21,15 @@ function App() {
 
   return (
     <div>
+      <Background />
       <Hero />
-      <Experience />
-      <Projects />
-      <Freshdeal />
-      <Contact />
+      <StackScroller>
+        <Experience />
+        <Projects />
+        {/* Disable Freshdeal GSAP if stacking causes conflicts; can re-enable after testing */}
+        <Freshdeal enableAnimation={false} />
+        <Contact />
+      </StackScroller>
     </div>
   );
 }

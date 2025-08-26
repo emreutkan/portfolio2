@@ -4,7 +4,9 @@
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  padding: var(--spacing-5xl);
+  padding-block: var(--spacing-2xl);
+  padding-inline: var(--spacing-4xl);
+  background: gray;
 }
 
 .container {

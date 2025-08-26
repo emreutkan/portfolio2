@@ -15,10 +15,14 @@ import { useSectionRounding } from "../../../hooks/useSectionRounding";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Freshdeal: React.FC = () => {
+type FreshdealProps = {
+  enableAnimation?: boolean;
+};
+
+const Freshdeal: React.FC<FreshdealProps> = ({ enableAnimation = true }) => {
   // Use the custom hooks for animations and transformations
   const { sectionRef } = useSectionRounding();
-  const USE_ANIMATION = true;
+  const USE_ANIMATION = enableAnimation;
   // Create refs for GSAP animations
   const titleRef = useRef<HTMLDivElement>(null);
   const phoneRef = useRef<HTMLDivElement>(null);

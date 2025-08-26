@@ -158,8 +158,7 @@ const Hero: React.FC = () => {
           </ul>
         </div>
       </div>
-      <div className={styles.aurora} />
-      <div className={styles.noise} />
+
       <div className={styles.heroContent} ref={heroContentRef}>
         <h1 className={styles.name} ref={nameRef}>
           Irfan&nbsp;Emre&nbsp;Utkan

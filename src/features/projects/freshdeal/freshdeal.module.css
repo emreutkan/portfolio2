@@ -1,12 +1,12 @@
 .freshdealSection {
-  /* background: linear-gradient(
+  background: linear-gradient(
     135deg,
     #d7f0ad 0%,
     #b8e994 25%,
     #78e08f 50%,
     #38ada9 75%,
     #079992 100%
-  ); */
+  );
   border-top-right-radius: 100px;
   border-top-left-radius: 100px;
   padding: var(--spacing-4xl);

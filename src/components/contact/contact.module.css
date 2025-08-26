@@ -1,6 +1,6 @@
 .contactSection {
   min-height: 100vh;
-  background: var(--bg-primary);
+  background: transparent;
   color: var(--text-primary);
   padding: var(--spacing-4xl) var(--spacing-lg);
   position: relative;

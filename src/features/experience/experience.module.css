@@ -7,9 +7,10 @@
   border: 0;
   z-index: 0;
   margin-inline: var(--spacing-5xl);
-  margin-top: var(--spacing-4xl);
+  margin-bottom: -5vh;
+  /* margin-top: var(--spacing-4xl); */
+  max-height: 100vh;
   min-height: 100vh;
-  padding-top: 10vh;
 }
 
 .circle {

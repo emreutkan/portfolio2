@@ -3,10 +3,9 @@
 }
 
 .panel {
-  position: sticky;
+  /* position: sticky;
   top: 0;
-  height: 100vh;
-  display: block;
+  display: block; */
   /* Ensure stacking order places earlier panels below later panels */
   /* Rely on DOM order and default stacking context. If needed, we can add
      a stacking class per index from the parent. */

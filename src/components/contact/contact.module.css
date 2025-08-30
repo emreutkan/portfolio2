@@ -6,6 +6,7 @@
   position: relative;
   display: flex;
   align-items: center;
+  background: rgb(31, 31, 31);
 }
 
 .container {

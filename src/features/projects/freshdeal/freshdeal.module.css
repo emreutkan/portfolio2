@@ -11,6 +11,8 @@
   border-top-left-radius: 100px;
   padding: var(--spacing-4xl);
   height: 100vh;
+  padding-top: 10vh;
+  margin-top: 5vh;
 }
 
 .contentContainer {

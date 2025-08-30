@@ -7,6 +7,10 @@ export const setLenisInstance = (lenis: Lenis | null) => {
   lenisInstance = lenis;
 };
 
+export const getLenisInstance = () => {
+  return lenisInstance;
+};
+
 export const scrollToSection = (target: string | HTMLElement, offset = 0) => {
   if (lenisInstance) {
     lenisInstance.scrollTo(target, {

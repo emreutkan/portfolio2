@@ -1,7 +1,7 @@
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import React, { useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { scrollToSection } from "../../utils/scrollControls";
 import Citrus from "./citrus/citrus";
 import Evade from "./evade/evade";
@@ -19,10 +19,11 @@ const Projects: React.FC = () => {
         title: "Freshdeal - Mobile app",
         element: <Freshdeal enableAnimation={false} />,
       },
-      { title: "Jukebox", element: <Jukebox /> },
-      { title: "Citrus", element: <Citrus /> },
       { title: "Freshdeal - Web app", element: <FreshdealWeb /> },
       { title: "Freshdeal - Backend", element: <FreshdealBackend /> },
+      { title: "Jukebox", element: <Jukebox /> },
+      { title: "Citrus", element: <Citrus /> },
+
       { title: "Evade", element: <Evade /> },
     ],
     []
@@ -35,6 +36,29 @@ const Projects: React.FC = () => {
   const projectsRef = useRef<HTMLDivElement | null>(null);
   const headerRef = useRef<HTMLDivElement | null>(null);
   const projectsPinRef = useRef<HTMLDivElement | null>(null);
+
+  const updateActiveIndexFromContainer = () => {
+    const containerElement = containerRef.current;
+    if (!containerElement) return;
+
+    let closestIndex = 0;
+    let smallestDistance = Number.MAX_VALUE;
+
+    panelRefs.current.forEach((panelElement, index) => {
+      if (!panelElement) return;
+      const panelTopWithinContainer = panelElement.offsetTop;
+      const distanceFromScrollTop = Math.abs(
+        panelTopWithinContainer - containerElement.scrollTop
+      );
+      if (distanceFromScrollTop < smallestDistance) {
+        smallestDistance = distanceFromScrollTop;
+        closestIndex = index;
+      }
+    });
+
+    setActiveIndex(closestIndex);
+  };
+
   useGSAP(() => {
     gsap.to(projectsRef.current, {
       marginTop: "0vh",
@@ -51,22 +75,73 @@ const Projects: React.FC = () => {
         invalidateOnRefresh: true,
       },
     });
-    const pinTrigger = ScrollTrigger.create({
+    // gsap.to(projectsRef.current, {
+    //   position: "fixed",
+    //   scrollTrigger: {
+    //     trigger: projectsRef.current,
+    //     start: "top top",
+    //     scrub: true,
+    //     invalidateOnRefresh: true,
+    //   },
+    // });
+    // Get the height of the rightPane content to calculate scroll distance
+    const getRightPaneScrollHeight = () => {
+      if (!containerRef.current) return window.innerHeight;
+      return (
+        containerRef.current.scrollHeight - containerRef.current.clientHeight
+      );
+    };
+
+    // Create the scroll hijacking effect
+    ScrollTrigger.create({
       trigger: projectsPinRef.current,
-      start: "top top", // where pinning begins
-      end: "+=1000", // how long it stays pinned
+      start: "top top",
+      end: () => `+=${getRightPaneScrollHeight() + window.innerHeight}`, // Dynamic end based on content
       pin: true,
       pinSpacing: true,
-    });
-    ScrollTrigger.create({
-      id: "projectsSectionPin",
-      trigger: projectsRef.current,
-      start: () => ScrollTrigger.getById("ProjectsWiden")!.end,
-      // pin: true,
+      anticipatePin: 1,
+      refreshPriority: -1,
+      onUpdate: (self) => {
+        if (!containerRef.current) return;
+
+        // Calculate how much to scroll the rightPane based on scroll progress
+        const scrollProgress = self.progress;
+        const maxScroll = getRightPaneScrollHeight();
+        const targetScroll = scrollProgress * maxScroll;
+
+        // Scroll the rightPane
+        containerRef.current.scrollTop = targetScroll;
+
+        // Update active index for left nav highlighting
+        updateActiveIndexFromContainer();
+      },
+      onEnter: () => {
+        // Disable native scroll during pin
+        if (containerRef.current) {
+          containerRef.current.style.overflowY = "hidden";
+        }
+      },
+      onLeave: () => {
+        // Re-enable normal scrolling
+        if (containerRef.current) {
+          containerRef.current.style.overflowY = "scroll";
+        }
+      },
+      onEnterBack: () => {
+        if (containerRef.current) {
+          containerRef.current.style.overflowY = "hidden";
+        }
+      },
+      onLeaveBack: () => {
+        if (containerRef.current) {
+          containerRef.current.style.overflowY = "scroll";
+        }
+      },
     });
 
     gsap.to(headerRef.current, {
       y: "-11vh",
+      marginBottom: "0vh",
       scrollTrigger: {
         trigger: projectsRef.current,
         start: "-7%",
@@ -85,6 +160,16 @@ const Projects: React.FC = () => {
     });
   }, []);
 
+  // When user scrolls the rightPane natively (e.g., before pin or when unpinned), keep active index in sync
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const handler = () => updateActiveIndexFromContainer();
+    el.addEventListener("scroll", handler, { passive: true });
+    handler();
+    return () => el.removeEventListener("scroll", handler);
+  }, []);
+
   const handleNavClick = (index: number) => {
     const id = `project-panel-${index}`;
     const el = document.getElementById(id);
@@ -93,7 +178,6 @@ const Projects: React.FC = () => {
     }
   };
 
-  // Counter display (01, 02, ...)
   const counter = String(activeIndex + 1).padStart(2, "0");
 
   return (
@@ -105,16 +189,16 @@ const Projects: React.FC = () => {
         <div ref={headerRef} className={styles.projectsHeader}>
           <h3>Projects & Skills</h3>
         </div>
-        <div className={styles.counterContainer}>
-          <h3>{counter}</h3>{" "}
-        </div>
+        <div className={styles.counterContainer}></div>
 
         <div className={styles.projectsLayout}>
           <aside className={styles.leftNav} aria-label="Project list">
+            <h3>{counter}</h3>{" "}
             <ul className={styles.navList}>
               {items.map((p, i) => (
                 <li key={i}>
                   <button
+                    type="button"
                     className={
                       i === activeIndex
                         ? `${styles.navItem} ${styles.navItemActive}`
@@ -122,7 +206,7 @@ const Projects: React.FC = () => {
                     }
                     onClick={() => handleNavClick(i)}
                     aria-current={i === activeIndex ? "true" : undefined}>
-                    <span>{p.title}</span>
+                    <h6>{p.title}</h6>
                   </button>
                 </li>
               ))}

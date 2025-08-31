@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import styles from "./freshdeal.module.css";
 // Import SVG assets
 import { useGSAP } from "@gsap/react";
@@ -10,14 +10,17 @@ import addressSelectionSvg from "../../../assets/freshdeal_address_selection.svg
 import freshdealsSvg from "../../../assets/freshdeal_freshdeals.svg";
 import restaurantsSvg from "../../../assets/freshdeal_restaurants.svg";
 import restaurantsMapSvg from "../../../assets/freshdeal_restaurants_on_map.svg";
-import IPhoneMockup from "../../../components/iphone-mockup";
+// import IPhoneMockup from "../../../components/iphone-mockup";
 import { useSectionRounding } from "../../../hooks/useSectionRounding";
+import { getLenisInstance } from "../../../utils/scrollControls";
 
 gsap.registerPlugin(ScrollTrigger);
 
 type FreshdealProps = {
   enableAnimation?: boolean;
 };
+
+type InternalTimeline = { _time: number; _dur: number; _tTime: number };
 
 const Freshdeal: React.FC<FreshdealProps> = ({ enableAnimation = true }) => {
   // Use the custom hooks for animations and transformations
@@ -28,6 +31,21 @@ const Freshdeal: React.FC<FreshdealProps> = ({ enableAnimation = true }) => {
   const phoneRef = useRef<HTMLDivElement>(null);
   const contentWrapperRef = useRef<HTMLDivElement>(null);
   const contentContainerRef = useRef<HTMLDivElement>(null);
+  // Gallery refs
+  const galleryWrapperRef = useRef<HTMLDivElement>(null);
+  const galleryRef = useRef<HTMLDivElement>(null);
+  const cardsListRef = useRef<HTMLUListElement>(null);
+  const nextBtnRef = useRef<HTMLButtonElement>(null);
+  const prevBtnRef = useRef<HTMLButtonElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const lastWheelAtRef = useRef<number>(0);
+  const SPACING = 0.1;
+
+  // GSAP gallery internals
+  const seamlessLoopRef = useRef<gsap.core.Timeline | null>(null);
+  const scrubTweenRef = useRef<gsap.core.Tween | null>(null);
+  // We avoid ScrollTrigger for the gallery to prevent conflicts with Lenis
   // GSAP animations
   useGSAP(
     () => {
@@ -114,6 +132,178 @@ const Freshdeal: React.FC<FreshdealProps> = ({ enableAnimation = true }) => {
     { scope: sectionRef }
   );
 
+  // Build seamless gallery once after cards are in the DOM
+  useGSAP(
+    () => {
+      const cards = Array.from(
+        (cardsListRef.current?.querySelectorAll(
+          "li"
+        ) as NodeListOf<HTMLLIElement>) || []
+      );
+      if (!cards.length) return;
+
+      const images = cards
+        .map((li) => li.querySelector("img"))
+        .filter(Boolean) as HTMLImageElement[];
+      gsap.to(images, {
+        opacity: 1,
+        delay: 0.1,
+        duration: 0.3,
+        overwrite: true,
+      });
+
+      const spacing = SPACING;
+      const snap = gsap.utils.snap(spacing);
+
+      const buildSeamlessLoop = (items: HTMLElement[], itemSpacing: number) => {
+        const overlap = Math.ceil(1 / itemSpacing);
+        const startTime = items.length * itemSpacing + 0.5;
+        const loopTime = (items.length + overlap) * itemSpacing + 1;
+        const rawSequence = gsap.timeline({ paused: true });
+        const seamlessLoop = gsap.timeline({
+          paused: true,
+          repeat: -1,
+          onRepeat() {
+            const t = this as unknown as InternalTimeline;
+            if (t._time === t._dur) {
+              t._tTime += t._dur - 0.01;
+            }
+          },
+        });
+
+        gsap.set(items, { xPercent: 400, opacity: 0, scale: 0 });
+
+        const l = items.length + overlap * 2;
+        for (let i = 0; i < l; i++) {
+          const index = i % items.length;
+          const item = items[index];
+          const time = i * itemSpacing;
+          rawSequence
+            .fromTo(
+              item,
+              { scale: 0, opacity: 0 },
+              {
+                scale: 1,
+                opacity: 1,
+                zIndex: 100,
+                duration: 0.5,
+                yoyo: true,
+                repeat: 1,
+                ease: "power1.in",
+                immediateRender: false,
+              },
+              time
+            )
+            .fromTo(
+              item,
+              { xPercent: 400 },
+              {
+                xPercent: -400,
+                duration: 1,
+                ease: "none",
+                immediateRender: false,
+              },
+              time
+            );
+          if (i <= items.length) seamlessLoop.add("label" + i, time);
+        }
+
+        rawSequence.time(startTime);
+        seamlessLoop
+          .to(rawSequence, {
+            time: loopTime,
+            duration: loopTime - startTime,
+            ease: "none",
+          })
+          .fromTo(
+            rawSequence,
+            { time: overlap * itemSpacing + 1 },
+            {
+              time: startTime,
+              duration: startTime - (overlap * itemSpacing + 1),
+              immediateRender: false,
+              ease: "none",
+            }
+          );
+
+        return seamlessLoop;
+      };
+
+      seamlessLoopRef.current = buildSeamlessLoop(
+        cards as HTMLElement[],
+        spacing
+      );
+      if (!seamlessLoopRef.current) return;
+
+      scrubTweenRef.current = gsap.to(seamlessLoopRef.current, {
+        totalTime: 0,
+        duration: 0.5,
+        ease: "power3",
+        paused: true,
+      });
+
+      const offsetPlayheadBy = (delta: number) => {
+        if (!scrubTweenRef.current || !seamlessLoopRef.current) return;
+        const loop = seamlessLoopRef.current;
+        const current = (scrubTweenRef.current.vars.totalTime as number) || 0;
+        const dur = loop.duration();
+        const next = current + delta;
+        const wrapped = ((next % dur) + dur) % dur;
+        scrubTweenRef.current.vars.totalTime = snap(wrapped);
+        scrubTweenRef.current.invalidate().restart();
+      };
+
+      // Attach button handlers via React refs
+      const onNext = () => {
+        offsetPlayheadBy(spacing);
+        setActiveIndex((i) => (i + 1) % appImages.length);
+      };
+      const onPrev = () => {
+        offsetPlayheadBy(-spacing);
+        setActiveIndex((i) => (i - 1 + appImages.length) % appImages.length);
+      };
+      nextBtnRef.current?.addEventListener("click", onNext);
+      prevBtnRef.current?.addEventListener("click", onPrev);
+
+      // Cleanup listeners on scope revert
+      return () => {
+        nextBtnRef.current?.removeEventListener("click", onNext);
+        prevBtnRef.current?.removeEventListener("click", onPrev);
+      };
+    },
+    { scope: galleryRef }
+  );
+
+  // Local wheel scrubbing when hovered
+  useGSAP(
+    () => {
+      const el = galleryRef.current;
+      if (!el) return;
+      const onWheel = (e: WheelEvent) => {
+        if (!isHovered) return;
+        if (!scrubTweenRef.current || !seamlessLoopRef.current) return;
+        e.preventDefault();
+        const now = performance.now();
+        if (now - (lastWheelAtRef.current || 0) < 120) return;
+        lastWheelAtRef.current = now;
+        const dir = e.deltaY > 0 ? 1 : -1;
+        const spacing = SPACING;
+        const snap = gsap.utils.snap(spacing);
+        const loop = seamlessLoopRef.current;
+        const current = (scrubTweenRef.current.vars.totalTime as number) || 0;
+        const dur = loop.duration();
+        const next = current + dir * spacing;
+        const wrapped = ((next % dur) + dur) % dur;
+        scrubTweenRef.current.vars.totalTime = snap(wrapped);
+        scrubTweenRef.current.invalidate().restart();
+        setActiveIndex((i) => (i + dir + appImages.length) % appImages.length);
+      };
+      el.addEventListener("wheel", onWheel, { passive: false });
+      return () => el.removeEventListener("wheel", onWheel as EventListener);
+    },
+    { dependencies: [isHovered] }
+  );
+
   const appImages = [
     {
       src: addressSelectionSvg,
@@ -141,87 +331,91 @@ const Freshdeal: React.FC<FreshdealProps> = ({ enableAnimation = true }) => {
     },
   ];
 
+  const slideDescriptions: string[] = [
+    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. UI shows address selection with clear options.",
+    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Account overview and quick settings.",
+    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Achievement badges and progress.",
+    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Daily fresh deals with highlights.",
+    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Restaurant listing with filters.",
+    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Map view with nearby restaurants.",
+  ];
+
   return (
     <section
       ref={sectionRef}
       className={styles.freshdealSection}
       id="freshdeal">
       <div ref={contentContainerRef} className={styles.contentContainer}>
-        <h1 ref={titleRef} className={styles.initialTitle}>
-          FRESHDEAL
-        </h1>
-
-        <div ref={phoneRef} className={styles.initialPhone}>
-          <IPhoneMockup images={appImages} />
+        <div className={styles.headerBlock}>
+          <h1 className={styles.pageTitle}>Freshdeal</h1>
+          <p className={styles.blurb}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+            vitae arcu non nunc mattis congue. Nullam ac justo id nisi interdum
+            vulputate.
+          </p>
         </div>
+      </div>
+      {/* Gallery */}
+      <div
+        ref={galleryWrapperRef}
+        className={styles.galleryWrapper}
+        onMouseEnter={() => {
+          setIsHovered(true);
+          // Pause Lenis while interacting with the gallery
+          getLenisInstance()?.stop();
+        }}
+        onMouseLeave={() => {
+          setIsHovered(false);
+          // Resume Lenis when leaving the gallery
+          getLenisInstance()?.start();
+        }}>
         <div
-          ref={contentWrapperRef}
-          className={
-            USE_ANIMATION
-              ? styles.contentSideAnimation + " " + styles.contentSide
-              : styles.contentSide
-          }>
-          <div className={styles.header}>
-            <span className={styles.projectLabel}>Mobile App</span>
-            <h1 className={styles.title}>Freshdeal</h1>
-            <p className={styles.subtitle}>Modern food delivery experience</p>
+          ref={galleryRef}
+          className={styles.gallery}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}>
+          <ul ref={cardsListRef} className={styles.cards}>
+            {appImages
+              .concat(appImages)
+              .slice(0, 10)
+              .map((img, idx) => (
+                <li key={idx} className={styles.card}>
+                  <img
+                    className={styles.cardImage}
+                    src={img.src}
+                    alt={img.alt}
+                  />
+                </li>
+              ))}
+          </ul>
+          <div className={styles.galleryActions}>
+            <button
+              ref={prevBtnRef}
+              className={styles.navButton}
+              aria-label="Previous">
+              Prev
+            </button>
+            <button
+              ref={nextBtnRef}
+              className={styles.navButton}
+              aria-label="Next">
+              Next
+            </button>
           </div>
-
-          <div className={styles.description}>
-            <div className={styles.feature}>
-              <h3>Food Delivery Platform</h3>
-              <p>
-                Connect users with local restaurants through an intuitive
-                interface and real-time order tracking system.
-              </p>
+          {!isHovered && (
+            <div className={styles.hoverHint} aria-hidden="true">
+              Hover to scroll
             </div>
-
-            <div className={styles.feature}>
-              <h3>📱 Mobile-First Design</h3>
-              <p>
-                Browse menus, place orders, and track deliveries with features
-                like address selection and achievement tracking.
-              </p>
-            </div>
-
-            <div className={styles.feature}>
-              <h3>🎯 Seamless Experience</h3>
-              <p>
-                Enjoy favorite meals from the comfort of home with a streamlined
-                ordering and delivery process.
-              </p>
-            </div>
-          </div>
-
-          <div className={styles.techStack}>
-            <h4>Technologies Used</h4>
-            <div className={styles.techTags}>
-              <span className={styles.techTag}>React Native</span>
-              <span className={styles.techTag}>TypeScript</span>
-              <span className={styles.techTag}>Node.js</span>
-              <span className={styles.techTag}>MongoDB</span>
-              <span className={styles.techTag}>Socket.io</span>
-            </div>
-          </div>
-
-          <div className={styles.actions}>
-            <a
-              href="https://github.com/yourusername/freshdeal"
-              className={styles.githubButton}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="View Freshdeal project on GitHub">
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="currentColor">
-                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-              </svg>
-              View on GitHub
-            </a>
-          </div>
+          )}
         </div>
+      </div>
+      <div className={styles.slideInfo}>
+        <h3 className={styles.slideTitle}>
+          {appImages[activeIndex % appImages.length].alt}
+        </h3>
+        <p className={styles.slideText}>
+          {slideDescriptions[activeIndex % slideDescriptions.length]}
+        </p>
       </div>
     </section>
   );

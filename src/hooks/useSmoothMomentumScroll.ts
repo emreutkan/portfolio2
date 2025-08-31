@@ -26,23 +26,16 @@ export const useLenis = () => {
 
     // Use requestAnimationFrame to continuously update the scroll
     function raf(time: number) {
+      // time here is already in ms
       lenis.raf(time);
       requestAnimationFrame(raf);
     }
 
     requestAnimationFrame(raf);
 
-    // Update ScrollTrigger when Lenis scrolls
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000);
-    });
-
     // Cleanup function
     return () => {
       lenis.destroy();
-      gsap.ticker.remove((time) => {
-        lenis.raf(time * 1000);
-      });
       setLenisInstance(null);
     };
   }, []);

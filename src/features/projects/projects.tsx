@@ -75,16 +75,7 @@ const Projects: React.FC = () => {
         invalidateOnRefresh: true,
       },
     });
-    // gsap.to(projectsRef.current, {
-    //   position: "fixed",
-    //   scrollTrigger: {
-    //     trigger: projectsRef.current,
-    //     start: "top top",
-    //     scrub: true,
-    //     invalidateOnRefresh: true,
-    //   },
-    // });
-    // Get the height of the rightPane content to calculate scroll distance
+
     const getRightPaneScrollHeight = () => {
       if (!containerRef.current) return window.innerHeight;
       return (

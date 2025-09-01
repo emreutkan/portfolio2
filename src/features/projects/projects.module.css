@@ -1,8 +1,8 @@
 .projectsSection {
   padding-block: var(--spacing-2xl);
   background: rgb(24, 24, 24);
-  border-top-right-radius: 20px;
-  border-top-left-radius: 20px;
+  border-top-right-radius: var(--spacing-4xl);
+  border-top-left-radius: var(--spacing-4xl);
   margin-left: 2vw;
   margin-right: 2vw;
   padding-inline: var(--spacing-5xl);
@@ -43,6 +43,8 @@
   -ms-overflow-style: none; /* IE/Edge */
   overscroll-behavior: contain;
   scroll-behavior: auto !important;
+  margin-block: 0;
+  padding-block: 0;
 }
 
 .rightPane::-webkit-scrollbar {

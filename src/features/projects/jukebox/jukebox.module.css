@@ -4,15 +4,13 @@
     rgba(9, 9, 14, 1) 0%,
     rgba(7, 7, 12, 1) 100%
   );
-  padding: 120px 24px;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-.contentContainer {
-}
-
-.header {
+  border-radius: var(--spacing-2xl);
+  padding-inline: var(--spacing-3xl);
+  padding-block: var(--spacing-xl);
+  margin-top: var(--spacing-2xl);
+  display: flex;
+  flex-direction: row;
+  gap: var(--spacing-xl);
 }
 
 .projectLabel {
@@ -25,20 +23,14 @@
 
 .title {
   margin: 8px 0 4px;
-  font-size: 40px;
 }
 
 .subtitle {
   opacity: 0.8;
 }
 
-.body {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-}
-
 .deviceMockup {
+  flex: 1;
   padding: 16px;
   background: #0e0e0e;
   border-radius: 24px;
@@ -48,14 +40,15 @@
 }
 
 .deviceBezel {
-  overflow: hidden;
   border-radius: 16px;
 }
 
-.deviceBezel img {
+
+
+.deviceMockup img {
   width: 100%;
-  height: auto;
-  display: block;
+    border-radius: var(--spacing-md);
+
 }
 
 .description {

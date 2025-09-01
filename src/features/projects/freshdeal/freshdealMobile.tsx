@@ -12,7 +12,6 @@ import restaurantsSvg from "../../../assets/freshdeal_restaurants.svg";
 import restaurantsMapSvg from "../../../assets/freshdeal_restaurants_on_map.svg";
 
 import TechSlider from "@/components/tech-slider/tech-slider";
-import { useSectionRounding } from "../../../hooks/useSectionRounding";
 import { getLenisInstance } from "../../../utils/scrollControls";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -25,7 +24,6 @@ type InternalTimeline = { _time: number; _dur: number; _tTime: number };
 
 const Freshdeal: React.FC<FreshdealProps> = ({ enableAnimation = true }) => {
   // Use the custom hooks for animations and transformations
-  const { sectionRef } = useSectionRounding();
   const USE_ANIMATION = enableAnimation;
   // Create refs for GSAP animations
   const titleRef = useRef<HTMLDivElement>(null);
@@ -48,79 +46,7 @@ const Freshdeal: React.FC<FreshdealProps> = ({ enableAnimation = true }) => {
   const scrubTweenRef = useRef<gsap.core.Tween | null>(null);
   // We avoid ScrollTrigger for the gallery to prevent conflicts with Lenis
   // GSAP animations
-  useGSAP(
-    () => {
-      if (!USE_ANIMATION) return;
 
-      // Create a timeline for better animation control
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 80%",
-          end: "top 20%",
-          scrub: 0.5,
-          markers: false,
-        },
-      });
-
-      gsap.set(phoneRef.current, {
-        position: "absolute",
-        top: "120px",
-        left: "50%",
-        xPercent: -50,
-        scale: 1,
-      });
-
-      gsap.set(contentContainerRef.current, {
-        alignItems: "flex-end",
-        justifyContent: "flex-end",
-        alignSelf: "flex-end",
-        justifySelf: "flex-end",
-        alignContent: "flex-end",
-        justifyItems: "flex-end",
-      });
-
-      // Smooth scroll-triggered animations
-      tl.to(
-        titleRef.current,
-        {
-          y: 200,
-          scale: 0,
-          opacity: 0,
-          ease: "power2.inOut",
-        },
-        0
-      )
-        .to(
-          phoneRef.current,
-          {
-            y: -80,
-            scale: 1.1,
-            ease: "power2.inOut",
-          },
-          0
-        )
-        .to(
-          phoneRef.current,
-          {
-            x: -500,
-            ease: "power2.inOut",
-          },
-          0.3
-        )
-        .to(
-          contentWrapperRef.current,
-          {
-            opacity: 1,
-            y: 0,
-            visibility: "visible",
-            ease: "power2.inOut",
-          },
-          0.3
-        );
-    },
-    { scope: sectionRef }
-  );
 
   // Build seamless gallery once after cards are in the DOM
   useGSAP(
@@ -340,7 +266,7 @@ const Freshdeal: React.FC<FreshdealProps> = ({ enableAnimation = true }) => {
   ];
 
   return (
-    <section ref={sectionRef} className={styles.projectSection} id="freshdeal">
+    <section className={styles.projectSection} id="freshdeal">
       <div className={styles.contentContainer}>
         <div className={styles.header}>
           <span className={styles.projectLabel}>Mobile App for Customers</span>

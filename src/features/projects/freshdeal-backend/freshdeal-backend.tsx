@@ -1,14 +1,11 @@
 import React from "react";
-import { useSectionRounding } from "../../../hooks/useSectionRounding";
 import TechSlider from "../../../components/tech-slider";
 import styles from "./freshdeal-backend.module.css";
 
 const FreshdealBackend: React.FC = () => {
-  const { sectionRef } = useSectionRounding();
 
   return (
     <section
-      ref={sectionRef}
       className={styles.projectSection}
       id="freshdeal-backend">
       <div className={styles.contentContainer}>
@@ -29,7 +26,14 @@ const FreshdealBackend: React.FC = () => {
               reliability.
             </p>
             <TechSlider
-              icons={["azure", "google-maps", "mssql", "python", "flask", "firebase"]}
+              icons={[
+                "azure",
+                "google-maps",
+                "mssql",
+                "python",
+                "flask",
+                "firebase",
+              ]}
               speed={40}
             />
             <div className={styles.actions}>

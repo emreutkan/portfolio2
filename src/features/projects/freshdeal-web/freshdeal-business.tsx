@@ -1,15 +1,12 @@
 import React from "react";
 import TechSlider from "../../../components/tech-slider";
-import { useSectionRounding } from "../../../hooks/useSectionRounding";
 import styles from "./freshdeal-business.module.css";
 import freshdealWebImage from "./images/freshdealBusinessWebsite.svg";
 
 const FreshdealBusiness: React.FC = () => {
-  const { sectionRef } = useSectionRounding();
 
   return (
     <section
-      ref={sectionRef}
       className={styles.projectSection}
       id="freshdeal-business">
       <div className={styles.contentContainer}>

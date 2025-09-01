@@ -1,6 +1,13 @@
 .projectSection {
   position: relative;
   padding: 120px 24px;
+  background: linear-gradient(
+    180deg,
+    rgba(9, 12, 14, 1) 0%,
+    rgba(6, 9, 12, 1) 100%
+  );
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .contentContainer {
@@ -35,10 +42,55 @@
   gap: 24px;
 }
 
-.media img {
+.terminalMockup {
+  background: #0e0e0e;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.terminalHeader {
+  display: flex;
+  align-items: center;
+  padding: 10px 12px;
+  background: #1a1a1a;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  gap: 12px;
+}
+
+.terminalButtons {
+  display: flex;
+  gap: 8px;
+}
+
+.terminalButton {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #666;
+}
+
+.terminalButton:nth-child(1) {
+  background: #ff5f57;
+}
+.terminalButton:nth-child(2) {
+  background: #ffbd2e;
+}
+.terminalButton:nth-child(3) {
+  background: #28ca42;
+}
+
+.terminalTitle {
+  color: #bdbdbd;
+  font-family: monospace;
+  font-size: 12px;
+}
+
+.terminalContent img {
   width: 100%;
   height: auto;
-  border-radius: 12px;
+  display: block;
 }
 
 .description {

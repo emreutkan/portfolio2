@@ -1,4 +1,5 @@
 import React from "react";
+import TechSlider from "../../../components/tech-slider";
 import { useSectionRounding } from "../../../hooks/useSectionRounding";
 import evadeImage from "../images/evade.png";
 import styles from "./evade.module.css";
@@ -19,7 +20,19 @@ const Evade: React.FC = () => {
 
         <div className={styles.body}>
           <div className={styles.media}>
-            <img src={evadeImage} alt="Evade project" />
+            <div className={styles.terminalMockup}>
+              <div className={styles.terminalHeader}>
+                <div className={styles.terminalButtons}>
+                  <span className={styles.terminalButton}></span>
+                  <span className={styles.terminalButton}></span>
+                  <span className={styles.terminalButton}></span>
+                </div>
+                <div className={styles.terminalTitle}>evade@host: ~</div>
+              </div>
+              <div className={styles.terminalContent}>
+                <img src={evadeImage} alt="Evade project" />
+              </div>
+            </div>
           </div>
 
           <div className={styles.description}>
@@ -27,11 +40,7 @@ const Evade: React.FC = () => {
               Generates self‑decrypting payloads aimed at reducing detection by
               antivirus engines through runtime decryption strategies.
             </p>
-            <div className={styles.techTags}>
-              <span className={styles.techTag}>Python</span>
-              <span className={styles.techTag}>Windows</span>
-              <span className={styles.techTag}>Encryption</span>
-            </div>
+            <TechSlider icons={["python", "windows", "bash"]} speed={40} />
             <div className={styles.actions}>
               <a
                 href="https://github.com/emreutkan/evade"

@@ -6,8 +6,8 @@ import { scrollToSection } from "../../utils/scrollControls";
 import Citrus from "./citrus/citrus";
 import Evade from "./evade/evade";
 import FreshdealBackend from "./freshdeal-backend/freshdeal-backend";
-import FreshdealWeb from "./freshdeal-web/freshdeal-web";
-import Freshdeal from "./freshdeal/freshdeal";
+import FreshdealBusiness from "./freshdeal-web/freshdeal-business";
+import Freshdeal from "./freshdeal/freshdealMobile";
 import Jukebox from "./jukebox/jukebox";
 import styles from "./projects.module.css";
 gsap.registerPlugin(ScrollTrigger);
@@ -16,11 +16,11 @@ const Projects: React.FC = () => {
   const items = useMemo(
     () => [
       {
-        title: "Freshdeal - Mobile app",
+        title: "Freshdeal Mobile",
         element: <Freshdeal enableAnimation={false} />,
       },
-      { title: "Freshdeal - Web app", element: <FreshdealWeb /> },
-      { title: "Freshdeal - Backend", element: <FreshdealBackend /> },
+      { title: "Freshdeal Business", element: <FreshdealBusiness /> },
+      { title: "Freshdeal Backend", element: <FreshdealBackend /> },
       { title: "Jukebox", element: <Jukebox /> },
       { title: "Citrus", element: <Citrus /> },
 

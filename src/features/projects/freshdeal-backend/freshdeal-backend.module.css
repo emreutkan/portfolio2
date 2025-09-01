@@ -1,7 +1,13 @@
 .projectSection {
   position: relative;
   padding: 120px 24px;
-  background: black;
+  background: linear-gradient(
+    180deg,
+    rgba(8, 8, 12, 1) 0%,
+    rgba(6, 6, 10, 1) 100%
+  );
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .contentContainer {

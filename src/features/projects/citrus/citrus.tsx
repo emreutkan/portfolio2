@@ -1,4 +1,5 @@
 import React from "react";
+import TechSlider from "../../../components/tech-slider";
 import { useSectionRounding } from "../../../hooks/useSectionRounding";
 import citrusImage from "../images/citrus.png";
 import styles from "./citrus.module.css";
@@ -19,7 +20,21 @@ const Citrus: React.FC = () => {
 
         <div className={styles.body}>
           <div className={styles.media}>
-            <img src={citrusImage} alt="Citrus project" />
+            <div className={styles.browserMockup}>
+              <div className={styles.browserHeader}>
+                <div className={styles.browserButtons}>
+                  <span className={styles.browserButton}></span>
+                  <span className={styles.browserButton}></span>
+                  <span className={styles.browserButton}></span>
+                </div>
+                <div className={styles.addressBar}>
+                  <span>citrus.local</span>
+                </div>
+              </div>
+              <div className={styles.browserContent}>
+                <img src={citrusImage} alt="Citrus project" />
+              </div>
+            </div>
           </div>
 
           <div className={styles.description}>
@@ -27,12 +42,7 @@ const Citrus: React.FC = () => {
               Automated Evil Twin framework with dnsmasq/hostapd integration and
               optional captive portal deployment for realistic Wi‑Fi testing.
             </p>
-            <div className={styles.techTags}>
-              <span className={styles.techTag}>Python</span>
-              <span className={styles.techTag}>Linux</span>
-              <span className={styles.techTag}>hostapd</span>
-              <span className={styles.techTag}>dnsmasq</span>
-            </div>
+            <TechSlider icons={["python", "linux", "bash"]} speed={40} />
             <div className={styles.actions}>
               <a
                 href="https://github.com/emreutkan/citrus"

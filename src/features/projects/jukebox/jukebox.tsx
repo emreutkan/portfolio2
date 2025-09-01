@@ -1,4 +1,5 @@
 import React from "react";
+import TechSlider from "../../../components/tech-slider";
 import { useSectionRounding } from "../../../hooks/useSectionRounding";
 import jukeboxImage from "../images/jukebox.png";
 import styles from "./jukebox.module.css";
@@ -19,7 +20,11 @@ const Jukebox: React.FC = () => {
 
         <div className={styles.body}>
           <div className={styles.media}>
-            <img src={jukeboxImage} alt="Jukebox project" />
+            <div className={styles.deviceMockup}>
+              <div className={styles.deviceBezel}>
+                <img src={jukeboxImage} alt="Jukebox project" />
+              </div>
+            </div>
           </div>
 
           <div className={styles.description}>
@@ -27,11 +32,7 @@ const Jukebox: React.FC = () => {
               Interactive Wi‑Fi security toolkit that streamlines reconnaissance
               and attack workflows with a practical, operator‑friendly UI.
             </p>
-            <div className={styles.techTags}>
-              <span className={styles.techTag}>Python</span>
-              <span className={styles.techTag}>Linux</span>
-              <span className={styles.techTag}>aircrack-ng</span>
-            </div>
+            <TechSlider icons={["python", "linux", "bash"]} speed={40} />
             <div className={styles.actions}>
               <a
                 href="https://github.com/emreutkan/jukebox"

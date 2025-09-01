@@ -51,6 +51,10 @@ const techIcons: Record<string, { name: string; logo: string }> = {
     name: "Google Cloud",
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg",
   },
+  "google-maps": {
+    name: "Google Maps Platform",
+    logo: "https://cdn.simpleicons.org/googlemaps",
+  },
   git: {
     name: "Git",
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
@@ -86,6 +90,10 @@ const techIcons: Record<string, { name: string; logo: string }> = {
   python: {
     name: "Python",
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+  },
+  flask: {
+    name: "Flask",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg",
   },
   express: {
     name: "Express",
@@ -146,6 +154,14 @@ const techIcons: Record<string, { name: string; logo: string }> = {
   mysql: {
     name: "MySQL",
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
+  },
+  mssql: {
+    name: "Microsoft SQL Server",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-plain.svg",
+  },
+  windows: {
+    name: "Windows",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg",
   },
   redis: {
     name: "Redis",

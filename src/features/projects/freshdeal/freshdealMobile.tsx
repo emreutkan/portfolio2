@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import styles from "./freshdeal.module.css";
+import styles from "./freshdealMobile.module.css";
 // Import SVG assets
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -10,7 +10,8 @@ import addressSelectionSvg from "../../../assets/freshdeal_address_selection.svg
 import freshdealsSvg from "../../../assets/freshdeal_freshdeals.svg";
 import restaurantsSvg from "../../../assets/freshdeal_restaurants.svg";
 import restaurantsMapSvg from "../../../assets/freshdeal_restaurants_on_map.svg";
-// import IPhoneMockup from "../../../components/iphone-mockup";
+
+import TechSlider from "@/components/tech-slider/tech-slider";
 import { useSectionRounding } from "../../../hooks/useSectionRounding";
 import { getLenisInstance } from "../../../utils/scrollControls";
 
@@ -60,17 +61,6 @@ const Freshdeal: React.FC<FreshdealProps> = ({ enableAnimation = true }) => {
           scrub: 0.5,
           markers: false,
         },
-      });
-
-      // Set initial positions
-      gsap.set(titleRef.current, {
-        display: "flex",
-        position: "absolute",
-        top: "-60px",
-        left: "50%",
-        xPercent: -50,
-        padding: 0,
-        margin: 0,
       });
 
       gsap.set(phoneRef.current, {
@@ -256,11 +246,11 @@ const Freshdeal: React.FC<FreshdealProps> = ({ enableAnimation = true }) => {
       // Attach button handlers via React refs
       const onNext = () => {
         offsetPlayheadBy(spacing);
-        setActiveIndex((i) => (i + 1) % appImages.length);
+        setActiveIndex((i) => (i + 1) % appData.length);
       };
       const onPrev = () => {
         offsetPlayheadBy(-spacing);
-        setActiveIndex((i) => (i - 1 + appImages.length) % appImages.length);
+        setActiveIndex((i) => (i - 1 + appData.length) % appData.length);
       };
       nextBtnRef.current?.addEventListener("click", onNext);
       prevBtnRef.current?.addEventListener("click", onPrev);
@@ -296,98 +286,104 @@ const Freshdeal: React.FC<FreshdealProps> = ({ enableAnimation = true }) => {
         const wrapped = ((next % dur) + dur) % dur;
         scrubTweenRef.current.vars.totalTime = snap(wrapped);
         scrubTweenRef.current.invalidate().restart();
-        setActiveIndex((i) => (i + dir + appImages.length) % appImages.length);
+        setActiveIndex((i) => (i + dir + appData.length) % appData.length);
       };
-      el.addEventListener("wheel", onWheel, { passive: false });
-      return () => el.removeEventListener("wheel", onWheel as EventListener);
+      const listenerOptions: AddEventListenerOptions = { passive: !isHovered };
+      el.addEventListener("wheel", onWheel as EventListener, listenerOptions);
+      return () =>
+        el.removeEventListener(
+          "wheel",
+          onWheel as EventListener,
+          listenerOptions
+        );
     },
     { dependencies: [isHovered] }
   );
 
-  const appImages = [
+  const appData = [
     {
       src: addressSelectionSvg,
-      alt: "Freshdeal App - Address Selection",
+      alt: "Address Selection",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. UI shows address selection with clear options.",
     },
     {
       src: accountsSvg,
-      alt: "Freshdeal App - Accounts",
+      alt: "Accounts",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Account overview and quick settings.",
     },
     {
       src: achievementsSvg,
-      alt: "Freshdeal App - Achievements",
+      alt: "Achievements",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Achievement badges and progress.",
     },
     {
       src: freshdealsSvg,
-      alt: "Freshdeal App - Fresh Deals",
+      alt: "Fresh Deals",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Daily fresh deals with highlights.",
     },
     {
       src: restaurantsSvg,
-      alt: "Freshdeal App - Restaurants",
+      alt: "Restaurants",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Restaurant listing with filters.",
     },
     {
       src: restaurantsMapSvg,
-      alt: "Freshdeal App - Restaurants on Map",
+      alt: "Restaurants on Map",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Map view with nearby restaurants.",
     },
   ];
 
-  const slideDescriptions: string[] = [
-    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. UI shows address selection with clear options.",
-    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Account overview and quick settings.",
-    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Achievement badges and progress.",
-    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Daily fresh deals with highlights.",
-    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Restaurant listing with filters.",
-    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Map view with nearby restaurants.",
-  ];
-
   return (
-    <section
-      ref={sectionRef}
-      className={styles.freshdealSection}
-      id="freshdeal">
-      <div ref={contentContainerRef} className={styles.contentContainer}>
-        <div className={styles.headerBlock}>
-          <h1 className={styles.pageTitle}>Freshdeal</h1>
-          <p className={styles.blurb}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-            vitae arcu non nunc mattis congue. Nullam ac justo id nisi interdum
-            vulputate.
-          </p>
+    <section ref={sectionRef} className={styles.projectSection} id="freshdeal">
+      <div className={styles.contentContainer}>
+        <div className={styles.header}>
+          <span className={styles.projectLabel}>Mobile App for Customers</span>
+          <h3 className={styles.title}>Freshdeal Mobile </h3>
+        </div>
+
+        <div className={styles.body}>
+          <div className={styles.description}>
+            <p>
+              FreshDeal is an innovative platform that tackles food waste by
+              connecting businesses with surplus food to consumers seeking
+              affordable, high-quality meals. The app's mission is to reduce
+              food waste, provide budget-friendly meals, and promote
+              sustainability, aligning with the UN's Sustainable Development
+              Goals.
+            </p>
+            <TechSlider
+              icons={["typescript", "redux", "react-native", "expo", "nodejs"]}
+              speed={40}
+            />
+            <div className={styles.actions}>
+              <a
+                href="https://github.com/emreutkan/freshdeal-web"
+                className={styles.githubButton}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="View Freshdeal Web on GitHub">
+                View on GitHub
+              </a>
+            </div>
+          </div>
         </div>
       </div>
-      {/* Gallery */}
-      <div
-        ref={galleryWrapperRef}
-        className={styles.galleryWrapper}
-        onMouseEnter={() => {
-          setIsHovered(true);
-          // Pause Lenis while interacting with the gallery
-          getLenisInstance()?.stop();
-        }}
-        onMouseLeave={() => {
-          setIsHovered(false);
-          // Resume Lenis when leaving the gallery
-          getLenisInstance()?.start();
-        }}>
-        <div
-          ref={galleryRef}
-          className={styles.gallery}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}>
-          <ul ref={cardsListRef} className={styles.cards}>
-            {appImages
-              .concat(appImages)
-              .slice(0, 10)
-              .map((img, idx) => (
-                <li key={idx} className={styles.card}>
-                  <img
-                    className={styles.cardImage}
-                    src={img.src}
-                    alt={img.alt}
-                  />
-                </li>
-              ))}
-          </ul>
+      <div className={styles.combinedContainer}>
+        <div className={styles.slideInfo}>
+          <div>
+            <h3 className={styles.slideTitle}>
+              {appData[activeIndex % appData.length].alt}
+            </h3>
+            <p className={styles.slideText}>
+              {appData[activeIndex % appData.length].description}
+            </p>
+          </div>
           <div className={styles.galleryActions}>
             <button
               ref={prevBtnRef}
@@ -402,20 +398,44 @@ const Freshdeal: React.FC<FreshdealProps> = ({ enableAnimation = true }) => {
               Next
             </button>
           </div>
-          {!isHovered && (
-            <div className={styles.hoverHint} aria-hidden="true">
-              Hover to scroll
-            </div>
-          )}
         </div>
-      </div>
-      <div className={styles.slideInfo}>
-        <h3 className={styles.slideTitle}>
-          {appImages[activeIndex % appImages.length].alt}
-        </h3>
-        <p className={styles.slideText}>
-          {slideDescriptions[activeIndex % slideDescriptions.length]}
-        </p>
+
+        <div
+          ref={galleryWrapperRef}
+          className={styles.galleryWrapper}
+          onMouseEnter={() => {
+            setIsHovered(true);
+            // Pause Lenis while interacting with the gallery
+            getLenisInstance()?.stop();
+          }}
+          onMouseLeave={() => {
+            setIsHovered(false);
+            // Resume Lenis when leaving the gallery
+            getLenisInstance()?.start();
+          }}>
+          <div ref={galleryRef} className={styles.gallery}>
+            <ul ref={cardsListRef} className={styles.cards}>
+              {appData
+                .concat(appData)
+                .slice(0, 10)
+                .map((item, idx) => (
+                  <li key={idx} className={styles.card}>
+                    <img
+                      className={styles.cardImage}
+                      src={item.src}
+                      alt={item.alt}
+                    />
+                  </li>
+                ))}
+            </ul>
+
+            {!isHovered && (
+              <div className={styles.hoverHint} aria-hidden="true">
+                <span>Hover to scroll</span>
+              </div>
+            )}
+          </div>
+        </div>
       </div>
     </section>
   );

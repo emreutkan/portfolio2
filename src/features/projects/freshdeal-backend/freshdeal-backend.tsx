@@ -1,5 +1,6 @@
 import React from "react";
 import { useSectionRounding } from "../../../hooks/useSectionRounding";
+import TechSlider from "../../../components/tech-slider";
 import styles from "./freshdeal-backend.module.css";
 
 const FreshdealBackend: React.FC = () => {
@@ -15,23 +16,22 @@ const FreshdealBackend: React.FC = () => {
           <span className={styles.projectLabel}>Backend Services</span>
           <h1 className={styles.title}>Freshdeal Backend</h1>
           <p className={styles.subtitle}>
-            APIs and integrations powering the app
+            APIs and integrations powering the platform
           </p>
         </div>
 
         <div className={styles.body}>
           <div className={styles.description}>
             <p>
-              Backend microservices and integrations providing authentication,
-              order processing, messaging, and data orchestration for the
-              Freshdeal ecosystem.
+              Backend services providing authentication, order processing,
+              geospatial search, messaging, and data orchestration for the
+              Freshdeal ecosystem. Built for scalability and operational
+              reliability.
             </p>
-            <div className={styles.techTags}>
-              <span className={styles.techTag}>Python</span>
-              <span className={styles.techTag}>Flask</span>
-              <span className={styles.techTag}>PostgreSQL</span>
-              <span className={styles.techTag}>Azure</span>
-            </div>
+            <TechSlider
+              icons={["azure", "google-maps", "mssql", "python", "flask", "firebase"]}
+              speed={40}
+            />
             <div className={styles.actions}>
               <a
                 href="https://github.com/emreutkan/freshdeal-backend"

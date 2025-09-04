@@ -31,13 +31,13 @@ const QRCodeGenerator: React.FC = () => {
             </div>
           </div>
         </div>
-
         <div className={styles.body}>
           <div className={styles.description}>
             <p>
-              Made with TypeScript. It supports tons of content types (URLs, Wi-Fi, socials,
-              events, apps, etc.), live previews, ECC controls, custom colors,
-              and one-click PNG download. Private and easy to use.
+              Made with TypeScript. It supports tons of content types (URLs,
+              Wi-Fi, socials, events, apps, etc.), live previews, ECC controls,
+              custom colors, and one-click PNG download. Private and easy to
+              use.
             </p>
             <TechSlider icons={["typescript"]} speed={40} />
           </div>

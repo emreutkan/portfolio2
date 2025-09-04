@@ -1,102 +1,99 @@
-import React, { useState } from "react";
-import TechSlider from "../../components/tech-slider";
+import React from "react";
 import { useScrollAnimation } from "../../hooks/useScrollAnimation";
 import styles from "./experience.module.css";
 
 const Experience: React.FC = () => {
-  const [hoveredSkill, setHoveredSkill] = useState(false);
+  // const skillData = {
+  //   frontend: {
+  //     title: "Frontend",
+  //     technologies: ["typescript", "javascript", "react", "redux"],
+  //     experienceHistory: [
+  //       {
+  //         project: "Freshdeal website",
+  //         date: "2024-2025",
 
-  const skillData = {
-    frontend: {
-      title: "Frontend",
-      technologies: ["typescript", "javascript", "react", "redux"],
-      experienceHistory: [
-        {
-          project: "Freshdeal website",
-          date: "2024-2025",
+  //       },
+  //       {
+  //         project: "Freshdeal Business Website",
+  //         date: "2024-2025",
 
-        },
-        {
-          project: "Freshdeal Business Website",
-          date: "2024-2025",
+  //       },
+  //       {
+  //         project: "Portfolio Website",
+  //         date: "2025",
+  //       },
+  //       {
+  //         project: "IMDB Clone (at University)",
+  //         date: "2025"
+  //       },
+  //       {
+  //         Project: "Fitrack",
+  //         date: "2025",
+  //       }
+  //     ]
+  //   },
+  //   backend: {
+  //     title: "Backend",
+  //     technologies: ["python", "mongodb", "redis"],
+  //     experienceHistory: [
+  //       {
+  //         project: "Freshdeal Backend",
+  //         date: "2024-2025",
+  //       },
+  //       {
+  //         project: "Short Term Stay company backend (at Universiy)",
+  //         date: "2024",
+  //       },
+  //       {
+  //         project: "IMDB Clone Backend (at University)",
+  //         date: "2025",
+  //       },
+  //       {
+  //         project: "Fitrack Backend",
+  //         date: "2025",
+  //       },
 
-        },
-        {
-          project: "Portfolio Website",
-          date: "2025",
-        },
-        {
-          project: "IMDB Clone (at University)",
-          date: "2025"
-        },
-        {
-          Project: "Fitrack",
-          date: "2025",
-        }
-      ]
-    },
-    backend: {
-      title: "Backend",
-      technologies: ["python", "mongodb", "redis"],
-      experienceHistory: [
-        {
-          project: "Freshdeal Backend",
-          date: "2024-2025",
-        },
-        {
-          project: "Short Term Stay company backend (at Universiy)",
-          date: "2024",
-        },
-        {
-          project: "IMDB Clone Backend (at University)",
-          date: "2025",
-        },
-        {
-          project: "Fitrack Backend",
-          date: "2025",
-        },
+  //     ]
+  //   },
+  //   mobile: {
+  //     title: "Mobile",
+  //     technologies: ["react-native", "expo"],
+  //     experienceHistory: [
+  //       {
+  //         project: "Freshdeal Mobile App",
+  //         date: "2024-2025",
+  //       },
+  //       {
+  //         project: "pharmacies nearby  (in development)",
+  //         date: "2025",
+  //       },
+  //       {
+  //         project: "Fitrack (in development)",
+  //         date: "2025",
+  //       },
+  //       {
+  //         project:  "Sleep Tracker (in development)",
+  //       }
 
-      ]
-    },
-    mobile: {
-      title: "Mobile",
-      technologies: ["react-native", "expo"],
-      experienceHistory: [
-        {
-          project: "Freshdeal Mobile App",
-          date: "2024-2025",
-        },
-        {
-          project: "pharmacies nearby  (in development)",
-          date: "2025",
-        },
-        {
-          project: "Fitrack (in development)",
-          date: "2025",
-        },
-        {
-          project:  "Sleep Tracker (in development)",
-        }
+  //     ]
+  //   },
+  //   tools: {
+  //     title: "Tools",
+  //     technologies: ["git", "figma", "jira"],
+  //     experienceHistory: [
+  //       {
+  //         project: "Freshdeal",
+  //         date: "2024",
+  //         description: "I used jira on the Freshdeal project.",
+  //       },
 
-      ]
-    },
-    tools: {
-      title: "Tools",
-      technologies: ["git", "figma", "jira"],
-      experienceHistory: [
-        {
-          project: "Freshdeal",
-          date: "2024",
-          description: "I used jira on the Freshdeal project.",
-        },
-
-      ]
-    },
-    os: {
-      title: "Operating Systems",
-      technologies: ["bash", "linux", "azure"],
-    },
-  };
+  //     ]
+  //   },
+  //   os: {
+  //     title: "Operating Systems",
+  //     technologies: ["bash", "linux", "azure"],
+  //   },
+  // };
 
   const { ref: sectionRef } = useScrollAnimation({ threshold: 0.1 });
   const { ref: experienceRef, isInView: experienceInView } = useScrollAnimation(

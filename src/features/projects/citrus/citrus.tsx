@@ -36,7 +36,6 @@ const Citrus: React.FC = () => {
         </div>
       </div>
       <div className={styles.media}>
-   
         <div className={styles.browserContent}>
           <img src={citrusImage} alt="Citrus project" />
         </div>

@@ -1,3 +1,9 @@
+import emailjs from "@emailjs/browser";
+import {
+  IconBrandGithub,
+  IconBrandLinkedin,
+  IconMail,
+} from "@tabler/icons-react";
 import React, { useState } from "react";
 import { useScrollAnimation } from "../../hooks/useScrollAnimation";
 import styles from "./contact.module.css";
@@ -11,6 +17,12 @@ const Contact: React.FC = () => {
     email: "",
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [status, setStatus] = useState<
+    | { type: "success"; message: string }
+    | { type: "error"; message: string }
+    | null
+  >(null);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -22,11 +34,46 @@ const Contact: React.FC = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log("Form submitted:", formData);
-    // You can add your form submission logic here
+    if (isSubmitting) return;
+
+    setIsSubmitting(true);
+    setStatus(null);
+
+    try {
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID as string;
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID as string;
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY as string;
+
+      if (!serviceId || !templateId || !publicKey) {
+        throw new Error(
+          "Email service is not configured. Please set VITE_EMAILJS_* env vars."
+        );
+      }
+
+      await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          from_name: formData.name,
+          reply_to: formData.email,
+          message: formData.message,
+          to_email: "irfanemreutkan@outlook.com",
+        },
+        { publicKey }
+      );
+
+      setStatus({ type: "success", message: "Message sent! I'll reply soon." });
+      setFormData({ name: "", email: "", message: "" });
+    } catch {
+      setStatus({
+        type: "error",
+        message: "Failed to send. Please try again or email me directly.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -46,28 +93,36 @@ const Contact: React.FC = () => {
 
             <div className={styles.contactMethods}>
               <div className={styles.contactMethod}>
-                <div className={styles.methodIcon}>📧</div>
+                <div className={styles.methodIcon}>
+                  <IconMail size={28} stroke={1.5} />
+                </div>
                 <div className={styles.methodInfo}>
                   <h3>Email</h3>
-                  <a href="mailto:emre@example.com">emre@example.com</a>
-                </div>
-              </div>
-
-              <div className={styles.contactMethod}>
-                <div className={styles.methodIcon}>💼</div>
-                <div className={styles.methodInfo}>
-                  <h3>LinkedIn</h3>
-                  <a
-                    href="https://linkedin.com/in/emreutkan"
-                    target="_blank"
-                    rel="noopener noreferrer">
-                    linkedin.com/in/emreutkan
+                  <a href="mailto:irfanemreutkan@outlook.com">
+                    irfanemreutkan@outlook.com
                   </a>
                 </div>
               </div>
 
               <div className={styles.contactMethod}>
-                <div className={styles.methodIcon}>🐙</div>
+                <div className={styles.methodIcon}>
+                  <IconBrandLinkedin size={28} stroke={1.5} />
+                </div>
+                <div className={styles.methodInfo}>
+                  <h3>LinkedIn</h3>
+                  <a
+                    href="https://www.linkedin.com/in/irfanemreutkan/"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    linkedin.com/in/irfanemreutkan
+                  </a>
+                </div>
+              </div>
+
+              <div className={styles.contactMethod}>
+                <div className={styles.methodIcon}>
+                  <IconBrandGithub size={28} stroke={1.5} />
+                </div>
                 <div className={styles.methodInfo}>
                   <h3>GitHub</h3>
                   <a
@@ -94,6 +149,7 @@ const Contact: React.FC = () => {
                   value={formData.name}
                   onChange={handleChange}
                   className={styles.input}
+                  placeholder="Your full name"
                   required
                 />
               </div>
@@ -109,6 +165,7 @@ const Contact: React.FC = () => {
                   value={formData.email}
                   onChange={handleChange}
                   className={styles.input}
+                  placeholder="you@example.com"
                   required
                 />
               </div>
@@ -124,12 +181,26 @@ const Contact: React.FC = () => {
                   onChange={handleChange}
                   rows={5}
                   className={styles.textarea}
+                  placeholder="Tell me about your project, timeline and goals..."
                   required
                 />
               </div>
 
-              <button type="submit" className={styles.submitButton}>
-                Send Message
+              {status && (
+                <div
+                  className={
+                    status.type === "success"
+                      ? styles.statusSuccess
+                      : styles.statusError
+                  }>
+                  {status.message}
+                </div>
+              )}
+              <button
+                type="submit"
+                className={styles.submitButton}
+                disabled={isSubmitting}>
+                {isSubmitting ? "Sending..." : "Send Message"}
               </button>
             </form>
           </div>

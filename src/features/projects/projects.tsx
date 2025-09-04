@@ -10,6 +10,7 @@ import FreshdealBusiness from "./freshdeal-web/freshdeal-business";
 import Freshdeal from "./freshdeal/freshdealMobile";
 import Jukebox from "./jukebox/jukebox";
 import styles from "./projects.module.css";
+import QRCodeGenerator from "./qr-code-generator/qrCodeGenerator";
 gsap.registerPlugin(ScrollTrigger);
 
 const Projects: React.FC = () => {
@@ -25,6 +26,7 @@ const Projects: React.FC = () => {
       { title: "Citrus", element: <Citrus /> },
 
       { title: "Evade", element: <Evade /> },
+      { title: "QR Code Generator", element: <QRCodeGenerator /> },
     ],
     []
   );
@@ -130,6 +132,40 @@ const Projects: React.FC = () => {
       },
     });
 
+    gsap.to(projectsRef.current, {
+      borderBottomRightRadius: "var(--spacing-4xl)",
+      borderBottomLeftRadius: "var(--spacing-4xl)",
+      marginLeft: "2vw",
+      marginRight: "2vw",
+
+      scrollTrigger: {
+        id: "ProjectsNarrow",
+        trigger: projectsPinRef.current, // use the pin container
+        start: () => `+=${getRightPaneScrollHeight() + window.innerHeight}`, // just before pin ends
+        end: () => `+=${getRightPaneScrollHeight() + window.innerHeight}`, // as pin ends
+        scrub: true,
+        invalidateOnRefresh: true,
+        // markers: true, // optional for debugging
+        onLeave: () => {
+          if (projectsRef.current) {
+            projectsRef.current.style.borderBottomRightRadius =
+              "var(--spacing-4xl)";
+            projectsRef.current.style.borderBottomLeftRadius =
+              "var(--spacing-4xl)";
+            projectsRef.current.style.marginLeft = "2vw";
+            projectsRef.current.style.marginRight = "2vw";
+          }
+        },
+        onLeaveBack: () => {
+          if (projectsRef.current) {
+            projectsRef.current.style.borderBottomRightRadius = "0px";
+            projectsRef.current.style.borderBottomLeftRadius = "0px";
+            projectsRef.current.style.marginLeft = "0vw";
+            projectsRef.current.style.marginRight = "0vw";
+          }
+        },
+      },
+    });
     gsap.to(headerRef.current, {
       y: "-11vh",
       marginBottom: "0vh",

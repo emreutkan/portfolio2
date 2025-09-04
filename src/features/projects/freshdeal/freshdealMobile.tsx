@@ -22,14 +22,8 @@ type FreshdealProps = {
 
 type InternalTimeline = { _time: number; _dur: number; _tTime: number };
 
-const Freshdeal: React.FC<FreshdealProps> = ({ enableAnimation = true }) => {
+const Freshdeal: React.FC<FreshdealProps> = () => {
   // Use the custom hooks for animations and transformations
-  const USE_ANIMATION = enableAnimation;
-  // Create refs for GSAP animations
-  const titleRef = useRef<HTMLDivElement>(null);
-  const phoneRef = useRef<HTMLDivElement>(null);
-  const contentWrapperRef = useRef<HTMLDivElement>(null);
-  const contentContainerRef = useRef<HTMLDivElement>(null);
   // Gallery refs
   const galleryWrapperRef = useRef<HTMLDivElement>(null);
   const galleryRef = useRef<HTMLDivElement>(null);
@@ -46,7 +40,6 @@ const Freshdeal: React.FC<FreshdealProps> = ({ enableAnimation = true }) => {
   const scrubTweenRef = useRef<gsap.core.Tween | null>(null);
   // We avoid ScrollTrigger for the gallery to prevent conflicts with Lenis
   // GSAP animations
-
 
   // Build seamless gallery once after cards are in the DOM
   useGSAP(

@@ -31,7 +31,8 @@
   height: 100%;
   animation: scroll linear infinite;
   animation-duration: var(--animation-duration, 30s);
-  padding: var(--spacing-lg) 0;
+  gap: var(--spacing-md);
+  padding-block: var(--spacing-lg);
 }
 
 .sliderTrack:hover {
@@ -54,7 +55,7 @@
   backdrop-filter: blur(15px);
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: var(--radius-lg);
-  margin: 0 var(--spacing-md);
+  /* margin: 0 var(--spacing-md); */
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   white-space: nowrap;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -88,7 +89,6 @@
   transform: translateX(-50%);
   background: rgba(0, 0, 0, 0.8);
   color: white;
-  padding: 6px 12px;
   border-radius: var(--radius-sm);
   font-size: 12px;
   font-weight: 500;
@@ -131,10 +131,6 @@
 .small .techLogo {
   width: 24px;
   height: 24px;
-}
-
-.medium {
-  height: 120px;
 }
 
 .medium .techItem {

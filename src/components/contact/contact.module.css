@@ -1,12 +1,13 @@
 .contactSection {
-  min-height: 100vh;
   background: transparent;
-  color: var(--text-primary);
   padding: var(--spacing-4xl) var(--spacing-lg);
   position: relative;
   display: flex;
   align-items: center;
-  background: rgb(31, 31, 31);
+  max-height: 75vh;
+  /* Ensure contact sits above pinned/overlapping sections for clickability */
+  z-index: 5;
+  pointer-events: auto;
 }
 
 .container {
@@ -69,6 +70,7 @@
   transition: all 0.3s ease;
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
+  cursor: pointer;
 }
 
 .contactMethod:hover {
@@ -207,6 +209,29 @@
 
 .submitButton:active {
   transform: translateY(0);
+}
+
+.submitButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.statusSuccess {
+  margin-bottom: var(--spacing-md);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: rgba(0, 255, 128, 0.1);
+  border: 1px solid rgba(0, 255, 128, 0.25);
+  color: #b4ffd9;
+  border-radius: var(--radius-sm);
+}
+
+.statusError {
+  margin-bottom: var(--spacing-md);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: rgba(255, 0, 64, 0.08);
+  border: 1px solid rgba(255, 0, 64, 0.25);
+  color: #ffc4d1;
+  border-radius: var(--radius-sm);
 }
 
 /* Responsive Design */

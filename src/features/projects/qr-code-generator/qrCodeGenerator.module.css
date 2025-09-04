@@ -1,0 +1,163 @@
+.projectSection {
+  position: relative;
+  background: linear-gradient(
+    180deg,
+    rgba(9, 12, 14, 1) 0%,
+    rgba(6, 9, 12, 1) 100%
+  );
+  border-radius: var(--spacing-2xl);
+  padding-inline: var(--spacing-3xl);
+  padding-block: var(--spacing-xl);
+  margin-top: var(--spacing-2xl);
+  display: flex;
+  flex-direction: column;
+}
+
+.contentContainer {
+  width: 100%;
+}
+
+.header {
+  margin-bottom: var(--spacing-lg);
+}
+
+.title {
+  margin: 8px 0 4px;
+  font-size: 40px;
+}
+
+.body {
+  display: block;
+}
+
+.deviceMockup {
+  width: 100%;
+  background: #1e1e1e;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.browserHeader {
+  background: #2d2d2d;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.browserControls {
+  display: flex;
+  gap: 6px;
+}
+
+.browserButton {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #4a4a4a;
+}
+
+.browserButton:nth-child(1) {
+  background: #ff5f57;
+}
+
+.browserButton:nth-child(2) {
+  background: #ffbd2e;
+}
+
+.browserButton:nth-child(3) {
+  background: #28ca42;
+}
+
+.addressBar {
+  flex: 1;
+  background: #1a1a1a;
+  border-radius: 6px;
+  padding: 6px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.titleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.addressText {
+  color: #888;
+  font-size: 12px;
+  font-family: monospace;
+}
+
+.browserContent {
+  background: #fff;
+}
+
+.browserContent img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.actions {
+  margin-top: 8px;
+  display: flex;
+  gap: 8px;
+}
+.vercelButton {
+  display: inline-block;
+  padding: 10px 14px;
+  border: 3px solid transparent;
+  border-radius: 10px;
+  background: linear-gradient(#000, #000) padding-box,
+    linear-gradient(
+        90deg,
+        #ff7e79,
+        /* soft red */ #ffb46b,
+        /* warm orange */ #ffe66d,
+        /* muted yellow */ #9be79b,
+        /* soft green */ #6ec6ff,
+        /* light blue */ #b19bff /* lavender */
+      )
+      border-box;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.vercelButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.githubButton {
+  display: inline-block;
+  padding: 10px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+@media (max-width: 900px) {
+  .projectSection {
+    padding-inline: var(--spacing-lg);
+  }
+
+  .deviceMockup {
+    max-width: 100%;
+  }
+
+  .title {
+    font-size: 32px;
+  }
+}

@@ -1,8 +1,8 @@
 import { lazy, useEffect } from "react";
 import Background from "./components/background/background";
 import Contact from "./components/contact/contact";
+import Footer from "./components/footer/footer";
 import Hero from "./components/hero/hero";
-import StackScroller from "./components/stack-scroller/stack-scroller";
 import useLenis from "./hooks/useSmoothMomentumScroll";
 
 import { initResponsiveScaling } from "./utils/responsiveUtils";
@@ -21,11 +21,10 @@ function App() {
     <div>
       <Background />
       <Hero />
-      <StackScroller>
-        <Experience />
-        <Projects />
-      </StackScroller>
+      <Experience />
+      <Projects />
       <Contact />
+      <Footer />
     </div>
   );
 }

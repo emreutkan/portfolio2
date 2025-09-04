@@ -52,6 +52,7 @@
 }
 .panelsContainer {
   min-height: 200vh; /* Force content to be much taller than container */
+  margin-bottom: 35vh;
 }
 
 /* Left navigation class names kept for logic only (no styles) */

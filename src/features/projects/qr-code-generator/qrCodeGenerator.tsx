@@ -1,6 +1,6 @@
 import React from "react";
 import TechSlider from "../../../components/tech-slider";
-import qrCodeGeneratorImage from "../images/qr.png";
+import qrCodeGeneratorImage from "../images/QR.png";
 import styles from "./qrCodeGenerator.module.css";
 
 const QRCodeGenerator: React.FC = () => {

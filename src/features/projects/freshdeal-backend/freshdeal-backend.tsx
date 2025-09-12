@@ -3,15 +3,24 @@ import TechSlider from "../../../components/tech-slider";
 import styles from "./freshdeal-backend.module.css";
 
 const FreshdealBackend: React.FC = () => {
-
   return (
-    <section
-      className={styles.projectSection}
-      id="freshdeal-backend">
+    <section className={styles.projectSection} id="freshdeal-backend">
       <div className={styles.contentContainer}>
         <div className={styles.header}>
           <span className={styles.projectLabel}>Backend Services</span>
-          <h1 className={styles.title}>Freshdeal Backend</h1>
+          <div className={styles.titleContainer}>
+            <h1 className={styles.title}>Freshdeal Backend</h1>
+            <div className={styles.actions}>
+              <a
+                href="https://github.com/emreutkan/freshdeal-backend"
+                className={styles.githubButton}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="View Freshdeal Backend on GitHub">
+                View on GitHub
+              </a>
+            </div>
+          </div>
           <p className={styles.subtitle}>
             APIs and integrations powering the platform
           </p>
@@ -36,16 +45,6 @@ const FreshdealBackend: React.FC = () => {
               ]}
               speed={40}
             />
-            <div className={styles.actions}>
-              <a
-                href="https://github.com/emreutkan/freshdeal-backend"
-                className={styles.githubButton}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="View Freshdeal Backend on GitHub">
-                View on GitHub
-              </a>
-            </div>
           </div>
         </div>
       </div>

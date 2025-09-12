@@ -263,7 +263,19 @@ const Freshdeal: React.FC<FreshdealProps> = () => {
       <div className={styles.contentContainer}>
         <div className={styles.header}>
           <span className={styles.projectLabel}>Mobile App for Customers</span>
-          <h3 className={styles.title}>Freshdeal Mobile </h3>
+          <div className={styles.titleContainer}>
+            <h3 className={styles.title}>Freshdeal Mobile </h3>
+            <div className={styles.actions}>
+              <a
+                href="https://github.com/emreutkan/freshdeal-web"
+                className={styles.githubButton}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="View Freshdeal Web on GitHub">
+                View on GitHub
+              </a>
+            </div>
+          </div>
         </div>
 
         <div className={styles.body}>

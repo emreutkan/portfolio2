@@ -11,10 +11,15 @@
   margin-top: var(--spacing-2xl);
 }
 
-
-
 .header {
   margin-bottom: 32px;
+}
+
+.titleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
 }
 
 .projectLabel {
@@ -61,7 +66,8 @@
 }
 
 .actions {
-  margin-top: 8px;
+  display: flex;
+  align-items: center;
 }
 
 .githubButton {

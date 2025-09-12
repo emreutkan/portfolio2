@@ -4,26 +4,15 @@ import styles from "./freshdeal-business.module.css";
 import freshdealWebImage from "./images/freshdealBusinessWebsite.svg";
 
 const FreshdealBusiness: React.FC = () => {
-
   return (
-    <section
-      className={styles.projectSection}
-      id="freshdeal-business">
+    <section className={styles.projectSection} id="freshdeal-business">
       <div className={styles.contentContainer}>
         <div className={styles.header}>
           <span className={styles.projectLabel}>
             Website for Business Owners
           </span>
-          <h3 className={styles.title}>Freshdeal Business </h3>
-        </div>
-
-        <div className={styles.body}>
-          <div className={styles.description}>
-            <p>
-              Web interface complementing the mobile app, enabling browsing,
-              ordering, and account management from desktop and mobile browsers.
-            </p>
-            <TechSlider icons={["typescript", "redux", "react"]} speed={40} />
+          <div className={styles.titleContainer}>
+            <h3 className={styles.title}>Freshdeal Business </h3>
             <div className={styles.actions}>
               <a
                 href="https://github.com/emreutkan/freshdeal-web"
@@ -34,6 +23,16 @@ const FreshdealBusiness: React.FC = () => {
                 View on GitHub
               </a>
             </div>
+          </div>
+        </div>
+
+        <div className={styles.body}>
+          <div className={styles.description}>
+            <p>
+              Web interface complementing the mobile app, enabling browsing,
+              ordering, and account management from desktop and mobile browsers.
+            </p>
+            <TechSlider icons={["typescript", "redux", "react"]} speed={40} />
           </div>
         </div>
         <div className={styles.browserMockup}>

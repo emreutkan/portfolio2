@@ -16,12 +16,24 @@
   opacity: 0.7;
 }
 
+.titleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
 .githubButton {
   display: inline-block;
   padding: 10px 14px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 10px;
   text-decoration: none;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
 }
 
 .combinedContainer {

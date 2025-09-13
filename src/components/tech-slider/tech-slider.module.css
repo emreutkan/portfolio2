@@ -204,21 +204,98 @@
 
 @media (max-width: 480px) {
   .techItem {
-    margin: 0 6px;
+    margin: 0 4px;
+  }
+
+  .small {
+    height: 60px;
+  }
+
+  .small .techItem {
+    min-width: 40px;
+    padding: var(--spacing-xs) var(--spacing-sm);
   }
 
   .small .techLogo {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
+  }
+
+  .medium .techItem {
+    min-width: 60px;
+    padding: var(--spacing-sm) var(--spacing-md);
   }
 
   .medium .techLogo {
+    width: 28px;
+    height: 28px;
+  }
+
+  .large {
+    height: 120px;
+  }
+
+  .large .techItem {
+    min-width: 80px;
+    padding: var(--spacing-md) var(--spacing-lg);
+  }
+
+  .large .techLogo {
+    width: 36px;
+    height: 36px;
+  }
+
+  .techTooltip {
+    font-size: 10px;
+    bottom: -25px;
+  }
+}
+
+@media (max-width: 320px) {
+  .techItem {
+    margin: 0 2px;
+  }
+
+  .small {
+    height: 50px;
+  }
+
+  .small .techItem {
+    min-width: 35px;
+    padding: 4px 6px;
+  }
+
+  .small .techLogo {
+    width: 16px;
+    height: 16px;
+  }
+
+  .medium .techItem {
+    min-width: 50px;
+    padding: 6px 8px;
+  }
+
+  .medium .techLogo {
+    width: 24px;
+    height: 24px;
+  }
+
+  .large {
+    height: 100px;
+  }
+
+  .large .techItem {
+    min-width: 70px;
+    padding: 8px 12px;
+  }
+
+  .large .techLogo {
     width: 32px;
     height: 32px;
   }
 
-  .large .techLogo {
-    width: 40px;
-    height: 40px;
+  .techTooltip {
+    font-size: 9px;
+    bottom: -20px;
   }
 }

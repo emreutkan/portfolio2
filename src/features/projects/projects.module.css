@@ -176,3 +176,144 @@
     transform: none;
   }
 }
+
+/* ===== Mobile Responsive Styles ===== */
+
+/* Tablet (768px and below) */
+@media (max-width: 768px) {
+  .projectsSection {
+    margin-left: var(--spacing-md);
+    margin-right: var(--spacing-md);
+    padding-inline: var(--spacing-lg);
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .projectsLayout {
+    flex-direction: column;
+    gap: var(--spacing-lg);
+  }
+
+  .leftNav {
+    position: static;
+    max-height: none;
+    min-width: auto;
+    width: 100%;
+    padding: var(--spacing-md);
+    border-radius: var(--radius-lg);
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .leftNav h3 {
+    font-size: clamp(1.5rem, 5vw, 2rem);
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .navList {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-sm);
+  }
+
+  .navItem {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    min-width: auto;
+    flex: 0 0 auto;
+  }
+
+  .navItem:hover {
+    padding-left: var(--spacing-md);
+    transform: translateY(-2px);
+  }
+
+  .rightPane {
+    flex: none;
+    height: auto;
+    max-height: 70vh;
+  }
+
+  .panelsContainer {
+    min-height: auto;
+    margin-bottom: var(--spacing-2xl);
+  }
+}
+
+/* Mobile (480px and below) */
+@media (max-width: 480px) {
+  .projectsSection {
+    margin-left: var(--spacing-sm);
+    margin-right: var(--spacing-sm);
+    padding-inline: var(--spacing-md);
+    padding-block: var(--spacing-lg);
+  }
+
+  .projectsHeader {
+    margin-bottom: var(--spacing-lg);
+    text-align: center;
+  }
+
+  .projectsHeader h3 {
+    font-size: clamp(1.8rem, 8vw, 2.2rem);
+  }
+
+  .leftNav {
+    padding: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .leftNav h3 {
+    font-size: clamp(1.2rem, 6vw, 1.5rem);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .navList {
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+
+  .navItem {
+    padding: var(--spacing-sm);
+    text-align: center;
+    width: 100%;
+    border-radius: var(--radius-sm);
+  }
+
+  .navItem h6 {
+    font-size: var(--font-size-sm);
+  }
+
+  .rightPane {
+    max-height: 60vh;
+  }
+
+  .panelsContainer {
+    margin-bottom: var(--spacing-lg);
+  }
+}
+
+/* Very small screens (320px and below) */
+@media (max-width: 320px) {
+  .projectsSection {
+    margin-left: var(--spacing-xs);
+    margin-right: var(--spacing-xs);
+    padding-inline: var(--spacing-sm);
+  }
+
+  .leftNav {
+    padding: var(--spacing-xs);
+  }
+
+  .navItem {
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+
+  .navItem h6 {
+    font-size: var(--font-size-xs);
+  }
+}

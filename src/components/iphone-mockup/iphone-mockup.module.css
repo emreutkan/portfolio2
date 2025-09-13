@@ -313,4 +313,77 @@
     width: 225px;
     height: 486px; /* Updated to match SVG aspect ratio (225 * 462/214 ≈ 486) */
   }
+
+  .navButton {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+  }
+
+  .prevButton {
+    left: 5px;
+  }
+
+  .nextButton {
+    right: 5px;
+  }
+
+  .dotsContainer {
+    bottom: 15px;
+    gap: var(--spacing-xs);
+  }
+
+  .dot {
+    width: 6px;
+    height: 6px;
+  }
+
+  .imageCounter {
+    top: 10px;
+    left: 10px;
+    padding: 2px var(--spacing-xs);
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 320px) {
+  .iphoneFront {
+    width: 200px;
+    height: 412px;
+  }
+
+  .screen {
+    width: 180px;
+    height: 389px;
+  }
+
+  .navButton {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+  }
+
+  .prevButton {
+    left: 2px;
+  }
+
+  .nextButton {
+    right: 2px;
+  }
+
+  .dotsContainer {
+    bottom: 10px;
+  }
+
+  .dot {
+    width: 5px;
+    height: 5px;
+  }
+
+  .imageCounter {
+    top: 8px;
+    left: 8px;
+    padding: 1px 4px;
+    font-size: 9px;
+  }
 }

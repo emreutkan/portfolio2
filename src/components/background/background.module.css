@@ -60,3 +60,50 @@
   pointer-events: none;
   z-index: 1;
 }
+
+/* ===== Mobile Responsive Styles ===== */
+
+@media (max-width: 768px) {
+  .aurora {
+    /* Adjust aurora positioning for mobile */
+    inset: -15% -15% -10% -15%;
+    background-size: 150% 150%;
+    filter: blur(24px) saturate(110%);
+    animation: drift 35s ease-in-out infinite alternate;
+  }
+
+  .noise {
+    opacity: 0.08;
+    background-size: 48px 48px;
+  }
+}
+
+@media (max-width: 480px) {
+  .aurora {
+    /* Further adjust for small mobile screens */
+    inset: -20% -20% -15% -20%;
+    background-size: 180% 180%;
+    filter: blur(20px) saturate(105%);
+    animation: drift 40s ease-in-out infinite alternate;
+  }
+
+  .noise {
+    opacity: 0.06;
+    background-size: 32px 32px;
+  }
+}
+
+@media (max-width: 320px) {
+  .aurora {
+    /* Minimal aurora for very small screens */
+    inset: -25% -25% -20% -25%;
+    background-size: 200% 200%;
+    filter: blur(16px) saturate(100%);
+    animation: drift 45s ease-in-out infinite alternate;
+  }
+
+  .noise {
+    opacity: 0.04;
+    background-size: 24px 24px;
+  }
+}

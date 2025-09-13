@@ -182,6 +182,15 @@ const Hero: React.FC = () => {
           <a href="#contact" className={styles.secondaryBtn} data-magnetic>
             Get In Touch
           </a>
+          <a
+            href="/CV.PDF"
+            className={styles.cvBtn}
+            data-magnetic
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Download CV">
+            CV
+          </a>
         </div>
       </div>
 

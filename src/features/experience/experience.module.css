@@ -569,3 +569,173 @@
     font-size: var(--font-size-xs);
   }
 }
+
+/* ===== Additional Mobile Responsive Styles ===== */
+
+/* Tablet (768px and below) */
+@media (max-width: 768px) {
+  .experienceSection {
+    margin-inline: var(--spacing-lg);
+    padding-top: var(--spacing-2xl);
+    flex-direction: column;
+    gap: var(--spacing-2xl);
+    max-height: none;
+    min-height: auto;
+  }
+
+  .experienceEducationContainer {
+    min-width: 100%;
+    max-width: 100%;
+  }
+
+  .skillsContainer {
+    min-width: 100%;
+    padding: var(--spacing-md);
+  }
+
+  .skillsGrid {
+    grid-template-columns: repeat(6, 1fr);
+    gap: var(--spacing-sm);
+  }
+
+  .frontendSkills,
+  .backendSkills {
+    grid-column: span 6;
+    grid-row: span 2;
+  }
+
+  .mobileSkills,
+  .toolsSkills,
+  .osSkills {
+    grid-column: span 2;
+    grid-row: span 1;
+  }
+
+  .sectionTitle,
+  .certificateTitle {
+    font-size: clamp(1.5rem, 5vw, 2rem);
+    text-align: center;
+  }
+
+  .circle {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  .Details {
+    height: 4rem;
+    margin-left: var(--spacing-sm);
+  }
+
+  .Details p {
+    padding-right: var(--spacing-lg);
+    font-size: var(--font-size-sm);
+  }
+
+  .VerticalLine {
+    margin-left: 2rem;
+  }
+}
+
+/* Mobile (480px and below) */
+@media (max-width: 480px) {
+  .experienceSection {
+    margin-inline: var(--spacing-md);
+    padding-top: var(--spacing-lg);
+    gap: var(--spacing-lg);
+  }
+
+  .skillsContainer {
+    padding: var(--spacing-sm);
+  }
+
+  .skillsGrid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-sm);
+  }
+
+  .frontendSkills,
+  .backendSkills,
+  .mobileSkills,
+  .toolsSkills,
+  .osSkills {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+
+  .sectionTitle,
+  .certificateTitle {
+    font-size: clamp(1.2rem, 6vw, 1.5rem);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .circle {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .Details {
+    height: 3rem;
+    margin-left: var(--spacing-xs);
+  }
+
+  .Details p {
+    padding-right: var(--spacing-md);
+    font-size: var(--font-size-xs);
+    margin: 2px 0;
+  }
+
+  .VerticalLine {
+    margin-left: 1.5rem;
+    height: var(--spacing-lg);
+  }
+
+  .miniCircle {
+    width: 0.8rem;
+    height: 0.8rem;
+    margin-right: var(--spacing-sm);
+  }
+
+  .certificateItem {
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .experienceHistory {
+    gap: var(--spacing-sm);
+  }
+}
+
+/* Very small screens (320px and below) */
+@media (max-width: 320px) {
+  .experienceSection {
+    margin-inline: var(--spacing-sm);
+    padding-top: var(--spacing-md);
+  }
+
+  .skillsContainer {
+    padding: var(--spacing-xs);
+  }
+
+  .circle {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .Details {
+    height: 2.5rem;
+  }
+
+  .Details p {
+    font-size: 0.7rem;
+    padding-right: var(--spacing-sm);
+  }
+
+  .VerticalLine {
+    margin-left: 1.25rem;
+  }
+
+  .miniCircle {
+    width: 0.6rem;
+    height: 0.6rem;
+  }
+}

@@ -7,7 +7,7 @@
 /* Custom iPhone 14 Pro Design */
 .iphoneFront {
   width: 350px;
-  height: 715px;
+  height: 730px; /* Updated to accommodate new screen height (691px + margins) */
   background-color: #000;
   border-radius: 60px;
   position: relative;
@@ -126,8 +126,8 @@
 
 /* Screen */
 .screen {
-  width: 320px;
-  height: 685px;
+  width: 330px;
+  height: 710px; /* Updated to match SVG aspect ratio (320 * 462/214 ≈ 691) */
   background-color: #000;
   border-radius: 48px;
   margin-top: var(--spacing-sm);
@@ -162,7 +162,7 @@
 }
 
 .camera::before {
-  content: '';
+  content: "";
   display: block;
   position: absolute;
   top: 4px;
@@ -174,7 +174,7 @@
 }
 
 .camera::after {
-  content: '';
+  content: "";
   display: block;
   position: absolute;
   top: 6px;
@@ -194,6 +194,15 @@
   top: 0;
   left: 0;
   transition: opacity 0.3s ease;
+}
+
+/* Disable 3D transforms when flat prop is used */
+.noTilt {
+  transform: none !important;
+}
+
+.noTilt:hover {
+  transform: none !important;
 }
 
 /* Carousel Controls */
@@ -285,23 +294,23 @@
 @media (max-width: 768px) {
   .iphoneFront {
     width: 300px;
-    height: 610px;
+    height: 618px; /* Updated to maintain aspect ratio */
   }
 
   .screen {
     width: 275px;
-    height: 585px;
+    height: 593px; /* Updated to match SVG aspect ratio (275 * 462/214 ≈ 593) */
   }
 }
 
 @media (max-width: 480px) {
   .iphoneFront {
     width: 250px;
-    height: 510px;
+    height: 515px; /* Updated to maintain aspect ratio */
   }
 
   .screen {
     width: 225px;
-    height: 485px;
+    height: 486px; /* Updated to match SVG aspect ratio (225 * 462/214 ≈ 486) */
   }
 }

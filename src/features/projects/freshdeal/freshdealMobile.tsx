@@ -11,6 +11,7 @@ import freshdealsSvg from "../../../assets/freshdeal_freshdeals.svg";
 import restaurantsSvg from "../../../assets/freshdeal_restaurants.svg";
 import restaurantsMapSvg from "../../../assets/freshdeal_restaurants_on_map.svg";
 
+import IPhoneMockup from "@/components/iphone-mockup";
 import TechSlider from "@/components/tech-slider/tech-slider";
 import { getLenisInstance } from "../../../utils/scrollControls";
 
@@ -292,16 +293,6 @@ const Freshdeal: React.FC<FreshdealProps> = () => {
               icons={["typescript", "redux", "react-native", "expo", "nodejs"]}
               speed={40}
             />
-            <div className={styles.actions}>
-              <a
-                href="https://github.com/emreutkan/freshdeal-web"
-                className={styles.githubButton}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="View Freshdeal Web on GitHub">
-                View on GitHub
-              </a>
-            </div>
           </div>
         </div>
       </div>
@@ -351,11 +342,13 @@ const Freshdeal: React.FC<FreshdealProps> = () => {
                 .slice(0, 10)
                 .map((item, idx) => (
                   <li key={idx} className={styles.card}>
-                    <img
-                      className={styles.cardImage}
-                      src={item.src}
-                      alt={item.alt}
-                    />
+                    <div className={styles.phoneScaledWrapper}>
+                      <IPhoneMockup
+                        images={[{ src: item.src, alt: item.alt }]}
+                        flat
+                        className={styles.phoneScaled}
+                      />
+                    </div>
                   </li>
                 ))}
             </ul>

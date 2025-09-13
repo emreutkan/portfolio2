@@ -168,9 +168,10 @@ const Hero: React.FC = () => {
         </h3>
 
         <p className={styles.description} ref={descriptionRef}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          Passionate full-stack developer with expertise in modern web
+          technologies. I create innovative, user-focused applications that
+          solve real-world problems, specializing in React, TypeScript, and
+          mobile development with React Native.
         </p>
 
         <div className={styles.ctaRow} ref={ctaRowRef}>

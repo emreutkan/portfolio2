@@ -15,7 +15,7 @@ const FreshdealBusiness: React.FC = () => {
             <h3 className={styles.title}>Freshdeal Business </h3>
             <div className={styles.actions}>
               <a
-                href="https://github.com/emreutkan/freshdeal-web"
+                href="https://github.com/FreshDealApp/FreshDealBusinessWebsite"
                 className={styles.githubButton}
                 target="_blank"
                 rel="noopener noreferrer"

@@ -1,30 +1,28 @@
-import React, { useRef, useState } from "react";
-import styles from "./freshdealMobile.module.css";
-// Import SVG assets
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import accountsSvg from "../../../assets/freshdeal_accounts.svg";
-import achievementsSvg from "../../../assets/freshdeal_achievements.svg";
-import addressSelectionSvg from "../../../assets/freshdeal_address_selection.svg";
-import freshdealsSvg from "../../../assets/freshdeal_freshdeals.svg";
-import restaurantsSvg from "../../../assets/freshdeal_restaurants.svg";
-import restaurantsMapSvg from "../../../assets/freshdeal_restaurants_on_map.svg";
+import React, { useRef, useState } from "react";
+import styles from "./todra.module.css";
 
 import IPhoneMockup from "@/components/iphone-mockup";
 import TechSlider from "@/components/tech-slider/tech-slider";
 import { getLenisInstance } from "../../../utils/scrollControls";
 
+// Import images
+import todra1 from "./images/todra1.jpg";
+import todra2 from "./images/todra2.jpg";
+import todra3 from "./images/todra3.jpg";
+import todra4 from "./images/todra4.jpg";
+
 gsap.registerPlugin(ScrollTrigger);
 
-type FreshdealProps = {
+type TodraProps = {
   enableAnimation?: boolean;
 };
 
 type InternalTimeline = { _time: number; _dur: number; _tTime: number };
 
-const Freshdeal: React.FC<FreshdealProps> = () => {
-  // Use the custom hooks for animations and transformations
+const Todra: React.FC<TodraProps> = () => {
   // Gallery refs
   const galleryWrapperRef = useRef<HTMLDivElement>(null);
   const galleryRef = useRef<HTMLDivElement>(null);
@@ -39,8 +37,6 @@ const Freshdeal: React.FC<FreshdealProps> = () => {
   // GSAP gallery internals
   const seamlessLoopRef = useRef<gsap.core.Timeline | null>(null);
   const scrubTweenRef = useRef<gsap.core.Tween | null>(null);
-  // We avoid ScrollTrigger for the gallery to prevent conflicts with Lenis
-  // GSAP animations
 
   // Build seamless gallery once after cards are in the DOM
   useGSAP(
@@ -222,58 +218,66 @@ const Freshdeal: React.FC<FreshdealProps> = () => {
 
   const appData = [
     {
-      src: addressSelectionSvg,
-      alt: "Address Selection",
+      src: todra1,
+      alt: "Task List View",
       description:
-        "Intuitive address selection interface allowing users to set delivery locations with GPS integration and saved address management.",
+        "Clean and intuitive task management interface with categories, priorities, and due dates. Easily organize your daily tasks with a beautiful, distraction-free design.",
     },
     {
-      src: accountsSvg,
-      alt: "Accounts",
+      src: todra2,
+      alt: "Task Creation",
       description:
-        "Comprehensive account management with profile settings, order history, payment methods, and personalized preferences.",
+        "Simple yet powerful task creation with date pickers, priority levels, and category selection. Set reminders and organize your workflow efficiently.",
     },
     {
-      src: achievementsSvg,
-      alt: "Achievements",
+      src: todra3,
+      alt: "Categories & Filtering",
       description:
-        "Gamified achievement system that rewards users for sustainable choices, reducing food waste, and trying new restaurants.",
+        "Organize tasks by categories and filter by priority, due date, or completion status. Find what you need quickly with smart filtering options.",
     },
     {
-      src: freshdealsSvg,
-      alt: "Fresh Deals",
+      src: todra4,
+      alt: "Settings & Export",
       description:
-        "Dynamic marketplace showcasing time-sensitive food deals from local restaurants, with real-time availability and discount highlights.",
-    },
-    {
-      src: restaurantsSvg,
-      alt: "Restaurants",
-      description:
-        "Smart restaurant discovery with advanced filtering by cuisine, distance, dietary restrictions, and sustainability ratings.",
-    },
-    {
-      src: restaurantsMapSvg,
-      alt: "Restaurants on Map",
-      description:
-        "Interactive map interface displaying nearby participating restaurants with real-time deal availability and navigation integration.",
+        "Customize your experience with theme options, notification settings, and data export features. Your data stays private and under your control.",
     },
   ];
 
   return (
-    <section className={styles.projectSection} id="freshdeal">
+    <section className={styles.projectSection} id="todra">
       <div className={styles.contentContainer}>
         <div className={styles.header}>
-          <span className={styles.projectLabel}>Mobile App for Customers</span>
+          <span className={styles.projectLabel}>Local To-Do App</span>
           <div className={styles.titleContainer}>
-            <h3 className={styles.title}>Freshdeal Mobile </h3>
+            <h3 className={styles.title}>Todra</h3>
             <div className={styles.actions}>
               <a
-                href="https://github.com/FreshDealApp/FreshDealMobile"
+                href="https://github.com/emreutkan/Todra"
                 className={styles.githubButton}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="View Freshdeal Web on GitHub">
+                aria-label="View Todra on GitHub">
                 View on GitHub
+              </a>
+              <a
+                href="https://testflight.apple.com/join/28jvjwhU"
+                className={styles.testflightButton}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Download Todra on TestFlight">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                  <path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 22C7.79 22.05 6.8 20.68 5.96 19.47C4.25 17 2.94 12.45 4.7 9.39C5.57 7.87 7.13 6.91 8.82 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.19 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z" />
+                </svg>
+                TestFlight
+              </a>
+              <a
+                href="https://github.com/emreutkan/Todra/releases/tag/pre-release"
+                className={styles.downloadButton}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Download APK file">
+
+                .apk
               </a>
             </div>
           </div>
@@ -282,15 +286,14 @@ const Freshdeal: React.FC<FreshdealProps> = () => {
         <div className={styles.body}>
           <div className={styles.description}>
             <p>
-              FreshDeal is an innovative platform that tackles food waste by
-              connecting businesses with surplus food to consumers seeking
-              affordable, high-quality meals. The app's mission is to reduce
-              food waste, provide budget-friendly meals, and promote
-              sustainability, aligning with the UN's Sustainable Development
-              Goals.
+              Todra is a local to‑do app that puts privacy first. Add tasks with
+              due dates, priorities, and categories, then mark or archive them
+              when done. Enable local reminders and export/import your data as
+              JSON. All data is stored on your device – no accounts, no servers,
+              no tracking.
             </p>
             <TechSlider
-              icons={["typescript", "redux", "react-native", "expo", "nodejs"]}
+              icons={["react-native", "typescript", "expo"]}
               speed={40}
             />
           </div>
@@ -365,4 +368,4 @@ const Freshdeal: React.FC<FreshdealProps> = () => {
   );
 };
 
-export default Freshdeal;
+export default Todra;

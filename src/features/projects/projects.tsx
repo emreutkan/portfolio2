@@ -11,6 +11,7 @@ import Freshdeal from "./freshdeal/freshdealMobile";
 import Jukebox from "./jukebox/jukebox";
 import styles from "./projects.module.css";
 import QRCodeGenerator from "./qr-code-generator/qrCodeGenerator";
+import Todra from "./todra/todra";
 gsap.registerPlugin(ScrollTrigger);
 
 const Projects: React.FC = () => {
@@ -27,6 +28,7 @@ const Projects: React.FC = () => {
 
       { title: "Evade", element: <Evade /> },
       { title: "QR Code Generator", element: <QRCodeGenerator /> },
+      { title: "Todra", element: <Todra /> },
     ],
     []
   );

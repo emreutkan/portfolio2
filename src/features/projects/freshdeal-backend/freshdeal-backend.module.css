@@ -68,6 +68,7 @@
 .actions {
   display: flex;
   align-items: center;
+  gap: var(--spacing-sm);
 }
 
 .githubButton {
@@ -76,4 +77,104 @@
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 10px;
   text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.githubButton:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-1px);
+}
+
+/* Medium screens (960px and below) */
+@media (max-width: 960px) {
+  .projectSection {
+    padding-inline: var(--spacing-xl);
+    padding-block: var(--spacing-xl);
+  }
+
+  .title {
+    font-size: clamp(2rem, 6vw, 2.4rem);
+    text-align: center;
+  }
+
+  .titleContainer {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-md);
+  }
+
+  .body {
+    text-align: center;
+  }
+
+  .actions {
+    justify-content: center;
+  }
+}
+
+/* Tablet (768px and below) */
+@media (max-width: 768px) {
+  .projectSection {
+    padding-inline: var(--spacing-lg);
+    padding-block: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
+  }
+
+  .title {
+    font-size: clamp(1.8rem, 6vw, 2.2rem);
+  }
+
+  .description {
+    gap: var(--spacing-md);
+  }
+
+  .techTags {
+    justify-content: center;
+  }
+}
+
+/* Mobile (480px and below) */
+@media (max-width: 480px) {
+  .projectSection {
+    padding-inline: var(--spacing-md);
+    padding-block: var(--spacing-md);
+    margin-top: var(--spacing-md);
+  }
+
+  .title {
+    font-size: clamp(1.6rem, 7vw, 2rem);
+  }
+
+  .projectLabel {
+    font-size: 11px;
+  }
+
+  .subtitle {
+    font-size: var(--font-size-base);
+  }
+
+  .description {
+    gap: var(--spacing-sm);
+  }
+
+  .techTag {
+    font-size: 11px;
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+
+  .githubButton {
+    width: 100%;
+    text-align: center;
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: var(--font-size-sm);
+  }
+}
+
+/* Very small screens */
+@media (max-width: 320px) {
+  .projectSection {
+    padding-inline: var(--spacing-sm);
+    padding-block: var(--spacing-sm);
+  }
 }

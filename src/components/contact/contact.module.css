@@ -237,30 +237,225 @@
 /* Responsive Design */
 @media (max-width: 768px) {
   .contactSection {
-    padding: var(--spacing-2xl) var(--spacing-md);
+    padding: var(--spacing-3xl) var(--spacing-lg);
+    max-height: none;
   }
 
   .contactContent {
     grid-template-columns: 1fr;
-    gap: var(--spacing-2xl);
+    gap: var(--spacing-3xl);
   }
 
   .contactInfo {
     text-align: center;
+    order: 1;
+  }
+
+  .sectionTitle {
+    font-size: clamp(2rem, 7vw, 2.6rem);
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .sectionDescription {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-2xl);
+    max-width: 100%;
+  }
+
+  .contactMethods {
+    gap: var(--spacing-lg);
+  }
+
+  .contactMethod {
+    flex-direction: row;
+    text-align: left;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-xl);
+  }
+
+  .contactMethod:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  }
+
+  .methodIcon {
+    font-size: 1.8rem;
+    width: 56px;
+    height: 56px;
+    flex-shrink: 0;
+  }
+
+  .methodInfo {
+    text-align: left;
+    flex: 1;
+  }
+
+  .methodInfo h3 {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .methodInfo a {
+    font-size: var(--font-size-base);
+  }
+
+  .contactForm {
+    order: 2;
+  }
+
+  .form {
+    padding: var(--spacing-2xl);
+    border-radius: var(--radius-xl);
+  }
+
+  .formGroup {
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .label {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .input,
+  .textarea {
+    padding: var(--spacing-lg);
+    font-size: var(--font-size-base);
+    border-radius: var(--radius-md);
+  }
+
+  .submitButton {
+    padding: var(--spacing-lg) var(--spacing-2xl);
+    font-size: var(--font-size-lg);
+    border-radius: var(--radius-lg);
+    min-height: 56px;
+  }
+}
+
+/* Mobile (480px and below) */
+@media (max-width: 480px) {
+  .contactSection {
+    padding: var(--spacing-2xl) var(--spacing-md);
+    max-height: none;
+  }
+
+  .contactContent {
+    gap: var(--spacing-2xl);
+  }
+
+  .sectionTitle {
+    font-size: clamp(1.8rem, 8vw, 2.2rem);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .sectionDescription {
+    font-size: var(--font-size-base);
+    margin-bottom: var(--spacing-xl);
+    line-height: 1.6;
+  }
+
+  .contactMethods {
+    gap: var(--spacing-md);
   }
 
   .contactMethod {
     flex-direction: column;
     text-align: center;
     gap: var(--spacing-md);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
   }
 
   .contactMethod:hover {
-    transform: translateY(-4px);
+    transform: translateY(-2px);
+  }
+
+  .methodIcon {
+    font-size: 1.5rem;
+    width: 48px;
+    height: 48px;
+    margin: 0 auto;
   }
 
   .methodInfo {
     text-align: center;
+  }
+
+  .methodInfo h3 {
+    font-size: var(--font-size-base);
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .methodInfo a {
+    font-size: var(--font-size-sm);
+  }
+
+  .form {
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+  }
+
+  .formGroup {
+    margin-bottom: var(--spacing-md);
+  }
+
+  .label {
+    font-size: var(--font-size-base);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .input,
+  .textarea {
+    padding: var(--spacing-md);
+    font-size: var(--font-size-base);
+    border-radius: var(--radius-sm);
+  }
+
+  .textarea {
+    min-height: 120px;
+  }
+
+  .submitButton {
+    padding: var(--spacing-md) var(--spacing-xl);
+    font-size: var(--font-size-base);
+    border-radius: var(--radius-md);
+    min-height: 48px;
+  }
+}
+
+/* Very small screens (320px and below) */
+@media (max-width: 320px) {
+  .contactSection {
+    padding: var(--spacing-xl) var(--spacing-sm);
+  }
+
+  .sectionTitle {
+    font-size: clamp(1.5rem, 9vw, 1.8rem);
+  }
+
+  .contactMethod {
+    padding: var(--spacing-md);
+  }
+
+  .methodIcon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+
+  .form {
+    padding: var(--spacing-lg);
+  }
+
+  .input,
+  .textarea {
+    padding: var(--spacing-sm);
+  }
+
+  .submitButton {
+    padding: var(--spacing-sm) var(--spacing-lg);
+    font-size: var(--font-size-sm);
   }
 }
 

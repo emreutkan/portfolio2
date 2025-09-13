@@ -94,8 +94,107 @@
   text-decoration: none;
 }
 
-@media (max-width: 900px) {
-  .body {
-    grid-template-columns: 1fr;
+/* Medium screens (960px and below) */
+@media (max-width: 960px) {
+  .projectSection {
+    padding-inline: var(--spacing-xl);
+    flex-direction: column;
+    gap: var(--spacing-2xl);
+  }
+
+  .contentContainer {
+    width: 100%;
+    text-align: center;
+  }
+
+  .deviceMockup {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+}
+
+/* Tablet (768px and below) */
+@media (max-width: 768px) {
+  .projectSection {
+    padding-inline: var(--spacing-lg);
+    padding-block: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
+  }
+
+  .header {
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .title {
+    font-size: clamp(1.8rem, 6vw, 2.2rem);
+  }
+
+  .deviceMockup {
+    max-width: 350px;
+  }
+
+  .description {
+    gap: var(--spacing-md);
+  }
+
+  .techTags {
+    justify-content: center;
+  }
+
+  .actions {
+    justify-content: center;
+  }
+}
+
+/* Mobile (480px and below) */
+@media (max-width: 480px) {
+  .projectSection {
+    padding-inline: var(--spacing-md);
+    padding-block: var(--spacing-md);
+    margin-top: var(--spacing-md);
+  }
+
+  .title {
+    font-size: clamp(1.6rem, 7vw, 2rem);
+  }
+
+  .projectLabel {
+    font-size: 11px;
+  }
+
+  .subtitle {
+    font-size: var(--font-size-base);
+  }
+
+  .deviceMockup {
+    max-width: 300px;
+    padding: var(--spacing-sm);
+  }
+
+  .description {
+    gap: var(--spacing-sm);
+  }
+
+  .techTag {
+    font-size: 11px;
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+
+  .githubButton {
+    width: 100%;
+    text-align: center;
+    padding: var(--spacing-md) var(--spacing-lg);
+  }
+}
+
+/* Very small screens */
+@media (max-width: 320px) {
+  .projectSection {
+    padding-inline: var(--spacing-sm);
+    padding-block: var(--spacing-sm);
+  }
+
+  .deviceMockup {
+    max-width: 280px;
   }
 }

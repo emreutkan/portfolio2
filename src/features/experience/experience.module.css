@@ -575,83 +575,119 @@
 /* Tablet (768px and below) */
 @media (max-width: 768px) {
   .experienceSection {
-    margin-inline: var(--spacing-lg);
+    margin-inline: var(--spacing-sm);
     padding-top: var(--spacing-2xl);
     flex-direction: column;
-    gap: var(--spacing-2xl);
+    gap: var(--spacing-4xl);
     max-height: none;
     min-height: auto;
+    padding-bottom: var(--spacing-2xl);
+    background: rgba(255, 255, 255, 0.01);
+    border-radius: var(--radius-2xl);
+    margin-top: var(--spacing-lg);
   }
 
   .experienceEducationContainer {
     min-width: 100%;
     max-width: 100%;
+    order: 1;
+    padding: var(--spacing-xl);
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: var(--radius-xl);
+    border: 1px solid rgba(255, 255, 255, 0.08);
   }
 
   .skillsContainer {
     min-width: 100%;
-    padding: var(--spacing-md);
+    padding: var(--spacing-xl);
+    order: 2;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: var(--radius-xl);
+    border: 1px solid rgba(255, 255, 255, 0.08);
   }
 
   .skillsGrid {
-    grid-template-columns: repeat(6, 1fr);
-    gap: var(--spacing-sm);
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-xl);
   }
 
   .frontendSkills,
   .backendSkills {
-    grid-column: span 6;
+    grid-column: span 4;
     grid-row: span 2;
   }
 
   .mobileSkills,
-  .toolsSkills,
-  .osSkills {
+  .toolsSkills {
     grid-column: span 2;
+    grid-row: span 1;
+  }
+
+  .osSkills {
+    grid-column: span 4;
     grid-row: span 1;
   }
 
   .sectionTitle,
   .certificateTitle {
-    font-size: clamp(1.5rem, 5vw, 2rem);
+    font-size: clamp(1.8rem, 6vw, 2.4rem);
     text-align: center;
+    margin-bottom: var(--spacing-lg);
   }
 
   .circle {
-    width: 4rem;
-    height: 4rem;
+    width: 3.5rem;
+    height: 3.5rem;
   }
 
   .Details {
-    height: 4rem;
-    margin-left: var(--spacing-sm);
+    height: 3.5rem;
+    margin-left: var(--spacing-md);
   }
 
   .Details p {
     padding-right: var(--spacing-lg);
     font-size: var(--font-size-sm);
+    line-height: 1.4;
   }
 
   .VerticalLine {
-    margin-left: 2rem;
+    margin-left: 1.75rem;
+  }
+
+  .experienceHistory {
+    padding: var(--spacing-lg);
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: var(--radius-xl);
+    border: 1px solid rgba(255, 255, 255, 0.05);
   }
 }
 
 /* Mobile (480px and below) */
 @media (max-width: 480px) {
   .experienceSection {
-    margin-inline: var(--spacing-md);
-    padding-top: var(--spacing-lg);
-    gap: var(--spacing-lg);
+    margin-inline: var(--spacing-xs);
+    padding-top: var(--spacing-xl);
+    gap: var(--spacing-3xl);
+    padding-bottom: var(--spacing-xl);
+    padding-inline: var(--spacing-md);
+  }
+
+  .experienceEducationContainer {
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
   }
 
   .skillsContainer {
-    padding: var(--spacing-sm);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-lg);
   }
 
   .skillsGrid {
     grid-template-columns: 1fr;
-    gap: var(--spacing-sm);
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-lg);
   }
 
   .frontendSkills,
@@ -661,12 +697,39 @@
   .osSkills {
     grid-column: span 1;
     grid-row: span 1;
+    padding: var(--spacing-lg);
+  }
+
+  .skillHeader {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .skillHeader h4 {
+    font-size: var(--font-size-lg);
+  }
+
+  .skillIcon {
+    font-size: var(--font-size-xl);
+  }
+
+  .techList {
+    gap: var(--spacing-xs);
+  }
+
+  .techItem {
+    font-size: var(--font-size-xs);
+    padding: var(--spacing-xs);
   }
 
   .sectionTitle,
   .certificateTitle {
-    font-size: clamp(1.2rem, 6vw, 1.5rem);
-    margin-bottom: var(--spacing-md);
+    font-size: clamp(1.8rem, 8vw, 2.2rem);
+    margin-bottom: var(--spacing-xl);
+    text-align: center;
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .circle {
@@ -675,14 +738,31 @@
   }
 
   .Details {
-    height: 3rem;
-    margin-left: var(--spacing-xs);
+    height: auto;
+    margin-left: var(--spacing-md);
+    padding: var(--spacing-sm);
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(255, 255, 255, 0.08);
   }
 
   .Details p {
-    padding-right: var(--spacing-md);
+    padding-right: 0;
+    font-size: var(--font-size-sm);
+    margin: var(--spacing-xs) 0;
+    line-height: 1.4;
+  }
+
+  .Details p:first-child {
+    font-weight: var(--font-weight-medium);
+    color: var(--text-muted);
     font-size: var(--font-size-xs);
-    margin: 2px 0;
+  }
+
+  .Details p:nth-child(2) {
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+    font-size: var(--font-size-base);
   }
 
   .VerticalLine {
@@ -691,17 +771,42 @@
   }
 
   .miniCircle {
-    width: 0.8rem;
-    height: 0.8rem;
-    margin-right: var(--spacing-sm);
+    width: 0.7rem;
+    height: 0.7rem;
+    margin-right: var(--spacing-xs);
   }
 
   .certificateItem {
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: var(--spacing-xs);
+    padding: var(--spacing-xs);
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: var(--radius-sm);
   }
 
   .experienceHistory {
-    gap: var(--spacing-sm);
+    gap: var(--spacing-lg);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+  }
+
+  .Item {
+    margin-bottom: var(--spacing-lg);
+    padding: var(--spacing-sm);
+  }
+
+  /* Disable hover effects on mobile */
+  .skillsGrid:hover > div {
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
+
+  .skillsGrid:has(> div:hover) > div:not(:hover) {
+    display: block;
+    opacity: 1;
+    filter: none;
+    transform: none;
+    pointer-events: auto;
   }
 }
 

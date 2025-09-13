@@ -9,7 +9,7 @@
   width: 350px;
   height: 730px; /* Updated to accommodate new screen height (691px + margins) */
   background-color: #000;
-  border-radius: 60px;
+  border-radius: 50px;
   position: relative;
   transform: rotateY(-5deg) rotateX(2deg);
   transition: transform 0.4s ease;
@@ -27,7 +27,7 @@
   width: 100%;
   height: 100%;
   border: 4px solid #bbb5b3;
-  border-radius: 60px;
+  border-radius: 50px;
   box-shadow: 0 0 0 1px #4a4947;
 }
 
@@ -129,7 +129,7 @@
   width: 330px;
   height: 710px; /* Updated to match SVG aspect ratio (320 * 462/214 ≈ 691) */
   background-color: #000;
-  border-radius: 48px;
+  border-radius: 40px;
   margin-top: var(--spacing-sm);
   margin-left: var(--spacing-sm);
   position: relative;
@@ -146,7 +146,7 @@
   width: 110px;
   height: 30px;
   background-color: #000;
-  border-radius: 40px;
+  border-radius: 20px;
   z-index: 10;
 }
 
@@ -189,7 +189,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 48px;
+  border-radius: 40px;
   position: absolute;
   top: 0;
   left: 0;
@@ -293,25 +293,103 @@
 /* Responsive Design */
 @media (max-width: 768px) {
   .iphoneFront {
-    width: 300px;
-    height: 618px; /* Updated to maintain aspect ratio */
+    width: 280px;
+    height: 576px; /* Updated to maintain aspect ratio */
+    transform: rotateY(-3deg) rotateX(1deg);
+    border-radius: 42px;
+  }
+
+  .frame {
+    border-radius: 42px;
   }
 
   .screen {
-    width: 275px;
-    height: 593px; /* Updated to match SVG aspect ratio (275 * 462/214 ≈ 593) */
+    width: 260px;
+    height: 560px; /* Updated to match SVG aspect ratio */
+    margin-top: var(--spacing-xs);
+    margin-left: var(--spacing-xs);
+    border-radius: 34px;
+  }
+
+  .appScreenshot {
+    border-radius: 34px;
+  }
+
+  .island {
+    width: 90px;
+    height: 25px;
+    top: 8px;
+    border-radius: 16px;
+  }
+
+  .camera {
+    width: 15px;
+    height: 15px;
+    right: 10px;
+  }
+
+  .navButton {
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+  }
+
+  .dotsContainer {
+    bottom: 18px;
   }
 }
 
 @media (max-width: 480px) {
   .iphoneFront {
-    width: 250px;
-    height: 515px; /* Updated to maintain aspect ratio */
+    width: 220px;
+    height: 454px; /* Updated to maintain aspect ratio */
+    transform: rotateY(-2deg) rotateX(0.5deg);
+    filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.35));
+    border-radius: 36px;
+  }
+
+  .frame {
+    border-radius: 36px;
+    border-width: 3px;
   }
 
   .screen {
-    width: 225px;
-    height: 486px; /* Updated to match SVG aspect ratio (225 * 462/214 ≈ 486) */
+    width: 200px;
+    height: 432px; /* Updated to match SVG aspect ratio */
+    margin-top: var(--spacing-xs);
+    margin-left: var(--spacing-xs);
+    border-radius: 28px;
+  }
+
+  .appScreenshot {
+    border-radius: 28px;
+  }
+
+  .island {
+    width: 70px;
+    height: 20px;
+    top: 6px;
+    border-radius: 12px;
+  }
+
+  .camera {
+    width: 13px;
+    height: 13px;
+    right: 8px;
+  }
+
+  .camera::before {
+    top: 3px;
+    left: 3px;
+    width: 7px;
+    height: 7px;
+  }
+
+  .camera::after {
+    top: 4px;
+    left: 4px;
+    width: 5px;
+    height: 5px;
   }
 
   .navButton {
@@ -321,15 +399,15 @@
   }
 
   .prevButton {
-    left: 5px;
+    left: 4px;
   }
 
   .nextButton {
-    right: 5px;
+    right: 4px;
   }
 
   .dotsContainer {
-    bottom: 15px;
+    bottom: 12px;
     gap: var(--spacing-xs);
   }
 
@@ -339,22 +417,41 @@
   }
 
   .imageCounter {
-    top: 10px;
-    left: 10px;
+    top: 8px;
+    left: 8px;
     padding: 2px var(--spacing-xs);
     font-size: 10px;
+    border-radius: 8px;
   }
 }
 
 @media (max-width: 320px) {
   .iphoneFront {
-    width: 200px;
-    height: 412px;
+    width: 180px;
+    height: 371px;
+    border-radius: 30px;
+  }
+
+  .frame {
+    border-radius: 30px;
+    border-width: 2px;
   }
 
   .screen {
-    width: 180px;
-    height: 389px;
+    width: 165px;
+    height: 356px;
+    border-radius: 24px;
+  }
+
+  .appScreenshot {
+    border-radius: 24px;
+  }
+
+  .island {
+    width: 60px;
+    height: 18px;
+    top: 5px;
+    border-radius: 10px;
   }
 
   .navButton {

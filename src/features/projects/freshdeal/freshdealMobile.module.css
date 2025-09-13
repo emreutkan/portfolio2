@@ -40,7 +40,9 @@
   display: flex;
   width: 100%;
   justify-content: space-between;
+  align-items: flex-start;
   padding-top: var(--spacing-xl);
+  gap: var(--spacing-xl);
 }
 
 .galleryWrapper {
@@ -49,7 +51,7 @@
   min-width: 50%;
   /* max-width: 50%; */
   height: 80vh;
-  border-radius: 10%;
+  /* border-radius: 20px; */
 }
 
 .gallery {
@@ -100,8 +102,7 @@
 }
 
 .phoneScaled {
-  /* transform: scale(0.7); */
-  /* transform-origin: center; */
+  transform-origin: center;
 }
 
 /* Perfect fit for SVG images - screen now matches SVG aspect ratio */
@@ -147,4 +148,147 @@
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 999px;
   padding: 8px 14px;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  .projectSection {
+    padding-inline: var(--spacing-lg);
+    padding-block: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
+    border-radius: var(--radius-xl);
+  }
+
+  .titleContainer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+  }
+
+  .combinedContainer {
+    flex-direction: column;
+    gap: var(--spacing-xl);
+    padding-top: var(--spacing-lg);
+  }
+
+  .galleryWrapper {
+    margin-left: 0;
+    min-width: 100%;
+    max-width: 100%;
+    height: 60vh;
+    align-self: center;
+  }
+
+  .slideInfo {
+    order: -1;
+    width: 100%;
+    text-align: center;
+  }
+
+  .galleryActions {
+    justify-content: center;
+    gap: var(--spacing-md);
+    padding-bottom: var(--spacing-lg);
+  }
+
+  .navButton {
+    padding: var(--spacing-sm) var(--spacing-lg);
+    font-size: var(--font-size-sm);
+    min-height: 44px;
+  }
+
+  .hoverHint {
+    bottom: var(--spacing-lg);
+    font-size: var(--font-size-xs);
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+}
+
+@media (max-width: 480px) {
+  .projectSection {
+    padding-inline: var(--spacing-md);
+    padding-block: var(--spacing-md);
+    margin-top: var(--spacing-md);
+    border-radius: var(--radius-lg);
+  }
+
+  .projectLabel {
+    font-size: 10px;
+    letter-spacing: 1px;
+  }
+
+  .titleContainer h2 {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+    margin: var(--spacing-xs) 0;
+  }
+
+  .githubButton {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: var(--font-size-sm);
+    border-radius: var(--radius-md);
+  }
+
+  .combinedContainer {
+    gap: var(--spacing-lg);
+    padding-top: var(--spacing-md);
+  }
+
+  .galleryWrapper {
+    height: 50vh;
+    border-radius: 8%;
+  }
+
+  .cards {
+    width: 14rem;
+  }
+
+  .card {
+    width: 14rem;
+    height: 22rem;
+  }
+
+  .galleryActions {
+    gap: var(--spacing-sm);
+    padding-bottom: var(--spacing-md);
+    flex-wrap: wrap;
+  }
+
+  .navButton {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: var(--font-size-xs);
+    flex: 1 1 auto;
+    min-width: 120px;
+  }
+
+  .hoverHint {
+    bottom: var(--spacing-md);
+    font-size: 11px;
+    padding: 4px var(--spacing-xs);
+  }
+}
+
+@media (max-width: 320px) {
+  .projectSection {
+    padding-inline: var(--spacing-sm);
+    padding-block: var(--spacing-sm);
+  }
+
+  .galleryWrapper {
+    height: 45vh;
+  }
+
+  .cards {
+    width: 12rem;
+  }
+
+  .card {
+    width: 12rem;
+    height: 20rem;
+  }
+
+  .navButton {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: 10px;
+    min-width: 100px;
+  }
 }
